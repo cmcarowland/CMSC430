@@ -27,5 +27,17 @@ enum Tokens {
     WHEN,
     IDENTIFIER, 
     INT_LITERAL, 
-    CHAR_LITERAL
+    CHAR_LITERAL,
+// Additional tokens for the project
+    ELSE,
+    ELSIF,
+    ENDFOLD,
+    ENDIF,
+    FOLD,
+    IF,
+    LEFT,
+    REAL,
+    RIGHT,
+    THEN,
+    REAL_LITERAL
 };
