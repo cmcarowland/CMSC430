@@ -34,9 +34,14 @@ void nextLine()
 
 int lastLine()
 {
-	printf("\r");
-	displayErrors();
-	printf("     \n");
+	printf("\n\n");
+	if(totalErrors > 0)
+	{
+		printf("%d errors found.\n", totalErrors);
+		displayErrors();
+	} else
+		printf("Compiled Successfully!!!\n");
+	
 	return totalErrors;
 }
     
