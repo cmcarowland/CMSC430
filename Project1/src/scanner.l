@@ -67,7 +67,6 @@ int main() {
 		fprintf(file, "%d %s\n", token, yytext);
 		token = yylex();
 	}
-	lastLine();
 	fclose(file);
-	return 0;
+	return lastLine();
 }
