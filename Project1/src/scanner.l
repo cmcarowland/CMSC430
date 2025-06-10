@@ -28,6 +28,7 @@ hexValue    #{1}[0-9a-fA-F]+
 double      [+-]?{digit}*\.{1}{dec}(?:[Ee]?[+-]?{dec})?
 dec		    {digit}+
 escape		'\\[nrftb]'
+eqop        (<|=|<>|>|>=|<=)
 char		'.'
 punc		[\(\),:;]
 
@@ -45,7 +46,7 @@ punc		[\(\),:;]
 "^"			{ ECHO; return(EXPOP); }
 "~"			{ ECHO; return(NEGOP); }
 "&"			{ ECHO; return(ANDOP); }
-"<"			{ ECHO; return(RELOP); }
+{eqop}		{ ECHO; return(RELOP); }
 "=>"		{ ECHO; return(ARROW); }
 "|"			{ ECHO; return(OROP); }
 "!"			{ ECHO; return(NOTOP); }

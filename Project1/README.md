@@ -21,7 +21,7 @@
    - `|` → Token: `OROP`
    - `!` → Token: `NOTOP`
 
-3. [ ] **Add Relational Operators**  
+3. [x] **Add Relational Operators**  
    - `=`, `<>`, `>`, `>=`, `<=`  
    All use the token: `RELOP`
 
