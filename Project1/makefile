@@ -1,5 +1,9 @@
 bin_dir=./bin
 source_dir=./src
+CXXFLAGS += -I/usr/src/googletest/googletest/include
+LDFLAGS += -L/usr/src/googletest/lib
+
+all: compile test
 
 compile: $(bin_dir)/scanner.o $(bin_dir)/listing.o
 	g++ -o $(bin_dir)/compile $(bin_dir)/scanner.o $(bin_dir)/listing.o
@@ -13,6 +17,8 @@ $(source_dir)/scanner.c: $(source_dir)/scanner.l
 $(bin_dir)/listing.o: $(source_dir)/listing.cc $(source_dir)/listing.h
 	g++ -c $(source_dir)/listing.cc -o $(bin_dir)/listing.o
 
+test:
+	g++ $(CXXFLAGS) $(LDFLAGS) $(source_dir)/tests.cpp -lgtest -lgtest_main -lpthread -o $(bin_dir)/test.elf
 
 clean:
 	rm -f $(bin_dir)/*
