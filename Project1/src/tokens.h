@@ -42,5 +42,6 @@ enum Tokens {
     REAL_LITERAL,
     HEX_LITERAL,
     OROP,
-    NOTOP
+    NOTOP,
+    REMOP
 };
