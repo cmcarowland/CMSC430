@@ -29,7 +29,7 @@ double      [+-]?{digit}*\.{1}{dec}(?:[Ee]?[+-]?{dec})?
 dec		    {digit}+
 escape		'\\[nrftb]'
 char		'.'
-punc		[\(\),:;(=>)]
+punc		[\(\),:;]
 
 %%
 
@@ -40,6 +40,7 @@ punc		[\(\),:;(=>)]
 "+"			{ ECHO; return(ADDOP); }
 "-"			{ ECHO; return(ADDOP); }
 "*"			{ ECHO; return(MULOP); }
+"/"			{ ECHO; return(MULOP); }
 "&"			{ ECHO; return(ANDOP); }
 "<"			{ ECHO; return(RELOP); }
 "=>"		{ ECHO; return(ARROW); }

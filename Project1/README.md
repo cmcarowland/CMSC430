@@ -25,10 +25,10 @@
    - `=`, `<>`, `>`, `>=`, `<=`  
    All use the token: `RELOP`
 
-4. [ ] **Add Subtraction Operator to `ADDOP`**  
+4. [x] **Add Subtraction Operator to `ADDOP`**  
    - `-` (subtraction operator)
 
-5. [ ] **Add Division Operator to `MULOP`**  
+5. [x] **Add Division Operator to `MULOP`**  
    - `/` (division operator)
 
 6. [ ] **Add Remainder Operator**  
@@ -65,17 +65,17 @@
 
 ## Compilation Listing Generator Modifications
 
-1. [ ] **Modify `lastLine` Function**  
+1. [x] **Modify `lastLine` Function**  
    - [x] Compute total number of errors  
    - [x] If errors occurred, display number of lexical, syntactic, and semantic errors  
    - [x] If no errors, display "Compiled Successfully"  
    - [x] Return total number of errors
 
-2. [ ] **Modify `appendError` Function**  
+2. [x] **Modify `appendError` Function**  
    - [x] Count number of lexical, syntactic, and semantic errors  
    - [x] Add error message to a queue for that line
 
-3. [ ] **Modify `displayErrors` Function**  
+3. [x] **Modify `displayErrors` Function**  
    - Display all error messages for the previous line  
    - Clear the queue of messages
 
