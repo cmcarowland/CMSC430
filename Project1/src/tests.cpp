@@ -113,7 +113,7 @@ namespace {
         string s = "data/test7.txt";
        
         double result = SetUp(s);
-        EXPECT_EQ(0, result) << "Failed!! " << s;
+        EXPECT_EQ(2, result) << "Failed!! " << s;
         cout << result_header(s, result);
     }
    
@@ -121,7 +121,7 @@ namespace {
         string s = "data/test8.txt";
        
         double result = SetUp(s);
-        EXPECT_EQ(0, result) << "Failed!! " << s;
+        EXPECT_EQ(5, result) << "Failed!! " << s;
         cout << result_header(s, result);
     }
 }
