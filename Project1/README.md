@@ -31,10 +31,10 @@
 5. [x] **Add Division Operator to `MULOP`**  
    - `/` (division operator)
 
-6. [ ] **Add Remainder Operator**  
+6. [x] **Add Remainder Operator**  
    - `%` → Token: `REMOP`
 
-7. [ ] **Add Exponentiation Operator**  
+7. [x] **Add Exponentiation Operator**  
    - `^` → Token: `EXPOP`
 
 8. [ ] **Add Unary Minus Operator**  

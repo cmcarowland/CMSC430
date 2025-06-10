@@ -43,5 +43,6 @@ enum Tokens {
     HEX_LITERAL,
     OROP,
     NOTOP,
-    REMOP
+    REMOP,
+    EXPOP
 };
