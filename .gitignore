@@ -33,3 +33,4 @@
 
 bin/
 lexemes.txt
+scanner.c
