@@ -20,17 +20,21 @@ using namespace std;
 
 ws		    [ \t\r]+
 comment		"//".*\n
+line_cmt    "--".*\n
 line		[\n]
-id		    [A-Za-z]([A-Za-z0-9])*
+id		    [A-Za-z](_{0,2}[A-Za-z0-9])*
 digit		[0-9]
+hexValue    #{1}[0-9a-fA-F]+
+double      [+-]?{digit}*\.{1}{dec}(?:[Ee]?[+-]?{dec})?
 dec		    {digit}+
-double      {digit}.{1}{digit}
+escape		'\\[nrftb]'
 char		'.'
-punc		[\(\),:;]
+punc		[\(\),:;(=>)]
 %%
 
 {ws}		{ ECHO; }
 {comment}	{ ECHO; nextLine(); }
+{line_cmt}  { ECHO; nextLine(); }
 {line}		{ ECHO; nextLine(); }
 "+"			{ ECHO; return(ADDOP); }
 "*"			{ ECHO; return(MULOP); }
@@ -62,10 +66,12 @@ left		{ ECHO; return(LEFT); }
 real 		{ ECHO; return(REAL); }
 right 		{ ECHO; return(RIGHT); }
 then 		{ ECHO; return(THEN); }
+{escape} 	{ printf("Found Escape`"); ECHO; return (CHARACTER); }
 
 {id}		{ ECHO; return(IDENTIFIER);}
 {dec}		{ ECHO; return(INT_LITERAL); }
 {double}	{ ECHO; return(REAL_LITERAL); }
+{hexValue}  { ECHO; return (HEX_LITERAL); }
 {char}		{ ECHO; return(CHAR_LITERAL); }
 {punc}		{ ECHO; return(yytext[0]); }
 .		    { ECHO; appendError(LEXICAL, yytext); }
@@ -81,5 +87,6 @@ int main() {
 		token = yylex();
 	}
 	fclose(file);
+	
 	return lastLine();
 }

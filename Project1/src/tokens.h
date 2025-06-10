@@ -39,5 +39,6 @@ enum Tokens {
     REAL,
     RIGHT,
     THEN,
-    REAL_LITERAL
+    REAL_LITERAL,
+    HEX_LITERAL
 };
