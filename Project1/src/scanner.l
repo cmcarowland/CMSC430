@@ -75,7 +75,7 @@ left		{ ECHO; return(LEFT); }
 real 		{ ECHO; return(REAL); }
 right 		{ ECHO; return(RIGHT); }
 then 		{ ECHO; return(THEN); }
-{escape} 	{ printf("Found Escape`"); ECHO; return (CHARACTER); }
+{escape} 	{ ECHO; return (CHARACTER); }
 
 {id}		{ ECHO; return(IDENTIFIER);}
 {dec}		{ ECHO; return(INT_LITERAL); }
