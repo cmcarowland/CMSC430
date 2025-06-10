@@ -44,5 +44,6 @@ enum Tokens {
     OROP,
     NOTOP,
     REMOP,
-    EXPOP
+    EXPOP,
+    NEGOP
 };

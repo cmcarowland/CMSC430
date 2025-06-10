@@ -43,6 +43,7 @@ punc		[\(\),:;]
 "/"			{ ECHO; return(MULOP); }
 "%"			{ ECHO; return(REMOP); }
 "^"			{ ECHO; return(EXPOP); }
+"~"			{ ECHO; return(NEGOP); }
 "&"			{ ECHO; return(ANDOP); }
 "<"			{ ECHO; return(RELOP); }
 "=>"		{ ECHO; return(ARROW); }

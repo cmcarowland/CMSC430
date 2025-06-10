@@ -37,7 +37,7 @@
 7. [x] **Add Exponentiation Operator**  
    - `^` → Token: `EXPOP`
 
-8. [ ] **Add Unary Minus Operator**  
+8. [x] **Add Unary Minus Operator**  
    - `~` → Token: `NEGOP`
 
 9. [x] **Add Line Comment**  
