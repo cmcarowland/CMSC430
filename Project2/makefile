@@ -18,7 +18,7 @@ $(bin_dir)/parser.o: $(source_dir)/parser.c $(source_dir)/listing.h
 	g++ -c $(source_dir)/parser.c -o $(bin_dir)/parser.o
 
 $(source_dir)/parser.c $(source_dir)/tokens.h: $(source_dir)/parser.y
-	bison -d -v --file-prefix $(source_dir)/parser $(source_dir)/parser.y
+	bison -d -v --file-prefix $(source_dir)/parser $(source_dir)/parser.y 
 	mv $(source_dir)/parser.tab.c $(source_dir)/parser.c
 	cp $(source_dir)/parser.tab.h $(source_dir)/tokens.h
 

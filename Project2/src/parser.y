@@ -27,28 +27,44 @@ void yyerror(const char* message);
 %token BEGIN_ CASE CHARACTER ELSE END ENDSWITCH FUNCTION INTEGER IS LIST OF OTHERS
 	RETURNS SWITCH WHEN
 
+%token REAL
 %%
 
 function:	
 	function_header optional_variable body ;
 
+optional_variable:
+	variable |
+	%empty 
+;
+
 function_header:	
-	FUNCTION IDENTIFIER RETURNS type ';'  ;
+	FUNCTION IDENTIFIER parameters RETURNS type ';'  ;
+
+parameters:
+	parameters ',' parameter | parameter
+;
+
+parameter:
+	IDENTIFIER ':' type
+;
 
 type:
 	INTEGER |
-	CHARACTER ;
+	CHARACTER |
+	REAL
+;
 	
-optional_variable:
-	variable |
-	%empty ;
     
 variable:	
 	IDENTIFIER ':' type IS statement ';' |
-	IDENTIFIER ':' LIST OF type IS list ';' ;
+	IDENTIFIER ':' LIST OF type IS list ';' 
+;
 
 list:
-	'(' expressions ')' ;
+	'(' expressions ')' 
+;
+
 
 expressions:
 	expressions ',' expression| 
