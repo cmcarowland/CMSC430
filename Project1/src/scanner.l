@@ -30,6 +30,7 @@ dec		    {digit}+
 escape		'\\[nrftb]'
 char		'.'
 punc		[\(\),:;(=>)]
+
 %%
 
 {ws}		{ ECHO; }
@@ -37,6 +38,7 @@ punc		[\(\),:;(=>)]
 {line_cmt}  { ECHO; nextLine(); }
 {line}		{ ECHO; nextLine(); }
 "+"			{ ECHO; return(ADDOP); }
+"-"			{ ECHO; return(ADDOP); }
 "*"			{ ECHO; return(MULOP); }
 "&"			{ ECHO; return(ANDOP); }
 "<"			{ ECHO; return(RELOP); }
