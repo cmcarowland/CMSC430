@@ -14,3 +14,15 @@ void nextLine();
 int lastLine();
 void appendError(ErrorCategories errorCategory, string message);
 
+class Error {
+	protected:
+		int lineNumber;
+		string lineContent;
+		ErrorCategories errorCategory;
+
+		string ErrorEnumToString(ErrorCategories errorCategory) const;
+
+	public:
+		Error(int lineNumber, ErrorCategories errorCategory, string lineContent);
+		void Display() const;
+};
