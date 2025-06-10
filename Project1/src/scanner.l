@@ -41,6 +41,8 @@ punc		[\(\),:;(=>)]
 "&"			{ ECHO; return(ANDOP); }
 "<"			{ ECHO; return(RELOP); }
 "=>"		{ ECHO; return(ARROW); }
+"|"			{ ECHO; return(OROP); }
+"!"			{ ECHO; return(NOTOP); }
 begin		{ ECHO; return(BEGIN_); }
 case		{ ECHO; return(CASE); }
 character	{ ECHO; return(CHARACTER); }
