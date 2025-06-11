@@ -89,5 +89,5 @@ string Error::ErrorEnumToString(ErrorCategories errorCategory) const {
 }
 
 void Error::Display() const {
-	printf("\t -%s : Invalid Character %s\n", ErrorEnumToString(errorCategory).c_str(), lineContent.c_str());
+	printf("\t -%s : %s\n", ErrorEnumToString(errorCategory).c_str(), lineContent.c_str());
 }
