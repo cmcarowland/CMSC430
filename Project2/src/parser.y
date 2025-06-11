@@ -36,18 +36,27 @@ void yyerror(const char* message);
 %%
 
 function:	
-	function_header optional_variable body ;
+	function_header optional_variables body ;
 
-optional_variable:
-	variable |
-	%empty 
+optional_variables:
+	optional_variables variable
+	| variable
+	| %empty 
+;
+
+variable:	
+	IDENTIFIER ':' type IS statement ';' |
+	IDENTIFIER ':' LIST OF type IS list ';' 
 ;
 
 function_header:	
-	FUNCTION IDENTIFIER parameters RETURNS type ';'  ;
+	FUNCTION IDENTIFIER parameters RETURNS type ';'  
+;
 
 parameters:
-	parameters ',' parameter | parameter
+	parameters ',' parameter
+	| parameter
+	| %empty
 ;
 
 parameter:
@@ -60,12 +69,6 @@ type:
 	REAL
 ;
 	
-    
-variable:	
-	IDENTIFIER ':' type IS statement ';' |
-	IDENTIFIER ':' LIST OF type IS list ';' 
-;
-
 list:
 	'(' expressions ')' 
 ;
@@ -114,6 +117,8 @@ primary:
 	'(' expression ')' |
 	INT_LITERAL |
 	CHAR_LITERAL |
+	REAL_LITERAL |
+	HEX_LITERAL |
 	IDENTIFIER '(' expression ')' |
 	IDENTIFIER ;
 
