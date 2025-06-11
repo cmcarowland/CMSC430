@@ -15,7 +15,7 @@ using namespace std;
 
 int yylex();
 void yyerror(const char* message);
-
+int yyerrstatus;
 %}
 
 %define parse.error verbose
@@ -131,6 +131,5 @@ void yyerror(const char* message) {
 int main(int argc, char *argv[]) {
 	firstLine();
 	yyparse();
-	lastLine();
-	return 0;
+	return lastLine();
 } 
