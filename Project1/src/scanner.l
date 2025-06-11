@@ -75,12 +75,12 @@ left		{ ECHO; return(LEFT); }
 real 		{ ECHO; return(REAL); }
 right 		{ ECHO; return(RIGHT); }
 then 		{ ECHO; return(THEN); }
-{escape} 	{ ECHO; return (CHARACTER); }
+{escape} 	{ ECHO; return (CHAR_LITERAL); }
 
 {id}		{ ECHO; return(IDENTIFIER);}
 {dec}		{ ECHO; return(INT_LITERAL); }
 {double}	{ ECHO; return(REAL_LITERAL); }
-{hexValue}  { ECHO; return (HEX_LITERAL); }
+{hexValue}  { ECHO; return (INT_LITERAL); }
 {char}		{ ECHO; return(CHAR_LITERAL); }
 {punc}		{ ECHO; return(yytext[0]); }
 .		    { ECHO; appendError(LEXICAL, yytext); }
