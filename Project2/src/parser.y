@@ -91,11 +91,27 @@ statement:
 	| WHEN condition ',' expression ':' expression ';'
 	| SWITCH expression IS cases OTHERS ARROW statement ENDSWITCH ';'
 	| IF condition THEN statement elseifs ELSE statement ENDIF ';'
+	| FOLD direction operator list_choice ENDFOLD ';'
 ;
 
 elseifs:
 	ELSIF condition THEN statement elseifs
 	| %empty
+;
+
+direction:
+	LEFT
+	| RIGHT
+;
+
+operator:
+	ADDOP
+	| MULOP
+;
+
+list_choice:
+	list
+	| IDENTIFIER
 ;
 
 cases:
