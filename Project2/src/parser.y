@@ -12,7 +12,7 @@
 using namespace std;
 
 #include "listing.h"
-
+//#define YYDEBUG 1
 int yylex();
 void yyerror(const char* message);
 
@@ -28,7 +28,7 @@ void yyerror(const char* message);
 
 %token FUNCTION INTEGER IS LIST OF OTHERS RETURNS SWITCH WHEN
 
-%token REAL REMOP EXPOP NEGOP NOTOP OROP ELSIF 
+%token REAL REMOP EXPOP NEGOP NOTOP OROP ELSIF MODOP
 	
 %token ENDFOLD ENDIF FOLD IF THEN LEFT RIGHT 
 %token REAL_LITERAL HEX_LITERAL
@@ -36,7 +36,8 @@ void yyerror(const char* message);
 %%
 
 function:	
-	function_header optional_variables body ;
+	function_header optional_variables body 
+;
 
 optional_variables:
 	optional_variables variable
@@ -45,7 +46,7 @@ optional_variables:
 ;
 
 variable:	
-	IDENTIFIER ':' type IS statement ';' |
+	IDENTIFIER ':' type IS statement |
 	IDENTIFIER ':' LIST OF type IS list ';' 
 ;
 
@@ -73,29 +74,35 @@ list:
 	'(' expressions ')' 
 ;
 
-
 expressions:
-	expressions ',' expression| 
-	expression ;
+	expressions ',' expression
+	| expression ;
 
 body:
-	BEGIN_ statement_ END ';' ;
-
-statement_:
-	statement ';' |
-	error ';' ;
+	BEGIN_ statement END ';' 
+;
     
 statement:
-	expression |
-	WHEN condition ',' expression ':' expression |
-	SWITCH expression IS cases OTHERS ARROW statement ';' ENDSWITCH ;
+	expression ';'
+	| WHEN condition ',' expression ':' expression ';'
+	| SWITCH expression IS cases OTHERS ARROW statement ENDSWITCH ';'
+	| IF condition THEN statement elseifs ELSE statement ENDIF ';'
+;
+
+elseifs:
+	elseifs ELSIF condition THEN statement |
+	ELSIF condition THEN statement |
+	%empty
+;
 
 cases:
 	cases case |
-	%empty ;
+	case 
+;
 	
 case:
-	CASE INT_LITERAL ARROW statement ';' ; 
+	CASE INT_LITERAL ARROW statement 
+; 
 
 condition:
 	condition ANDOP relation |
@@ -103,24 +110,26 @@ condition:
 
 relation:
 	'(' condition ')' |
-	expression RELOP expression ;
+	expression RELOP expression 
+;
+
+arithmetic_operator:
+	ADDOP | MULOP | EXPOP | MODOP 
+;
+
+//logical_operator:
+//	ANDOP | OROP | NOTOP
+//;
 
 expression:
-	expression ADDOP term |
-	term ;
-      
-term:
-	term MULOP primary |
-	primary ;
-
-primary:
-	'(' expression ')' |
-	INT_LITERAL |
-	CHAR_LITERAL |
-	REAL_LITERAL |
-	HEX_LITERAL |
-	IDENTIFIER '(' expression ')' |
-	IDENTIFIER ;
+	'(' expression ')'
+	| expression arithmetic_operator expression
+	| INT_LITERAL 
+	| CHAR_LITERAL 
+	| REAL_LITERAL
+	| IDENTIFIER '(' expression ')'
+	| IDENTIFIER
+; 
 
 %%
 
@@ -129,6 +138,10 @@ void yyerror(const char* message) {
 }
 
 int main(int argc, char *argv[]) {
+	//#ifdef YYDEBUG
+  	//	yydebug = 1;
+	//#endif
+
 	firstLine();
 	yyparse();
 	lastLine();
