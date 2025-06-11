@@ -87,6 +87,7 @@ statement:
 	| WHEN condition ',' expression ':' expression ';'
 	| SWITCH expression IS cases OTHERS ARROW statement ENDSWITCH ';'
 	| IF condition THEN statement elseifs ELSE statement ENDIF ';'
+	| FOLD direction operator list_choice ENDFOLD ';'
 ;
 
 elseifs:
@@ -103,6 +104,20 @@ cases:
 case:
 	CASE INT_LITERAL ARROW statement 
 ; 
+
+direction:
+	LEFT | RIGHT
+;
+
+list_choice:
+	list 
+	| IDENTIFIER
+;
+
+operator:
+	ADDOP 
+	| MULOP
+;
 
 condition:
 	condition ANDOP relation |
