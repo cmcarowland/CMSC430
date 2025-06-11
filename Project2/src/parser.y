@@ -40,7 +40,6 @@ function:
 
 optional_variables:
 	optional_variables variable
-	| variable
 	| %empty 
 ;
 
@@ -54,7 +53,7 @@ function_header:
 ;
 
 parameters:
-	parameters ',' parameter
+	parameter ',' parameters
 	| parameter
 	| %empty
 ;
@@ -75,8 +74,9 @@ list:
 
 
 expressions:
-	expressions ',' expression| 
-	expression ;
+	expression ',' expressions
+	| expression 
+;
 
 body:
 	BEGIN_ statement_ END ';' ;
