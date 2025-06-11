@@ -44,8 +44,8 @@ optional_variables:
 ;
 
 variable:	
-	IDENTIFIER ':' type IS statement ';' |
-	IDENTIFIER ':' LIST OF type IS list ';' 
+	IDENTIFIER ':' type IS statement
+	| IDENTIFIER ':' LIST OF type IS list ';' 
 ;
 
 function_header:	
@@ -80,22 +80,31 @@ expressions:
 
 body:
 	BEGIN_ statement_ END ';' ;
-
-statement_:
-	statement ';' |
-	error ';' ;
     
+statement_:
+	statement
+	| error 
+;
+
 statement:
-	expression |
-	WHEN condition ',' expression ':' expression |
-	SWITCH expression IS cases OTHERS ARROW statement ';' ENDSWITCH ;
+	expression ';'
+	| WHEN condition ',' expression ':' expression ';'
+	| SWITCH expression IS cases OTHERS ARROW statement ENDSWITCH ';'
+	| IF condition THEN statement elseifs ELSE statement ENDIF ';'
+;
+
+elseifs:
+	ELSIF condition THEN statement elseifs
+	| %empty
+;
 
 cases:
 	cases case |
 	%empty ;
 	
 case:
-	CASE INT_LITERAL ARROW statement ';' ; 
+	CASE INT_LITERAL ARROW statement 
+; 
 
 condition:
 	condition ANDOP relation |
