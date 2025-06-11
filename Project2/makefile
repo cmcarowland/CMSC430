@@ -31,4 +31,4 @@ clean:
 	rm -f scanner.c tokens.h parser.c parser.tab.* parser.output
 
 test: $(bin_dir)/project2.elf
-	echo "Testing not implemented yet. Please run the project2.elf manually."
+	g++ $(CXXFLAGS) $(LDFLAGS) $(source_dir)/tests.cpp -lgtest -lgtest_main -lpthread -o $(bin_dir)/test.elf
