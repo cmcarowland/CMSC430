@@ -172,4 +172,44 @@ namespace {
         EXPECT_EQ(0, result) << "Failed!! " << s;
         cout << result_header(s, result);
     }
+
+    TEST_F(SuppliedTest, Syntax1) { 
+        string s = "data/syntax1.txt";
+       
+        double result = SetUp(s);
+        EXPECT_EQ(1, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Syntax2) { 
+        string s = "data/syntax2.txt";
+       
+        double result = SetUp(s);
+        EXPECT_EQ(1, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Syntax3) { 
+        string s = "data/syntax3.txt";
+       
+        double result = SetUp(s);
+        EXPECT_EQ(1, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Syntax4) { 
+        string s = "data/syntax4.txt";
+       
+        double result = SetUp(s);
+        EXPECT_EQ(2, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Syntax5) { 
+        string s = "data/syntax5.txt";
+       
+        double result = SetUp(s);
+        EXPECT_EQ(5, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
 }
