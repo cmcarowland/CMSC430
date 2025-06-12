@@ -3,7 +3,7 @@ source_dir=./src
 CXXFLAGS += -I/usr/src/googletest/googletest/include
 LDFLAGS += -L/usr/src/googletest/lib
 
-all: $(bin_dir)/project2.elf test
+all: $(bin_dir)/project2.elf $(bin_dir)/test.elf
 
 $(bin_dir)/project2.elf: $(bin_dir)/scanner.o $(bin_dir)/parser.o $(bin_dir)/listing.o
 	g++ -o $(bin_dir)/project2.elf $(bin_dir)/scanner.o $(bin_dir)/parser.o $(bin_dir)/listing.o
@@ -30,5 +30,5 @@ clean:
 	cd $(source_dir) && \
 	rm -f scanner.c tokens.h parser.c parser.tab.* parser.output
 
-test: $(bin_dir)/project2.elf
-	echo "Testing not implemented yet. Please run the project2.elf manually."
+$(bin_dir)/test.elf: $(bin_dir)/project2.elf $(source_dir)/tests.cpp
+	g++ $(CXXFLAGS) $(LDFLAGS) $(source_dir)/tests.cpp -lgtest -lgtest_main -lpthread -o $(bin_dir)/test.elf

@@ -12,10 +12,10 @@
 using namespace std;
 
 #include "listing.h"
-//#define YYDEBUG 1
+#define YYDEBUG 1
 int yylex();
 void yyerror(const char* message);
-
+int yyerrstatus;
 %}
 
 %define parse.error verbose
@@ -28,10 +28,10 @@ void yyerror(const char* message);
 
 %token FUNCTION INTEGER IS LIST OF OTHERS RETURNS SWITCH WHEN
 
-%token REAL REMOP EXPOP NEGOP NOTOP OROP ELSIF MODOP
+%token REAL MODOP EXPOP NEGOP NOTOP OROP ELSIF 
 	
 %token ENDFOLD ENDIF FOLD IF THEN LEFT RIGHT 
-%token REAL_LITERAL HEX_LITERAL
+%token REAL_LITERAL
 
 %%
 
@@ -41,13 +41,12 @@ function:
 
 optional_variables:
 	optional_variables variable
-	| variable
 	| %empty 
 ;
 
 variable:	
-	IDENTIFIER ':' type IS statement |
-	IDENTIFIER ':' LIST OF type IS list ';' 
+	IDENTIFIER ':' type IS statement
+	| IDENTIFIER ':' LIST OF type IS list ';' 
 ;
 
 function_header:	
@@ -55,7 +54,7 @@ function_header:
 ;
 
 parameters:
-	parameters ',' parameter
+	parameter ',' parameters
 	| parameter
 	| %empty
 ;
@@ -75,13 +74,18 @@ list:
 ;
 
 expressions:
-	expressions ',' expression
-	| expression ;
+	expression
+	| expressions ',' expression
+;
 
 body:
-	BEGIN_ statement END ';' 
-;
+	BEGIN_ statement_ END ';' ;
     
+statement_:
+	statement
+	| error 
+;
+
 statement:
 	expression ';'
 	| WHEN condition ',' expression ':' expression ';'
@@ -90,61 +94,92 @@ statement:
 	| FOLD direction operator list_choice ENDFOLD ';'
 ;
 
-elseifs:
-	elseifs ELSIF condition THEN statement |
-	ELSIF condition THEN statement |
-	%empty
+elseif:
+	ELSIF condition THEN statement
 ;
 
-cases:
-	cases case |
-	case 
+elseifs:
+	elseifs elseif
+	| %empty
 ;
-	
-case:
-	CASE INT_LITERAL ARROW statement 
-; 
 
 direction:
-	LEFT | RIGHT
-;
-
-list_choice:
-	list 
-	| IDENTIFIER
+	LEFT
+	| RIGHT
 ;
 
 operator:
-	ADDOP 
+	ADDOP
 	| MULOP
 ;
 
+list_choice:
+	list
+	| IDENTIFIER
+;
+
+case:
+	CASE expression ARROW statement 
+; 
+
+cases:
+	cases case
+	| %empty 
+;	
+
+rel_condition:
+	NOTOP rel_condition
+	| '(' condition ')'
+	| expression RELOP expression
+;
+
+and:
+	rel_condition
+	| and ANDOP rel_condition
+;
+
+or:
+	and
+	| or OROP and
+;
+
 condition:
-	condition ANDOP relation |
-	relation ;
-
-relation:
-	'(' condition ')' |
-	expression RELOP expression 
+	or
 ;
 
-arithmetic_operator:
-	ADDOP | MULOP | EXPOP | MODOP 
+neg:
+	NEGOP neg
+	| primary
 ;
 
-//logical_operator:
-//	ANDOP | OROP | NOTOP
-//;
+exp:
+	neg
+	| neg EXPOP exp
+;
+
+mul:
+	exp
+	| mul MULOP exp
+	| mul MODOP exp
+;
+
+add:
+	mul
+	| add ADDOP mul
+;
 
 expression:
+	add
+;
+
+primary:
 	'(' expression ')'
-	| expression arithmetic_operator expression
 	| INT_LITERAL 
-	| CHAR_LITERAL 
-	| REAL_LITERAL
+	| REAL_LITERAL 
+	| CHAR_LITERAL
 	| IDENTIFIER '(' expression ')'
 	| IDENTIFIER
-; 
+;
 
 %%
 
@@ -153,12 +188,8 @@ void yyerror(const char* message) {
 }
 
 int main(int argc, char *argv[]) {
-	//#ifdef YYDEBUG
-  	//	yydebug = 1;
-	//#endif
-
+	//yydebug=1;
 	firstLine();
 	yyparse();
-	lastLine();
-	return 0;
+	return lastLine();
 } 
