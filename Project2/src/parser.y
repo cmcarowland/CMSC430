@@ -12,7 +12,7 @@
 using namespace std;
 
 #include "listing.h"
-
+#define YYDEBUG 1
 int yylex();
 void yyerror(const char* message);
 int yyerrstatus;
@@ -28,10 +28,10 @@ int yyerrstatus;
 
 %token FUNCTION INTEGER IS LIST OF OTHERS RETURNS SWITCH WHEN
 
-%token REAL REMOP EXPOP NEGOP NOTOP OROP ELSIF 
+%token REAL MODOP EXPOP NEGOP NOTOP OROP ELSIF 
 	
 %token ENDFOLD ENDIF FOLD IF THEN LEFT RIGHT 
-%token REAL_LITERAL HEX_LITERAL
+%token REAL_LITERAL
 
 %%
 
@@ -72,10 +72,9 @@ list:
 	'(' expressions ')' 
 ;
 
-
 expressions:
-	expression ',' expressions
-	| expression 
+	expression
+	| expressions ',' expression
 ;
 
 body:
@@ -94,8 +93,12 @@ statement:
 	| FOLD direction operator list_choice ENDFOLD ';'
 ;
 
+elseif:
+	ELSIF condition THEN statement
+;
+
 elseifs:
-	ELSIF condition THEN statement elseifs
+	elseifs elseif
 	| %empty
 ;
 
@@ -114,38 +117,68 @@ list_choice:
 	| IDENTIFIER
 ;
 
-cases:
-	cases case |
-	%empty ;
-	
 case:
-	CASE INT_LITERAL ARROW statement 
+	CASE expression ARROW statement 
 ; 
 
-condition:
-	condition ANDOP relation |
-	relation ;
+cases:
+	cases case
+	| %empty 
+;	
 
-relation:
-	'(' condition ')' |
-	expression RELOP expression ;
+rel_condition:
+	NOTOP rel_condition
+	| '(' condition ')'
+	| expression RELOP expression
+;
+
+and:
+	rel_condition
+	| and ANDOP rel_condition
+;
+
+or:
+	and
+	| or OROP and
+;
+
+condition:
+	or
+;
+
+neg:
+	NEGOP neg
+	| primary
+;
+
+exp:
+	neg
+	| neg EXPOP exp
+;
+
+mul:
+	exp
+	| mul MULOP exp
+	| mul MODOP exp
+;
+
+add:
+	mul
+	| add ADDOP mul
+;
 
 expression:
-	expression ADDOP term |
-	term ;
-      
-term:
-	term MULOP primary |
-	primary ;
+	add
+;
 
 primary:
-	'(' expression ')' |
-	INT_LITERAL |
-	CHAR_LITERAL |
-	REAL_LITERAL |
-	HEX_LITERAL |
-	IDENTIFIER '(' expression ')' |
-	IDENTIFIER ;
+	'(' expression ')'
+	| INT_LITERAL 
+	| REAL_LITERAL 
+	| CHAR_LITERAL
+	| IDENTIFIER '(' expression ')'
+	| IDENTIFIER
+;
 
 %%
 
@@ -154,6 +187,7 @@ void yyerror(const char* message) {
 }
 
 int main(int argc, char *argv[]) {
+	//yydebug=1;
 	firstLine();
 	yyparse();
 	return lastLine();
