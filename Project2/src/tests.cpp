@@ -124,4 +124,52 @@ namespace {
         EXPECT_EQ(0, result) << "Failed!! " << s;
         cout << result_header(s, result);
     }
+
+    TEST_F(SuppliedTest, Test9) { 
+        string s = "data/test9.txt";
+       
+        double result = SetUp(s);
+        EXPECT_EQ(0, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Test10) { 
+        string s = "data/test10.txt";
+       
+        double result = SetUp(s);
+        EXPECT_EQ(0, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Test11) { 
+        string s = "data/test11.txt";
+       
+        double result = SetUp(s);
+        EXPECT_EQ(0, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Test12) { 
+        string s = "data/test12.txt";
+       
+        double result = SetUp(s);
+        EXPECT_EQ(0, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Test13) { 
+        string s = "data/test13.txt";
+       
+        double result = SetUp(s);
+        EXPECT_EQ(0, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Test14) { 
+        string s = "data/test14.txt";
+       
+        double result = SetUp(s);
+        EXPECT_EQ(0, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
 }
