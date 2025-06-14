@@ -51,8 +51,8 @@ double result;
 	RETURNS SWITCH CASE OTHERS ENDSWITCH WHEN FOLD ENDFOLD 
 	IF ELSIF ELSE ENDIF THEN LEFT RIGHT REAL
 
-%type <value> body statement_ statement cases case expression term primary
-	 condition relation
+%type <value> body statement_ statement cases case expression primary
+	 condition relation add mul exp neg
 
 %type <list> list expressions
 
@@ -142,13 +142,30 @@ relation:
 	'(' condition ')' {$$ = $2;} |
 	expression RELOP expression {$$ = evaluateRelational($1, $2, $3);} ;
 
+neg:
+	NEGOP neg {$$ = -$2;}
+	| primary
+;
+
+exp:
+	neg
+	| exp EXPOP neg {$$ = pow($1, $3);}
+;
+
+mul:
+	exp
+	| mul MULOP exp {$$ = $1 * $3;}
+	| mul MODOP exp 
+;
+
+add:
+	mul
+	| add ADDOP mul {$$ = $1 + $3;}
+;
+
 expression:
-	expression ADDOP term {$$ = evaluateArithmetic($1, $2, $3);} |
-	term ;
-      
-term:
-	term MULOP primary {$$ = evaluateArithmetic($1, $2, $3);}  |
-	primary ;
+	add {$$ = $1;}
+;
 
 primary:
 	'(' expression ')' {$$ = $2;} |
@@ -172,10 +189,18 @@ double extract_element(CharPtr list_name, double subscript) {
 	return NAN;
 }
 
-int main(int argc, char *argv[]) {
+extern double parse() {
+	//yydebug = 1;
 	firstLine();
 	yyparse();
 	if (lastLine() == 0)
 		cout << "Result = " << result << endl;
+	return result;
+}
+
+#ifndef TESTING
+int main(int argc, char *argv[]) {
+	parse();
 	return 0;
-} 
+}
+#endif
