@@ -34,5 +34,5 @@ clean:
 	cd $(source_dir) && \
 	rm -f scanner.c parser.tab.* parser.output tokens.h parser.c
 
-$(bin_dir)/test.elf: $(bin_dir)/project3.elf $(source_dir)/tests.cpp
-	g++ $(CXXFLAGS) $(LDFLAGS) $(source_dir)/tests.cpp -lgtest -lgtest_main -lpthread -o $(bin_dir)/test.elf
+$(bin_dir)/test.elf: $(source_dir)/tests.cpp $(source_dir)/parser.c $(bin_dir)/scanner.o $(bin_dir)/listing.o $(bin_dir)/values.o
+	g++ $(CXXFLAGS) -DTESTING=1 $(LDFLAGS) $(source_dir)/tests.cpp $(source_dir)/parser.c $(bin_dir)/scanner.o $(bin_dir)/listing.o $(bin_dir)/values.o -lgtest -lgtest_main -lpthread -o $(bin_dir)/test.elf
