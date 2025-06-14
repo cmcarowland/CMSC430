@@ -1,127 +1,185 @@
 /* CMSC 430 Compiler Theory and Design
-   Project 3 Skeleton
+   Project 2 Skeleton
    UMGC CITE
-   Summer 2023
-   
-   Project 3 Parser with semantic actions for the interpreter */
+   Summer 2023 
+
+   Project 2 Parser */
 
 %{
 
-#include <iostream>
-#include <cmath>
 #include <string>
-#include <vector>
-#include <map>
 
 using namespace std;
 
-#include "values.h"
 #include "listing.h"
-#include "symbols.h"
-
+#define YYDEBUG 1
 int yylex();
 void yyerror(const char* message);
-double extract_element(CharPtr list_name, double subscript);
-
-Symbols<double> scalars;
-Symbols<vector<double>*> lists;
-double result;
-
+int yyerrstatus;
 %}
 
 %define parse.error verbose
 
-%union {
-	CharPtr iden;
-	Operators oper;
-	double value;
-	vector<double>* list;
-}
+%token IDENTIFIER INT_LITERAL CHAR_LITERAL
 
-%token <iden> IDENTIFIER
+%token ADDOP MULOP ANDOP RELOP ARROW
 
-%token <value> INT_LITERAL CHAR_LITERAL
+%token BEGIN_ CASE CHARACTER ELSE END ENDSWITCH
 
-%token <oper> ADDOP MULOP ANDOP RELOP
+%token FUNCTION INTEGER IS LIST OF OTHERS RETURNS SWITCH WHEN
 
-%token ARROW
-
-%token BEGIN_ CASE CHARACTER ELSE END ENDSWITCH FUNCTION INTEGER IS LIST OF OTHERS
-	RETURNS SWITCH WHEN
-
-%type <value> body statement_ statement cases case expression term primary
-	 condition relation
-
-%type <list> list expressions
+%token REAL MODOP EXPOP NEGOP NOTOP OROP ELSIF 
+	
+%token ENDFOLD ENDIF FOLD IF THEN LEFT RIGHT 
+%token REAL_LITERAL
 
 %%
 
 function:	
-	function_header optional_variable  body ';' {result = $3;} ;
-	
+	function_header optional_variables body 
+;
+
+optional_variables:
+	optional_variables variable
+	| %empty 
+;
+
+variable:	
+	IDENTIFIER ':' type IS statement
+	| IDENTIFIER ':' LIST OF type IS list ';' 
+;
+
 function_header:	
-	FUNCTION IDENTIFIER RETURNS type ';' ;
+	FUNCTION IDENTIFIER parameters RETURNS type ';'  
+;
+
+parameters:
+	parameter ',' parameters
+	| parameter
+	| %empty
+;
+
+parameter:
+	IDENTIFIER ':' type
+;
 
 type:
 	INTEGER |
-	CHARACTER ;
+	CHARACTER |
+	REAL
+;
 	
-optional_variable:
-	variable |
-	%empty ;
-	
-variable:	
-	IDENTIFIER ':' type IS statement ';' {scalars.insert($1, $5);}; |
-	IDENTIFIER ':' LIST OF type IS list ';' {lists.insert($1, $7);} ;
-
 list:
-	'(' expressions ')' {$$ = $2;} ;
+	'(' expressions ')' 
+;
 
 expressions:
-	expressions ',' expression {$1->push_back($3); $$ = $1;} | 
-	expression {$$ = new vector<double>(); $$->push_back($1);}
+	expression
+	| expressions ',' expression
+;
 
 body:
-	BEGIN_ statement_ END {$$ = $2;} ;
-
-statement_:
-	statement ';' |
-	error ';' {$$ = 0;} ;
+	BEGIN_ statement_ END ';' ;
     
+statement_:
+	statement
+	| error 
+;
+
 statement:
-	expression |
-	WHEN condition ',' expression ':' expression {$$ = $2 ? $4 : $6;} |
-	SWITCH expression IS cases OTHERS ARROW statement ';' ENDSWITCH
-		{$$ = !isnan($4) ? $4 : $7;} ;
-cases:
-	cases case {$$ = !isnan($1) ? $1 : $2;} |
-	%empty {$$ = NAN;} ;
-	
+	expression ';'
+	| WHEN condition ',' expression ':' expression ';'
+	| SWITCH expression IS cases OTHERS ARROW statement ENDSWITCH ';'
+	| IF condition THEN statement elseifs ELSE statement ENDIF ';'
+	| FOLD direction operator list_choice ENDFOLD ';'
+;
+
+elseif:
+	ELSIF condition THEN statement
+;
+
+elseifs:
+	elseifs elseif
+	| %empty
+;
+
+direction:
+	LEFT
+	| RIGHT
+;
+
+operator:
+	ADDOP
+	| MULOP
+;
+
+list_choice:
+	list
+	| IDENTIFIER
+;
+
 case:
-	CASE INT_LITERAL ARROW statement ';' {$$ = $<value>-2 == $2 ? $4 : NAN;} ; 
+	CASE expression ARROW statement 
+; 
+
+cases:
+	cases case
+	| %empty 
+;	
+
+rel_condition:
+	NOTOP rel_condition
+	| '(' condition ')'
+	| expression RELOP expression
+;
+
+and:
+	rel_condition
+	| and ANDOP rel_condition
+;
+
+or:
+	and
+	| or OROP and
+;
 
 condition:
-	condition ANDOP relation {$$ = $1 && $2;} |
-	relation ;
+	or
+;
 
-relation:
-	'(' condition ')' {$$ = $2;} |
-	expression RELOP expression {$$ = evaluateRelational($1, $2, $3);} ;
+neg:
+	NEGOP neg
+	| primary
+;
+
+exp:
+	neg
+	| neg EXPOP exp
+;
+
+mul:
+	exp
+	| mul MULOP exp
+	| mul MODOP exp
+;
+
+add:
+	mul
+	| add ADDOP mul
+;
 
 expression:
-	expression ADDOP term {$$ = evaluateArithmetic($1, $2, $3);} |
-	term ;
-      
-term:
-	term MULOP primary {$$ = evaluateArithmetic($1, $2, $3);}  |
-	primary ;
+	add
+;
 
 primary:
-	'(' expression ')' {$$ = $2;} |
-	INT_LITERAL | 
-	CHAR_LITERAL |
-	IDENTIFIER '(' expression ')' {$$ = extract_element($1, $3); } |
-	IDENTIFIER {if (!scalars.find($1, $$)) appendError(UNDECLARED, $1);} ;
+	'(' expression ')'
+	| INT_LITERAL 
+	| REAL_LITERAL 
+	| CHAR_LITERAL
+	| IDENTIFIER '(' expression ')'
+	| IDENTIFIER
+;
 
 %%
 
@@ -129,18 +187,9 @@ void yyerror(const char* message) {
 	appendError(SYNTAX, message);
 }
 
-double extract_element(CharPtr list_name, double subscript) {
-	vector<double>* list; 
-	if (lists.find(list_name, list))
-		return (*list)[subscript];
-	appendError(UNDECLARED, list_name);
-	return NAN;
-}
-
 int main(int argc, char *argv[]) {
+	//yydebug=1;
 	firstLine();
 	yyparse();
-	if (lastLine() == 0)
-		cout << "Result = " << result << endl;
-	return 0;
+	return lastLine();
 } 
