@@ -1,4 +1,4 @@
-parse.tab.c
+parser.c
 parser.output
 parser.tab.h
 scanner.c
