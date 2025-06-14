@@ -27,6 +27,7 @@ Symbols<double> scalars;
 Symbols<vector<double>*> lists;
 double result;
 
+#define YYDEBUG 1
 %}
 
 %define parse.error verbose
@@ -40,14 +41,15 @@ double result;
 
 %token <iden> IDENTIFIER
 
-%token <value> INT_LITERAL CHAR_LITERAL
+%token <value> INT_LITERAL CHAR_LITERAL REAL_LITERAL
 
-%token <oper> ADDOP MULOP ANDOP RELOP
+%token <oper> ADDOP MULOP ANDOP RELOP MODOP EXPOP NEGOP NOTOP OROP
 
 %token ARROW
 
-%token BEGIN_ CASE CHARACTER ELSE END ENDSWITCH FUNCTION INTEGER IS LIST OF OTHERS
-	RETURNS SWITCH WHEN
+%token BEGIN_ CHARACTER FUNCTION END INTEGER IS LIST OF 
+	RETURNS SWITCH CASE OTHERS ENDSWITCH WHEN FOLD ENDFOLD 
+	IF ELSIF ELSE ENDIF THEN LEFT RIGHT REAL
 
 %type <value> body statement_ statement cases case expression term primary
 	 condition relation
@@ -57,18 +59,21 @@ double result;
 %%
 
 function:	
-	function_header optional_variable  body ';' {result = $3;} ;
+	function_header optional_variables body ';' {result = $3;} ;
 	
 function_header:	
 	FUNCTION IDENTIFIER RETURNS type ';' ;
 
 type:
 	INTEGER |
-	CHARACTER ;
+	CHARACTER |
+	REAL
+;
 	
-optional_variable:
-	variable |
-	%empty ;
+optional_variables:
+	optional_variables variable
+	| %empty 
+;
 	
 variable:	
 	IDENTIFIER ':' type IS statement ';' {scalars.insert($1, $5);}; |
@@ -87,12 +92,41 @@ body:
 statement_:
 	statement ';' |
 	error ';' {$$ = 0;} ;
-    
+
+list_choice:
+	list
+	| IDENTIFIER
+;
+
 statement:
-	expression |
-	WHEN condition ',' expression ':' expression {$$ = $2 ? $4 : $6;} |
-	SWITCH expression IS cases OTHERS ARROW statement ';' ENDSWITCH
-		{$$ = !isnan($4) ? $4 : $7;} ;
+	expression
+	| WHEN condition ',' expression ':' expression {$$ = $2 ? $4 : $6;} 
+	| SWITCH expression IS cases OTHERS ARROW statement ';' ENDSWITCH
+		{$$ = !isnan($4) ? $4 : $7;} 
+	| IF condition THEN statement elseifs ELSE statement ENDIF ';' 
+		{$$ = $2 ? $4 : $7;}
+	| FOLD direction operator list_choice ENDFOLD ';' {$$ = -1;}
+;
+
+elseif:
+	ELSIF condition THEN statement
+;
+
+elseifs:
+	elseifs elseif
+	| %empty
+;
+
+direction:
+	LEFT
+	| RIGHT
+;
+
+operator:
+	ADDOP
+	| MULOP
+;
+
 cases:
 	cases case {$$ = !isnan($1) ? $1 : $2;} |
 	%empty {$$ = NAN;} ;
@@ -119,6 +153,7 @@ term:
 primary:
 	'(' expression ')' {$$ = $2;} |
 	INT_LITERAL | 
+	REAL_LITERAL |
 	CHAR_LITERAL |
 	IDENTIFIER '(' expression ')' {$$ = extract_element($1, $3); } |
 	IDENTIFIER {if (!scalars.find($1, $$)) appendError(UNDECLARED, $1);} ;
