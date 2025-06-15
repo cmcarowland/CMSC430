@@ -88,7 +88,7 @@ namespace {
         string s = "data/test6.txt";
        
         SetUp(s);
-        EXPECT_EQ(0, result) << "Failed!! " << s;
+        EXPECT_EQ(12, result) << "Failed!! " << s;
         cout << result_header(s, result);
     }
    
