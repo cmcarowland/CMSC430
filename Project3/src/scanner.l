@@ -83,7 +83,18 @@ left        { ECHO; return(LEFT); }
 real        { ECHO; return(REAL); }
 right       { ECHO; return(RIGHT); }
 then        { ECHO; return(THEN); }
-{escape}    { ECHO; return(CHAR_LITERAL); }
+{escape}    { ECHO;
+               // Map escape sequences to ASCII values
+               switch (yytext[2]) {
+                  case 'n': yylval.value = '\n'; break;
+                  case 'r': yylval.value = '\r'; break;
+                  case 'f': yylval.value = '\f'; break;
+                  case 't': yylval.value = '\t'; break;
+                  case 'b': yylval.value = '\b'; break;
+                  default:  yylval.value = -1; break;
+               }
+               return(CHAR_LITERAL);
+            }
 
 
 {id}		   { ECHO; yylval.iden = (CharPtr)malloc(yyleng + 1); 
