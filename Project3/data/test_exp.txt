@@ -1,0 +1,6 @@
+// Tests All Arithmetic Operators
+
+function main returns integer;
+begin
+    16 ^ 4;
+end;
