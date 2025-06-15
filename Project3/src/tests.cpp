@@ -92,13 +92,61 @@ namespace {
         cout << result_header(s, result);
     }
    
-    // TEST_F(SuppliedTest, Test7) { 
-    //     string s = "data/test7.txt";
+    TEST_F(SuppliedTest, TestAdd) { 
+        string s = "data/test_add.txt";
+
+        SetUp(s);
+        EXPECT_EQ(11, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, TestSubtract) { 
+        string s = "data/test_subtract.txt";
+
+        SetUp(s);
+        EXPECT_EQ(3, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+   }
+
+   TEST_F(SuppliedTest, TestMultiply) { 
+        string s = "data/test_multiply.txt";
+
+        SetUp(s);
+        EXPECT_EQ(40, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+    
+    TEST_F(SuppliedTest, TestDivide) { 
+        string s = "data/test_divide.txt";
+
+        SetUp(s);
+        EXPECT_EQ(5, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+    
+    TEST_F(SuppliedTest, TestMod) { 
+        string s = "data/test_mod.txt";
+
+        SetUp(s);
+        EXPECT_EQ(3, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+    
+    TEST_F(SuppliedTest, TestExp) { 
+        string s = "data/test_exp.txt";
+
+        SetUp(s);
+        EXPECT_EQ(65536, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Test7) { 
+        string s = "data/test7.txt";
        
-    //     SetUp(s);
-    //     EXPECT_EQ(0, result) << "Failed!! " << s;
-    //     cout << result_header(s, result);
-    // }
+        SetUp(s);
+        EXPECT_EQ(5, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
    
     // TEST_F(SuppliedTest, Test8) { 
     //     string s = "data/test8.txt";
