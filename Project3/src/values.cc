@@ -19,8 +19,28 @@ double evaluateArithmetic(double left, Operators operator_, double right) {
 		case ADD:
 			result = left + right;
 			break;
+		case SUBTRACT:
+			result = left - right;
+			break;
 		case MULTIPLY:
 			result = left * right;
+			break;
+		case DIVIDE:
+			if (right == 0) {
+				result = 0; // Handle division by zero
+			} else {
+				result = left / right;
+			}
+			break;
+		case POWER:
+			result = pow(left, right);
+			break;
+		case MODULO:
+			if (right == 0) {
+				result = 0; // Handle modulo by zero
+			} else {
+				result = fmod(left, right);
+			}
 			break;
 	}
 	return result;
