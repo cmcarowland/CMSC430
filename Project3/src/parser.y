@@ -52,7 +52,8 @@ double result;
 	IF ELSIF ELSE ENDIF THEN LEFT RIGHT REAL
 
 %type <value> body statement_ statement cases case expression primary
-	 condition relation add mul exp neg
+	add mul exp neg 
+	condition and or rel_condition
 
 %type <list> list expressions
 
@@ -134,13 +135,26 @@ cases:
 case:
 	CASE INT_LITERAL ARROW statement ';' {$$ = $<value>-2 == $2 ? $4 : NAN;} ; 
 
-condition:
-	condition ANDOP relation {$$ = $1 && $2;} |
-	relation ;
 
-relation:
-	'(' condition ')' {$$ = $2;} |
-	expression RELOP expression {$$ = evaluateRelational($1, $2, $3);} ;
+rel_condition:
+	NOTOP rel_condition {$$ = !$2;}
+	| '(' condition ')' {$$ = $2;}
+	| expression RELOP expression {$$ = evaluateRelational($1, $2, $3);}
+;
+
+and:
+	rel_condition {$$ = $1;}
+	| and ANDOP rel_condition {$$ = evaluateRelational($1, $2, $3);}
+;
+
+or:
+	and {$$ = $1;}
+	| or OROP and {$$ = evaluateRelational($1, $2, $3);}
+;
+
+condition:
+	or {$$ = $1;}
+;
 
 neg:
 	NEGOP neg {$$ = -$2;}
