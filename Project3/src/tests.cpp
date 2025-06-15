@@ -147,14 +147,61 @@ namespace {
         EXPECT_EQ(5, result) << "Failed!! " << s;
         cout << result_header(s, result);
     }
-   
-    // TEST_F(SuppliedTest, Test8) { 
-    //     string s = "data/test8.txt";
+   TEST_F(SuppliedTest, TestAnd) { 
+       string s = "data/test_and.txt";
        
-    //     SetUp(s);
-    //     EXPECT_EQ(0, result) << "Failed!! " << s;
-    //     cout << result_header(s, result);
-    // }
+        SetUp(s);
+        EXPECT_EQ(1, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+   
+    TEST_F(SuppliedTest, TestAndFalse) { 
+        string s = "data/test_and_false.txt";
+       
+        SetUp(s);
+        EXPECT_EQ(0, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+   
+    TEST_F(SuppliedTest, TestNot) { 
+        string s = "data/test_not.txt";
+       
+        SetUp(s);
+        EXPECT_EQ(0, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+   
+    TEST_F(SuppliedTest, TestNeq) { 
+        string s = "data/test_neq.txt";
+       
+        SetUp(s);
+        EXPECT_EQ(1, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+   
+    TEST_F(SuppliedTest, TestOr) { 
+        string s = "data/test_or.txt";
+       
+        SetUp(s);
+        EXPECT_EQ(1, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+   
+    TEST_F(SuppliedTest, TestOrFalse) { 
+        string s = "data/test_or_false.txt";
+       
+        SetUp(s);
+        EXPECT_EQ(0, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+   
+    TEST_F(SuppliedTest, Test8) { 
+        string s = "data/test8.txt";
+       
+        SetUp(s);
+        EXPECT_EQ(0, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
 
     // TEST_F(SuppliedTest, Test9) { 
     //     string s = "data/test9.txt";
