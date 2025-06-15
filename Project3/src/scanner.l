@@ -39,10 +39,10 @@ punc		[\(\),:;]
 {comment}   { ECHO; nextLine(); }
 {line}      { ECHO; nextLine(); }
 "+"         { ECHO; yylval.oper = ADD; return(ADDOP); }
-"-"         { ECHO; yylval.oper = ADD; return(ADDOP); }
+"-"         { ECHO; yylval.oper = SUBTRACT; return(ADDOP); }
 "*"         { ECHO; yylval.oper = MULTIPLY; return(MULOP); }
-"/"         { ECHO; yylval.oper = MULTIPLY; return(MULOP); }
-"%"         { ECHO; yylval.oper = MODULO; return(MODOP); }
+"/"         { ECHO; yylval.oper = DIVIDE; return(MULOP); }
+"%"         { ECHO; yylval.oper = MODULO; return(MULOP); }
 "^"         { ECHO; yylval.oper = POWER; return(EXPOP); }
 "~"         { ECHO; yylval.oper = NEGATE; return(NEGOP); }
 "&"         { ECHO; yylval.oper = AND; return(ANDOP); }
@@ -95,7 +95,6 @@ then        { ECHO; return(THEN); }
                }
                return(CHAR_LITERAL);
             }
-
 
 {id}		   { ECHO; yylval.iden = (CharPtr)malloc(yyleng + 1); 
 			   strcpy(yylval.iden, yytext); return(IDENTIFIER);}

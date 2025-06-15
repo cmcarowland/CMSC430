@@ -144,23 +144,22 @@ relation:
 
 neg:
 	NEGOP neg {$$ = -$2;}
-	| primary
+	| primary {$$ = $1;}
 ;
 
 exp:
-	neg
-	| exp EXPOP neg {$$ = pow($1, $3);}
+	neg {$$ = $1;}
+	| neg EXPOP exp {$$ = pow($1, $3);}
 ;
 
 mul:
-	exp
-	| mul MULOP exp {$$ = $1 * $3;}
-	| mul MODOP exp 
+	exp {$$ = $1;}
+	| mul MULOP exp {$$ = evaluateArithmetic($1, $2, $3);}
 ;
 
 add:
-	mul
-	| add ADDOP mul {$$ = $1 + $3;}
+	mul {$$ = $1;}
+	| add ADDOP mul {$$ = evaluateArithmetic($1, $2, $3);}
 ;
 
 expression:
