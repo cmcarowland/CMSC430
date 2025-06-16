@@ -203,13 +203,37 @@ namespace {
         cout << result_header(s, result);
     }
 
-    // TEST_F(SuppliedTest, Test9) { 
-    //     string s = "data/test9.txt";
+    TEST_F(SuppliedTest, Test9_lt10) { 
+        string s = "data/test9_lt10.txt";
        
-    //     SetUp(s);
-    //     EXPECT_EQ(0, result) << "Failed!! " << s;
-    //     cout << result_header(s, result);
-    // }
+        SetUp(s);
+        EXPECT_EQ(1, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Test9_lt20) { 
+        string s = "data/test9_lt20.txt";
+       
+        SetUp(s);
+        EXPECT_EQ(2, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Test9_gt30) { 
+        string s = "data/test9_gt30.txt";
+       
+        SetUp(s);
+        EXPECT_EQ(4, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Test9) { 
+        string s = "data/test9.txt";
+       
+        SetUp(s);
+        EXPECT_EQ(3, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
 
     // TEST_F(SuppliedTest, Test10) { 
     //     string s = "data/test10.txt";
