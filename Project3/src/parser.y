@@ -53,17 +53,19 @@ double result;
 
 %type <value> body statement_ statement cases case expression primary
 	add mul exp neg 
-	condition and or rel_condition
+	condition and or rel_condition elseifs elseif
 
 %type <list> list expressions
 
 %%
 
 function:	
-	function_header optional_variables body ';' {result = $3;} ;
+	function_header optional_variables body ';' {result = $3;} 
+;
 	
 function_header:	
-	FUNCTION IDENTIFIER RETURNS type ';' ;
+	FUNCTION IDENTIFIER RETURNS type ';' 
+;
 
 type:
 	INTEGER |
@@ -88,11 +90,13 @@ expressions:
 	expression {$$ = new vector<double>(); $$->push_back($1);}
 
 body:
-	BEGIN_ statement_ END {$$ = $2;} ;
+	BEGIN_ statement_ END {$$ = $2;} 
+;
 
 statement_:
-	statement ';' |
-	error ';' {$$ = 0;} ;
+	statement ';'
+	| error ';' {$$ = 0;} 
+;
 
 list_choice:
 	list
@@ -102,20 +106,18 @@ list_choice:
 statement:
 	expression
 	| WHEN condition ',' expression ':' expression {$$ = $2 ? $4 : $6;} 
-	| SWITCH expression IS cases OTHERS ARROW statement ';' ENDSWITCH
-		{$$ = !isnan($4) ? $4 : $7;} 
-	| IF condition THEN statement elseifs ELSE statement ENDIF ';' 
-		{$$ = $2 ? $4 : $7;}
+	| SWITCH expression IS cases OTHERS ARROW statement_ ENDSWITCH {$$ = !isnan($4) ? $4 : $7;} 
+	| IF condition THEN statement_ elseifs ELSE statement_ ENDIF {$$ = $2 ? $4 : $5 ? $5 : $7;}
 	| FOLD direction operator list_choice ENDFOLD ';' {$$ = -1;}
 ;
 
 elseif:
-	ELSIF condition THEN statement
+	ELSIF condition THEN statement_ {$$ = $2 ? $4 : 0;}
 ;
 
 elseifs:
-	elseifs elseif
-	| %empty
+	elseif elseifs {$$ = $1 ? $1 : $2;}
+	| %empty {$$ = 0;}
 ;
 
 direction:
