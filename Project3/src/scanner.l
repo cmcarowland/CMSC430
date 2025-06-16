@@ -37,6 +37,7 @@ punc		[\(\),:;]
 
 {ws}        { ECHO; }
 {comment}   { ECHO; nextLine(); }
+{line_cmt}  { ECHO; nextLine(); }
 {line}      { ECHO; nextLine(); }
 "+"         { ECHO; yylval.oper = ADD; return(ADDOP); }
 "-"         { ECHO; yylval.oper = SUBTRACT; return(ADDOP); }
