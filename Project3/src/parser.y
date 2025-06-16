@@ -11,6 +11,7 @@
 #include <cmath>
 #include <string>
 #include <vector>
+#include <deque>
 #include <map>
 
 using namespace std;
@@ -26,6 +27,7 @@ double extract_element(CharPtr list_name, double subscript);
 Symbols<double> scalars;
 Symbols<vector<double>*> lists;
 double result;
+deque<double> args;
 
 #define YYDEBUG 1
 %}
@@ -64,7 +66,23 @@ function:
 ;
 	
 function_header:	
-	FUNCTION IDENTIFIER RETURNS type ';' 
+	FUNCTION IDENTIFIER parameters RETURNS type ';' 
+;
+
+parameters:
+	parameter ',' parameters
+	| parameter
+	| %empty
+;
+
+parameter:
+	IDENTIFIER ':' type {
+		if(args.empty()) return -1;  
+		double val = args.front(); 
+		printf("\nPopped %lf\n", val); 
+		args.pop_front(); 
+		scalars.insert($1, val);
+	}
 ;
 
 type:
@@ -216,6 +234,14 @@ extern double parse() {
 
 #ifndef TESTING
 int main(int argc, char *argv[]) {
+	if(argc > 1)
+	{
+		for(int i = 1; i < argc; i++)
+		{
+			args.push_back(atof(argv[i]));
+		}
+	}
+
 	parse();
 	return 0;
 }
