@@ -2,6 +2,7 @@ using namespace std;
 #include "gtest/gtest.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <deque>
 
 const string RED = "\033[31m";
 const string GREEN = "\033[32m";
@@ -11,8 +12,9 @@ const string RESET = "\033[0m";
 
 #define TESTING 1
 
-double parse();
-void yyset_in  ( FILE * _in_str  );
+extern double parse();
+extern deque<double> args;
+extern void yyset_in  ( FILE * _in_str  );
 
 namespace {
     class SuppliedTest : public testing::Test {
@@ -22,9 +24,13 @@ namespace {
 
         SuppliedTest() {}
 
-        ~SuppliedTest() {}
+        ~SuppliedTest() 
+        {
+            args.clear();
+        }
 
-        void SetUp(string fileName) {
+        void SetUp(string fileName, deque<double> arguments = deque<double>{}) {
+            args = arguments;
             input = fopen(fileName.c_str(), "r");
             if(!input)
             {
@@ -253,27 +259,36 @@ namespace {
 
     TEST_F(SuppliedTest, Test11) { 
         string s = "data/test11.txt";
+        
+        SetUp(s, deque<double>{6.8});
+        EXPECT_EQ(8.3, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+        args.clear();
+    }
+
+    TEST_F(SuppliedTest, Test12) { 
+        string s = "data/test12.txt";
+       
+        SetUp(s, deque<double>{16, 15.9});
+        EXPECT_EQ(14.9, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Test12_several) { 
+        string s = "data/test12_several.txt";
+       
+        SetUp(s, deque<double>{1,2.2,3.3,4});
+        EXPECT_EQ(10.5, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Test13) { 
+        string s = "data/test13.txt";
        
         SetUp(s);
         EXPECT_EQ(0, result) << "Failed!! " << s;
         cout << result_header(s, result);
     }
-
-    // TEST_F(SuppliedTest, Test12) { 
-    //     string s = "data/test12.txt";
-       
-    //     SetUp(s);
-    //     EXPECT_EQ(0, result) << "Failed!! " << s;
-    //     cout << result_header(s, result);
-    // }
-
-    // TEST_F(SuppliedTest, Test13) { 
-    //     string s = "data/test13.txt";
-       
-    //     SetUp(s);
-    //     EXPECT_EQ(0, result) << "Failed!! " << s;
-    //     cout << result_header(s, result);
-    // }
 
     // TEST_F(SuppliedTest, Test14) { 
     //     string s = "data/test14.txt";
