@@ -247,17 +247,17 @@ namespace {
         string s = "data/test10.txt";
        
         SetUp(s);
-        EXPECT_EQ(0, result) << "Failed!! " << s;
+        EXPECT_EQ(10, result) << "Failed!! " << s;
         cout << result_header(s, result);
     }
 
-    // TEST_F(SuppliedTest, Test11) { 
-    //     string s = "data/test11.txt";
+    TEST_F(SuppliedTest, Test11) { 
+        string s = "data/test11.txt";
        
-    //     SetUp(s);
-    //     EXPECT_EQ(0, result) << "Failed!! " << s;
-    //     cout << result_header(s, result);
-    // }
+        SetUp(s);
+        EXPECT_EQ(0, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
 
     // TEST_F(SuppliedTest, Test12) { 
     //     string s = "data/test12.txt";
