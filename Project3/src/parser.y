@@ -79,8 +79,9 @@ optional_variables:
 ;
 	
 variable:	
-	IDENTIFIER ':' type IS statement ';' {scalars.insert($1, $5);}; |
-	IDENTIFIER ':' LIST OF type IS list ';' {lists.insert($1, $7);} ;
+	IDENTIFIER ':' type IS statement_ {scalars.insert($1, $5);} 
+	| IDENTIFIER ':' LIST OF type IS list ';' {lists.insert($1, $7);} 
+;
 
 list:
 	'(' expressions ')' {$$ = $2;} ;
@@ -205,7 +206,7 @@ double extract_element(CharPtr list_name, double subscript) {
 }
 
 extern double parse() {
-	//yydebug = 1;
+	yydebug = 0;
 	firstLine();
 	yyparse();
 	if (lastLine() == 0)
