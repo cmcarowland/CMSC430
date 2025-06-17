@@ -286,31 +286,105 @@ namespace {
         string s = "data/test13.txt";
        
         SetUp(s);
+        EXPECT_EQ(2, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Test14) { 
+        string s = "data/test14.txt";
+       
+        SetUp(s);
         EXPECT_EQ(0, result) << "Failed!! " << s;
         cout << result_header(s, result);
     }
 
-    // TEST_F(SuppliedTest, Test14) { 
-    //     string s = "data/test14.txt";
+    TEST_F(SuppliedTest, Test15) { 
+        string s = "data/test15.txt";
        
-    //     SetUp(s);
-    //     EXPECT_EQ(0, result) << "Failed!! " << s;
-    //     cout << result_header(s, result);
-    // }
+        SetUp(s, deque<double>{1, 2.5, 65});
+        EXPECT_EQ(1, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
 
-    // TEST_F(SuppliedTest, Test15) { 
-    //     string s = "data/test15.txt";
-       
-    //     SetUp(s);
-    //     EXPECT_EQ(1, result) << "Failed!! " << s;
-    //     cout << result_header(s, result);
-    // }
+    TEST_F(SuppliedTest, Test16) { 
+        string s = "data/test16.txt";
 
-    // TEST_F(SuppliedTest, Test16) { 
-    //     string s = "data/test16.txt";
+        SetUp(s, deque<double>{10, -10});
+        EXPECT_EQ(52, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+   
+    TEST_F(SuppliedTest, Test16_1) { 
+        string s = "data/test16.txt";
 
-    //     SetUp(s);
-    //     EXPECT_EQ(1, result) << "Failed!! " << s;
-    //     cout << result_header(s, result);
-    // }
+        SetUp(s, deque<double>{10, 5});
+        EXPECT_EQ(49, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+    
+    TEST_F(SuppliedTest, Test16_4) { 
+        string s = "data/test16.txt";
+
+        SetUp(s, deque<double>{10, -34});
+        EXPECT_EQ(52, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+        
+    TEST_F(SuppliedTest, Test16_Y) { 
+        string s = "data/test16.txt";
+
+        SetUp(s, deque<double>{10, 0});
+        EXPECT_EQ(89, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Test16_3) { 
+        string s = "data/test16.txt";
+
+        SetUp(s, deque<double>{-55, 99});
+        EXPECT_EQ(51, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Test16_2) { 
+        string s = "data/test16.txt";
+
+        SetUp(s, deque<double>{-55, -99});
+        EXPECT_EQ(50, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+        
+    TEST_F(SuppliedTest, Test16_Y_Xlt0) { 
+        string s = "data/test16.txt";
+
+        SetUp(s, deque<double>{-34, 0});
+        EXPECT_EQ(89, result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Test16_X0_Y0) { 
+        string s = "data/test16.txt";
+
+        SetUp(s, deque<double>{0, 0});
+        EXPECT_EQ('O', result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Test16_X0_Ylt0) { 
+        string s = "data/test16.txt";
+
+        SetUp(s, deque<double>{0, -1});
+        EXPECT_EQ('X', result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
+
+    TEST_F(SuppliedTest, Test16_X0_Ygt0) { 
+        string s = "data/test16.txt";
+
+        SetUp(s, deque<double>{0, 1123});
+        EXPECT_EQ('X', result) << "Failed!! " << s;
+        cout << result_header(s, result);
+    }
 }
