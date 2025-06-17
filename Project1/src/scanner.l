@@ -86,7 +86,8 @@ then 		{ ECHO; return(THEN); }
 .		    { ECHO; appendError(LEXICAL, yytext); }
 %%
 
-int main() {
+double parse()
+{
 	firstLine();
 	
 	FILE *file = fopen("lexemes.txt", "wa"); 
@@ -99,3 +100,9 @@ int main() {
 	
 	return lastLine();
 }
+
+#ifndef TESTING
+int main() {
+	parse();
+}
+#endif
