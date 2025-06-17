@@ -37,6 +37,7 @@ int yyerrstatus;
 
 function:	
 	function_header optional_variables body 
+	| error ';'
 ;
 
 optional_variables:
@@ -45,12 +46,13 @@ optional_variables:
 ;
 
 variable:	
-	IDENTIFIER ':' type IS statement
+	IDENTIFIER ':' type IS statement_
 	| IDENTIFIER ':' LIST OF type IS list ';' 
+	| error ';'
 ;
 
 function_header:	
-	FUNCTION IDENTIFIER parameters RETURNS type ';'  
+	FUNCTION IDENTIFIER parameters RETURNS type ';' 
 ;
 
 parameters:
@@ -61,6 +63,7 @@ parameters:
 
 parameter:
 	IDENTIFIER ':' type
+	| error
 ;
 
 type:
@@ -82,20 +85,19 @@ body:
 	BEGIN_ statement_ END ';' ;
     
 statement_:
-	statement
-	| error 
+	statement ';'
 ;
 
 statement:
-	expression ';'
-	| WHEN condition ',' expression ':' expression ';'
-	| SWITCH expression IS cases OTHERS ARROW statement ENDSWITCH ';'
-	| IF condition THEN statement elseifs ELSE statement ENDIF ';'
-	| FOLD direction operator list_choice ENDFOLD ';'
+	expression
+	| WHEN condition ',' expression ':' expression
+	| SWITCH expression IS cases OTHERS ARROW statement_ ENDSWITCH
+	| IF condition THEN statement_ elseifs ELSE statement_ ENDIF
+	| FOLD direction operator list_choice ENDFOLD
 ;
 
 elseif:
-	ELSIF condition THEN statement
+	ELSIF condition THEN statement_
 ;
 
 elseifs:
@@ -119,7 +121,7 @@ list_choice:
 ;
 
 case:
-	CASE expression ARROW statement 
+	CASE expression ARROW statement_
 ; 
 
 cases:
@@ -179,6 +181,7 @@ primary:
 	| CHAR_LITERAL
 	| IDENTIFIER '(' expression ')'
 	| IDENTIFIER
+	| error
 ;
 
 %%
@@ -187,9 +190,16 @@ void yyerror(const char* message) {
 	appendError(SYNTAX, message);
 }
 
-int main(int argc, char *argv[]) {
+double parse()
+{
 	//yydebug=1;
 	firstLine();
 	yyparse();
 	return lastLine();
+}
+
+#ifndef TESTING
+int main(int argc, char *argv[]) {
+	parse();	
 } 
+#endif
