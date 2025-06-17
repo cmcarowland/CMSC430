@@ -16,13 +16,22 @@ using namespace std;
 
 static int lineNumber;
 static queue<Error*> errors;
-static int errorCounts[] = {0, 0, 0, 0, 0}; // LEXICAL, SYNTAX, GENERAL_SEMANTIC, DUPLICATE_IDENTIFIER, UNDECLARED
+// LEXICAL, SYNTAX, GENERAL_SEMANTIC, DUPLICATE_IDENTIFIER, UNDECLARED
+static int errorCounts[] = {0, 0, 0, 0, 0}; 
 static int totalErrors = 0;
 
 static void displayErrors();
 
+void resetErrorCounts()
+{
+	for(int i = 0; i < 5; i++)
+		errorCounts[i] = 0;
+	totalErrors = 0;
+}
+
 void firstLine()
 {
+	resetErrorCounts();
 	lineNumber = 1;
 	printf("\n%4d  ",lineNumber);
 }
