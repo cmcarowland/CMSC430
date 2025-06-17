@@ -21,8 +21,16 @@ static int totalErrors = 0;
 
 static void displayErrors();
 
+void resetErrorCounts()
+{
+	for(int i = 0; i < 5; i++)
+		errorCounts[i] = 0;
+	totalErrors = 0;
+}
+
 void firstLine()
 {
+	resetErrorCounts();
 	lineNumber = 1;
 	printf("\n%4d  ",lineNumber);
 }
