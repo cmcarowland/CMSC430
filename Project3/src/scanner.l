@@ -80,9 +80,9 @@ endfold     { ECHO; return(ENDFOLD); }
 endif       { ECHO; return(ENDIF); }
 fold        { ECHO; return(FOLD); }
 if          { ECHO; return(IF); }
-left        { ECHO; return(LEFT); }
+left        { ECHO; yylval.dir = Direction::FOLD_LEFT; return(LEFT); }
 real        { ECHO; return(REAL); }
-right       { ECHO; return(RIGHT); }
+right       { ECHO; yylval.dir = Direction::FOLD_RIGHT; return(RIGHT); }
 then        { ECHO; return(THEN); }
 {escape}    { ECHO;
                // Map escape sequences to ASCII values
