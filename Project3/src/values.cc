@@ -7,6 +7,7 @@
 
 #include <string>
 #include <cmath>
+#include <vector>
 
 using namespace std;
 
@@ -77,5 +78,30 @@ double evaluateRelational(double left, Operators operator_, double right) {
 			result = (left != 0) || (right != 0);
 			break;
 	}
+	return result;
+}
+
+double evaluateFold(Direction direction, Operators operator_, vector<double>* list) {	
+	if (list->empty()) return NAN;
+	
+	double result = 0;
+	if(direction == Direction::FOLD_RIGHT) 
+	{
+		result = list->back(); 
+	
+		for (int i = list->size() - 2; i >= 0; i--) {
+			double current = (*list)[i];
+			result = evaluateArithmetic(current, operator_, result);
+		}
+	}
+	else
+	{
+		result = list->front();
+		for (int i = 1; i < list->size(); i++) {
+			double current = (*list)[i];
+			result = evaluateArithmetic(result, operator_, current);
+		}
+	}
+
 	return result;
 }

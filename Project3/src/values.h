@@ -30,6 +30,11 @@ enum Operators {
     UNKNOWN
 };
 
+enum Direction {
+    FOLD_LEFT,
+    FOLD_RIGHT
+};
+
 double evaluateArithmetic(double left, Operators operator_, double right);
 double evaluateRelational(double left, Operators operator_, double right);
-
+double evaluateFold(Direction, Operators, vector<double>*);
