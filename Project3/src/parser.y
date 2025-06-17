@@ -39,6 +39,7 @@ deque<double> args;
 	Operators oper;
 	double value;
 	vector<double>* list;
+	Direction dir;
 }
 
 %token <iden> IDENTIFIER
@@ -47,17 +48,21 @@ deque<double> args;
 
 %token <oper> ADDOP MULOP ANDOP RELOP MODOP EXPOP NEGOP NOTOP OROP
 
-%token ARROW
+%token <dir> LEFT RIGHT
 
 %token BEGIN_ CHARACTER FUNCTION END INTEGER IS LIST OF 
 	RETURNS SWITCH CASE OTHERS ENDSWITCH WHEN FOLD ENDFOLD 
-	IF ELSIF ELSE ENDIF THEN LEFT RIGHT REAL
+	IF ELSIF ELSE ENDIF THEN REAL ARROW
+
 
 %type <value> body statement_ statement cases case expression primary
 	add mul exp neg 
-	condition and or rel_condition elseifs elseif
+	condition and or rel_condition elseifs elseif FOLD
 
-%type <list> list expressions
+%type <list> list expressions list_choice
+
+%type <dir> direction
+%type <oper> operator
 
 %%
 
@@ -102,7 +107,8 @@ variable:
 ;
 
 list:
-	'(' expressions ')' {$$ = $2;} ;
+	'(' expressions ')' {$$ = $2;} 
+;
 
 expressions:
 	expressions ',' expression {$1->push_back($3); $$ = $1;} | 
@@ -118,8 +124,16 @@ statement_:
 ;
 
 list_choice:
-	list
-	| IDENTIFIER
+	list 
+	| IDENTIFIER {
+		vector<double>* list;
+		if (lists.find($1, list)) {
+			$$ = list;
+		} else {
+			appendError(UNDECLARED, $1);
+			$$ = new vector<double>();
+		}
+	}
 ;
 
 statement:
@@ -127,7 +141,7 @@ statement:
 	| WHEN condition ',' expression ':' expression {$$ = $2 ? $4 : $6;} 
 	| SWITCH expression IS cases OTHERS ARROW statement_ ENDSWITCH {$$ = !isnan($4) ? $4 : $7;} 
 	| IF condition THEN statement_ elseifs ELSE statement_ ENDIF {$$ = $2 ? $4 : $5 ? $5 : $7;}
-	| FOLD direction operator list_choice ENDFOLD ';' {$$ = -1;}
+	| FOLD direction operator list_choice ENDFOLD {$$ = evaluateFold($2, $3, $4);}
 ;
 
 elseif:
@@ -139,14 +153,14 @@ elseifs:
 	| %empty {$$ = 0;}
 ;
 
+operator:
+	ADDOP 
+	| MULOP 
+;
+
 direction:
 	LEFT
 	| RIGHT
-;
-
-operator:
-	ADDOP
-	| MULOP
 ;
 
 cases:
