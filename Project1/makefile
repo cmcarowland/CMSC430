@@ -13,7 +13,7 @@ $(bin_dir)/project1.elf: $(OBJ_FILES)
 $(bin_dir)/scanner.o: $(source_dir)/scanner.c $(source_dir)/tokens.h $(source_dir)/listing.h
 	g++ -c $(source_dir)/scanner.c -o $@
 
-$(source_dir)/scanner.c: $(source_dir)/scanner.l
+$(source_dir)/scanner.c: $(source_dir)/scanner.l $(source_dir)/utils.h
 	flex -o $@ $(source_dir)/scanner.l
 
 $(bin_dir)/listing.o: $(source_dir)/listing.cc $(source_dir)/listing.h
