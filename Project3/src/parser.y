@@ -84,16 +84,16 @@ parameter:
 	IDENTIFIER ':' type {
 		if(args.empty()) return -1;  
 		double val = args.front(); 
-		printf("\nPopped %lf\n", val); 
 		args.pop_front(); 
 		scalars.insert($1, val);
 	}
+	| IDENTIFIER error type { scalars.insert($1, 0); }
 ;
 
 type:
-	INTEGER |
-	CHARACTER |
-	REAL
+	INTEGER 
+	| CHARACTER 
+	| REAL
 ;
 	
 optional_variables:
@@ -102,8 +102,10 @@ optional_variables:
 ;
 	
 variable:	
-	IDENTIFIER ':' type IS statement_ {scalars.insert($1, $5);} 
+	IDENTIFIER ':' type IS statement_  {scalars.insert($1, $5);} 
 	| IDENTIFIER ':' LIST OF type IS list ';' {lists.insert($1, $7);} 
+	| IDENTIFIER error type IS statement_ { scalars.insert($1, $5); yyerrok; }
+	| IDENTIFIER ':' error IS statement_ { scalars.insert($1, $5); yyerrok; }
 ;
 
 list:
@@ -120,7 +122,7 @@ body:
 
 statement_:
 	statement ';'
-	| error ';' {$$ = 0;} 
+	| error ';' {$$ = 0; yyerrok; }
 ;
 
 list_choice:
@@ -140,8 +142,11 @@ statement:
 	expression
 	| WHEN condition ',' expression ':' expression {$$ = $2 ? $4 : $6;} 
 	| SWITCH expression IS cases OTHERS ARROW statement_ ENDSWITCH {$$ = !isnan($4) ? $4 : $7;} 
+	| SWITCH error ENDSWITCH { $$ = -1; yyerrok; }
 	| IF condition THEN statement_ elseifs ELSE statement_ ENDIF {$$ = $2 ? $4 : $5 ? $5 : $7;}
+	| IF error ENDIF { $$ = -1; yyerrok; }
 	| FOLD direction operator list_choice ENDFOLD {$$ = evaluateFold($2, $3, $4);}
+	| FOLD error ENDFOLD { $$ = 1; yyerrok; }
 ;
 
 elseif:
@@ -168,7 +173,9 @@ cases:
 	%empty {$$ = NAN;} ;
 	
 case:
-	CASE INT_LITERAL ARROW statement ';' {$$ = $<value>-2 == $2 ? $4 : NAN;} ; 
+	CASE INT_LITERAL ARROW statement ';' {$$ = $<value>-2 == $2 ? $4 : NAN;}
+	| error {$$ = -1;}
+;
 
 
 rel_condition:
@@ -216,12 +223,13 @@ expression:
 ;
 
 primary:
-	'(' expression ')' {$$ = $2;} |
-	INT_LITERAL | 
-	REAL_LITERAL |
-	CHAR_LITERAL |
-	IDENTIFIER '(' expression ')' {$$ = extract_element($1, $3); } |
-	IDENTIFIER {if (!scalars.find($1, $$)) appendError(UNDECLARED, $1);} ;
+	'(' expression ')' {$$ = $2;}
+	| INT_LITERAL 
+	| REAL_LITERAL
+	| CHAR_LITERAL
+	| IDENTIFIER '(' expression ')' {$$ = extract_element($1, $3); }
+	| IDENTIFIER {if (!scalars.find($1, $$)) appendError(UNDECLARED, $1);} 
+;
 
 %%
 
@@ -241,9 +249,11 @@ extern double parse() {
 	yydebug = 0;
 	firstLine();
 	yyparse();
-	if (lastLine() == 0)
-		cout << "Result = " << result << endl;
-	return result;
+	int errors = lastLine();
+	if(errors != 0)
+		return errors;
+	else
+		return result;
 }
 
 #ifndef TESTING
