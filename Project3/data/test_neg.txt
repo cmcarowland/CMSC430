@@ -1,0 +1,6 @@
+// Test Logical and Relational Operators
+
+function main returns integer;
+begin
+    when !(1 < 2), 1 : 0;
+end;

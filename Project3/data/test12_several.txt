@@ -1,0 +1,6 @@
+// Two parameter declarations
+
+function main a: integer, b: real, c: real, d: integer returns real;
+begin
+    a + b + c + d;
+end;
