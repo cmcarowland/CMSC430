@@ -20,6 +20,7 @@ static int errorCounts[] = {0, 0, 0, 0, 0}; // LEXICAL, SYNTAX, GENERAL_SEMANTIC
 static int totalErrors = 0;
 
 static void displayErrors();
+extern int Print(string format, ...);
 
 void resetErrorCounts()
 {
@@ -32,31 +33,31 @@ void firstLine()
 {
 	resetErrorCounts();
 	lineNumber = 1;
-	printf("\n%4d  ",lineNumber);
+	Print("\n%4d  ",lineNumber);
 }
 
 void nextLine()
 {
 	displayErrors();
 	lineNumber++;
-	printf("%4d  ",lineNumber);
+	Print("%4d  ",lineNumber);
 }
 
 int lastLine()
 {
-	printf("\n\n");
+	Print("\n\n");
 	if(totalErrors > 0)
 	{
-		printf("%d errors found. Compilation Failed!\n", totalErrors);
-		printf("=========================================================\n");
-		printf("Lexical Errors.             : %d\n", errorCounts[LEXICAL]);
-		printf("Syntactic Errors            : %d\n", errorCounts[SYNTAX]);
-		printf("Semantic Errors.            : %d\n", errorCounts[GENERAL_SEMANTIC]);
-		printf("Duplicate Identifier Errors : %d\n", errorCounts[DUPLICATE_IDENTIFIER]);
-		printf("Undeclared Identifier Errors: %d\n\n", errorCounts[UNDECLARED]);
+		Print("%d errors found. Compilation Failed!\n", totalErrors);
+		Print("=========================================================\n");
+		Print("Lexical Errors.             : %d\n", errorCounts[LEXICAL]);
+		Print("Syntactic Errors            : %d\n", errorCounts[SYNTAX]);
+		Print("Semantic Errors.            : %d\n", errorCounts[GENERAL_SEMANTIC]);
+		Print("Duplicate Identifier Errors : %d\n", errorCounts[DUPLICATE_IDENTIFIER]);
+		Print("Undeclared Identifier Errors: %d\n\n", errorCounts[UNDECLARED]);
 		displayErrors();
 	} else
-		printf("Compiled Successfully!!!\n");
+		Print("Compiled Successfully!!!\n");
 	
 	return totalErrors;
 }
@@ -97,5 +98,5 @@ string Error::ErrorEnumToString(ErrorCategories errorCategory) const {
 }
 
 void Error::Display() const {
-	printf("\t -%s : %s\n", ErrorEnumToString(errorCategory).c_str(), lineContent.c_str());
+	Print("\t -%s : %s\n", ErrorEnumToString(errorCategory).c_str(), lineContent.c_str());
 }
