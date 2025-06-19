@@ -19,14 +19,11 @@ namespace {
         FILE *input;
         double result;
 
-        SuppliedTest() {
-            printf("SuppliedTest constructor called %lf\n", result);
-        }
+        SuppliedTest() {}
 
         ~SuppliedTest() {}
 
         void SetUp(string fileName) {
-            printf("Running test: %s\n", fileName.c_str());
             input = fopen(fileName.c_str(), "r");
             if(!input)
             {
