@@ -1,0 +1,18 @@
+-- Takes two numbers and returns the result
+
+function calculator x: integer, y: integer, func: character returns integer;
+    two: integer is 2;
+begin
+    switch (func) is
+         case '+' => x + y;
+         case '-' => x - y;
+         case '*' => x * y;
+         case '/' => 
+            switch y is
+                case 0 => ~2; // Return -2 for division by zero
+                others => x / y; // Perform division
+            endswitch;
+         case 's' => x ^ two;
+         others => ~1;
+    endswitch;
+end; 

@@ -1,0 +1,10 @@
+// double-or-abs: illustrates input, variable, when, switch
+function main x: integer returns integer;
+    flag: integer is when x < 0, 1 : 2;
+begin
+    switch flag is
+        case 1 => ~x;      // absolute value
+        case 2 => x * 2;   // double
+        others => 0;
+    endswitch;
+end;  

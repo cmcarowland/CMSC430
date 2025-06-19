@@ -12,10 +12,10 @@
 using namespace std;
 
 #include "listing.h"
-
+#define YYDEBUG 1
 int yylex();
 void yyerror(const char* message);
-
+int yyerrstatus;
 %}
 
 %define parse.error verbose
@@ -24,77 +24,165 @@ void yyerror(const char* message);
 
 %token ADDOP MULOP ANDOP RELOP ARROW
 
-%token BEGIN_ CASE CHARACTER ELSE END ENDSWITCH FUNCTION INTEGER IS LIST OF OTHERS
-	RETURNS SWITCH WHEN
+%token BEGIN_ CASE CHARACTER ELSE END ENDSWITCH
+
+%token FUNCTION INTEGER IS LIST OF OTHERS RETURNS SWITCH WHEN
+
+%token REAL MODOP EXPOP NEGOP NOTOP OROP ELSIF 
+	
+%token ENDFOLD ENDIF FOLD IF THEN LEFT RIGHT 
+%token REAL_LITERAL
 
 %%
 
 function:	
-	function_header optional_variable body ;
+	function_header optional_variables body 
+	| error ';'
+;
+
+optional_variables:
+	optional_variables variable
+	| %empty 
+;
+
+variable:	
+	IDENTIFIER ':' type IS statement_
+	| IDENTIFIER ':' LIST OF type IS list ';' 
+	| error ';'
+;
 
 function_header:	
-	FUNCTION IDENTIFIER RETURNS type ';'  ;
+	FUNCTION IDENTIFIER parameters RETURNS type ';' 
+;
+
+parameters:
+	parameter ',' parameters
+	| parameter
+	| %empty
+;
+
+parameter:
+	IDENTIFIER ':' type
+	| error
+;
 
 type:
 	INTEGER |
-	CHARACTER ;
+	CHARACTER |
+	REAL
+;
 	
-optional_variable:
-	variable |
-	%empty ;
-    
-variable:	
-	IDENTIFIER ':' type IS statement ';' |
-	IDENTIFIER ':' LIST OF type IS list ';' ;
-
 list:
-	'(' expressions ')' ;
+	'(' expressions ')' 
+;
 
 expressions:
-	expressions ',' expression| 
-	expression ;
+	expression
+	| expressions ',' expression
+;
 
 body:
 	BEGIN_ statement_ END ';' ;
-
-statement_:
-	statement ';' |
-	error ';' ;
     
+statement_:
+	statement ';'
+;
+
 statement:
-	expression |
-	WHEN condition ',' expression ':' expression |
-	SWITCH expression IS cases OTHERS ARROW statement ';' ENDSWITCH ;
+	expression
+	| WHEN condition ',' expression ':' expression
+	| SWITCH expression IS cases OTHERS ARROW statement_ ENDSWITCH
+	| IF condition THEN statement_ elseifs ELSE statement_ ENDIF
+	| FOLD direction operator list_choice ENDFOLD
+;
+
+elseif:
+	ELSIF condition THEN statement_
+;
+
+elseifs:
+	elseifs elseif
+	| %empty
+;
+
+direction:
+	LEFT
+	| RIGHT
+;
+
+operator:
+	ADDOP
+	| MULOP
+;
+
+list_choice:
+	list
+	| IDENTIFIER
+;
+
+case:
+	CASE expression ARROW statement_
+; 
 
 cases:
-	cases case |
-	%empty ;
-	
-case:
-	CASE INT_LITERAL ARROW statement ';' ; 
+	cases case
+	| %empty 
+;	
+
+rel_condition:
+	NOTOP rel_condition
+	| '(' condition ')'
+	| expression RELOP expression
+;
+
+and:
+	rel_condition
+	| and ANDOP rel_condition
+;
+
+or:
+	and
+	| or OROP and
+;
 
 condition:
-	condition ANDOP relation |
-	relation ;
+	or
+;
 
-relation:
-	'(' condition ')' |
-	expression RELOP expression ;
+neg:
+	NEGOP neg
+	| primary
+;
+
+exp:
+	neg
+	| neg EXPOP exp
+;
+
+mul:
+	exp
+	| mul MULOP exp
+	| mul MODOP exp
+;
+
+add:
+	mul
+	| add ADDOP mul
+;
 
 expression:
-	expression ADDOP term |
-	term ;
-      
-term:
-	term MULOP primary |
-	primary ;
+	add
+;
 
 primary:
-	'(' expression ')' |
-	INT_LITERAL |
-	CHAR_LITERAL |
-	IDENTIFIER '(' expression ')' |
-	IDENTIFIER ;
+	'(' expression ')'
+	| INT_LITERAL 
+	| REAL_LITERAL 
+	| CHAR_LITERAL
+	| IDENTIFIER '(' expression ')'
+	| IDENTIFIER
+	| error
+;
 
 %%
 
@@ -102,9 +190,16 @@ void yyerror(const char* message) {
 	appendError(SYNTAX, message);
 }
 
-int main(int argc, char *argv[]) {
+double parse()
+{
+	//yydebug=1;
 	firstLine();
 	yyparse();
-	lastLine();
-	return 0;
+	return lastLine();
+}
+
+#ifndef TESTING
+int main(int argc, char *argv[]) {
+	parse();	
 } 
+#endif
