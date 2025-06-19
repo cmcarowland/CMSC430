@@ -15,6 +15,7 @@ using namespace std;
 #include "values.h"
 #include "listing.h"
 #include "tokens.h"
+extern void Echo(char *);
 
 %}
 
@@ -35,19 +36,19 @@ char		'.'
 punc		[\(\),:;]
 %%
 
-{ws}        { ECHO; }
-{comment}   { ECHO; nextLine(); }
-{line_cmt}  { ECHO; nextLine(); }
-{line}      { ECHO; nextLine(); }
-"+"         { ECHO; yylval.oper = ADD; return(ADDOP); }
-"-"         { ECHO; yylval.oper = SUBTRACT; return(ADDOP); }
-"*"         { ECHO; yylval.oper = MULTIPLY; return(MULOP); }
-"/"         { ECHO; yylval.oper = DIVIDE; return(MULOP); }
-"%"         { ECHO; yylval.oper = MODULO; return(MULOP); }
-"^"         { ECHO; yylval.oper = POWER; return(EXPOP); }
-"~"         { ECHO; yylval.oper = NEGATE; return(NEGOP); }
-"&"         { ECHO; yylval.oper = AND; return(ANDOP); }
-{eqop}      { ECHO; yylval.oper = 
+{ws}        { Echo(yytext); }
+{comment}   { Echo(yytext); nextLine(); }
+{line_cmt}  { Echo(yytext); nextLine(); }
+{line}      { Echo(yytext); nextLine(); }
+"+"         { Echo(yytext); yylval.oper = ADD; return(ADDOP); }
+"-"         { Echo(yytext); yylval.oper = SUBTRACT; return(ADDOP); }
+"*"         { Echo(yytext); yylval.oper = MULTIPLY; return(MULOP); }
+"/"         { Echo(yytext); yylval.oper = DIVIDE; return(MULOP); }
+"%"         { Echo(yytext); yylval.oper = MODULO; return(MULOP); }
+"^"         { Echo(yytext); yylval.oper = POWER; return(EXPOP); }
+"~"         { Echo(yytext); yylval.oper = NEGATE; return(NEGOP); }
+"&"         { Echo(yytext); yylval.oper = AND; return(ANDOP); }
+{eqop}      { Echo(yytext); yylval.oper = 
                (strcmp(yytext, "<") == 0) ? LESS :
                (strcmp(yytext, "<=") == 0) ? LESS_EQ :
                (strcmp(yytext, ">") == 0) ? GREATER :
@@ -56,35 +57,35 @@ punc		[\(\),:;]
                (strcmp(yytext, "<>") == 0) ? NOT_EQUAL : UNKNOWN;
                return(RELOP); 
             }
-"=>"        { ECHO; return(ARROW); }
-"|"         { ECHO; yylval.oper = OR; return(OROP); }
-"!"         { ECHO; yylval.oper = NOT; return(NOTOP); }
-begin       { ECHO; return(BEGIN_); }
-case        { ECHO; return(CASE); }
-character   { ECHO; return(CHARACTER); }
-end         { ECHO; return(END); }
-endswitch   { ECHO; return(ENDSWITCH); }
-function    { ECHO; return(FUNCTION); }
-integer     { ECHO; return(INTEGER); }
-is          { ECHO; return(IS); }
-list        { ECHO; return(LIST); }
-of          { ECHO; return(OF); }
-others      { ECHO; return(OTHERS); }
-returns     { ECHO; return(RETURNS); }
-switch      { ECHO; return(SWITCH); }
-when        { ECHO; return(WHEN); }
+"=>"        { Echo(yytext); return(ARROW); }
+"|"         { Echo(yytext); yylval.oper = OR; return(OROP); }
+"!"         { Echo(yytext); yylval.oper = NOT; return(NOTOP); }
+begin       { Echo(yytext); return(BEGIN_); }
+case        { Echo(yytext); return(CASE); }
+character   { Echo(yytext); return(CHARACTER); }
+end         { Echo(yytext); return(END); }
+endswitch   { Echo(yytext); return(ENDSWITCH); }
+function    { Echo(yytext); return(FUNCTION); }
+integer     { Echo(yytext); return(INTEGER); }
+is          { Echo(yytext); return(IS); }
+list        { Echo(yytext); return(LIST); }
+of          { Echo(yytext); return(OF); }
+others      { Echo(yytext); return(OTHERS); }
+returns     { Echo(yytext); return(RETURNS); }
+switch      { Echo(yytext); return(SWITCH); }
+when        { Echo(yytext); return(WHEN); }
 
-else        { ECHO; return(ELSE); }
-elsif       { ECHO; return(ELSIF); }
-endfold     { ECHO; return(ENDFOLD); }
-endif       { ECHO; return(ENDIF); }
-fold        { ECHO; return(FOLD); }
-if          { ECHO; return(IF); }
-left        { ECHO; yylval.dir = Direction::FOLD_LEFT; return(LEFT); }
-real        { ECHO; return(REAL); }
-right       { ECHO; yylval.dir = Direction::FOLD_RIGHT; return(RIGHT); }
-then        { ECHO; return(THEN); }
-{escape}    { ECHO;
+else        { Echo(yytext); return(ELSE); }
+elsif       { Echo(yytext); return(ELSIF); }
+endfold     { Echo(yytext); return(ENDFOLD); }
+endif       { Echo(yytext); return(ENDIF); }
+fold        { Echo(yytext); return(FOLD); }
+if          { Echo(yytext); return(IF); }
+left        { Echo(yytext); yylval.dir = Direction::FOLD_LEFT; return(LEFT); }
+real        { Echo(yytext); return(REAL); }
+right       { Echo(yytext); yylval.dir = Direction::FOLD_RIGHT; return(RIGHT); }
+then        { Echo(yytext); return(THEN); }
+{escape}    { Echo(yytext);
                // Map escape sequences to ASCII values
                switch (yytext[2]) {
                   case 'n': yylval.value = '\n'; break;
@@ -97,13 +98,13 @@ then        { ECHO; return(THEN); }
                return(CHAR_LITERAL);
             }
 
-{id}		   { ECHO; yylval.iden = (CharPtr)malloc(yyleng + 1); 
+{id}		   { Echo(yytext); yylval.iden = (CharPtr)malloc(yyleng + 1); 
 			   strcpy(yylval.iden, yytext); return(IDENTIFIER);}
-{dec}		   { ECHO; yylval.value = atoi(yytext); return(INT_LITERAL); }
-{double}	   { ECHO; yylval.value = atof(yytext); return(REAL_LITERAL); }
-{hexValue}  { ECHO; yylval.value = strtol(yytext+1, NULL, 16); return(INT_LITERAL); }
-{char}		{ ECHO; yylval.value = yytext[1]; return(CHAR_LITERAL); }
-{punc}		{ ECHO; return(yytext[0]); }
-.		      { ECHO; appendError(LEXICAL, yytext); }
+{dec}		   { Echo(yytext); yylval.value = atoi(yytext); return(INT_LITERAL); }
+{double}	   { Echo(yytext); yylval.value = atof(yytext); return(REAL_LITERAL); }
+{hexValue}  { Echo(yytext); yylval.value = strtol(yytext+1, NULL, 16); return(INT_LITERAL); }
+{char}		{ Echo(yytext); yylval.value = yytext[1]; return(CHAR_LITERAL); }
+{punc}		{ Echo(yytext); return(yytext[0]); }
+.		      { Echo(yytext); appendError(LEXICAL, yytext); }
 %%
 
