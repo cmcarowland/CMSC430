@@ -19,7 +19,7 @@ $(source_dir)/scanner.c: $(source_dir)/scanner.l $(source_dir)/utils.h
 $(bin_dir)/listing.o: $(source_dir)/listing.cc $(source_dir)/listing.h
 	g++ -c $(source_dir)/listing.cc -o $@
 
-$(bin_dir)/test.elf: $(source_dir)/scanner.c $(source_dir)/listing.o $(source_dir)/tokens.h
+$(bin_dir)/test.elf: $(source_dir)/scanner.c $(source_dir)/listing.o $(source_dir)/tokens.h $(source_dir)/tests.cpp
 	g++ $(CXXFLAGS) $(LDFLAGS) -DTESTING=1 $(source_dir)/scanner.c $(bin_dir)/listing.o $(source_dir)/tests.cpp $(LINKFLAGS) -o $@
 
 clean:
