@@ -3,9 +3,11 @@
    CMSC 430 Compiler Theory and Design
    Project 1 
    6/20/25
-*/
 
-// This file contains the enumerated type definition for tokens
+    This header file defines the tokens used in the compiler's lexer.
+    It includes token types for operators, keywords, identifiers, literals,
+    and additional tokens specific to the project requirements.
+*/
 
 enum Tokens {
     ADDOP = 256, 

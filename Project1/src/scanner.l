@@ -3,9 +3,11 @@
    CMSC 430 Compiler Theory and Design
    Project 1 
    6/20/25
+
+	This file defines the lexical analyzer (scanner) for a compiler project using Flex. 
+	It specifies patterns for tokens, keywords, operators, and comments, and generates corresponding token codes for use by the parser.
 */
 
-/* This file contains flex input file */
 
 %{
 #include <cstdio>

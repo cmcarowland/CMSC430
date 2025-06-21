@@ -3,6 +3,11 @@
    CMSC 430 Compiler Theory and Design
    Project 1 
    6/20/25
+
+    This file contains unit tests for a parser using Google Test. 
+    It defines a test fixture that reads input from files, 
+    invokes the parser, and checks the results against expected values. 
+    The tests print colored output for results.
 */
 
 using namespace std;

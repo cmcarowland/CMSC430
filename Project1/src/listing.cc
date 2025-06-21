@@ -1,12 +1,13 @@
 /* 
-   Raymond Rowland
-   CMSC 430 Compiler Theory and Design
-   Project 1 
-   6/20/25
-*/
+	Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 1 
+	6/20/25
 
-// This file contains the bodies of the functions that produces the 
-// compilation listing
+	This file implements error handling and listing functionality for the compiler.
+	It tracks line numbers, collects and displays errors of various categories,
+	and provides summary output at the end of compilation.
+*/
 
 #include <cstdio>
 #include <string>
