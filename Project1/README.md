@@ -82,10 +82,10 @@
 ---
 
 ### Documentation
-- [ ] Doc for project
-    - [ ] A discussion of how you approached the project
-    - [ ] A test plan that includes test cases that you have created indicating what aspects of the program each one is testing and a screen shot of your compiler run on that test case
-    - [ ] A discussion of lessons learned from the project and any improvements that could be made
-- [ ] Testing
-    - [ ] Create Tests
-    - [ ] Test Plan
+- [x] Doc for project
+    - [x] A discussion of how you approached the project
+    - [x] A test plan that includes test cases that you have created indicating what aspects of the program each one is testing and a screen shot of your compiler run on that test case
+    - [x] A discussion of lessons learned from the project and any improvements that could be made
+- [x] Testing
+    - [x] Create Tests
+    - [x] Test Plan
