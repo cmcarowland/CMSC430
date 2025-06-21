@@ -1,10 +1,12 @@
-// CMSC 430 Compiler Theory and Design
-// Project 1 Skeleton
-// UMGC CITE
-// Summer 2023
+/* 
+   Raymond Rowland
+   CMSC 430 Compiler Theory and Design
+   Project 1 
+   6/20/25
 
-// This file contains the function prototypes for the functions that produce
-// the compilation listing
+	The header file defines the error handling and listing functionality for the compiler.
+    It declares functions for managing line numbers, collecting errors, and displaying error summaries.
+*/
 
 enum ErrorCategories {LEXICAL, SYNTAX, GENERAL_SEMANTIC, DUPLICATE_IDENTIFIER,
 	UNDECLARED};
@@ -14,3 +16,15 @@ void nextLine();
 int lastLine();
 void appendError(ErrorCategories errorCategory, string message);
 
+class Error {
+	protected:
+		int lineNumber;
+		string lineContent;
+		ErrorCategories errorCategory;
+
+		string ErrorEnumToString(ErrorCategories errorCategory) const;
+
+	public:
+		Error(int lineNumber, ErrorCategories errorCategory, string lineContent);
+		void Display() const;
+};

@@ -1,0 +1,9 @@
+function main a: integer, b: integer returns integer;
+    c: integer is when a < b, ~1 : 1;
+begin
+    switch c is
+        case ~1 => c;
+        case 1 => c;
+        others => 0;  
+    endswitch;    
+end; 
