@@ -1,3 +1,22 @@
+/*
+    Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 2 Skeleton
+	July 1, 2025
+
+    tests.cpp
+    Unit tests for the parser and scanner using Google Test framework.
+    This file contains tests for the supplied input files and syntax error cases.
+    Exercises the parse function and checks the results against expected values.
+    The tests are designed to ensure that the parser correctly handles valid input
+    and reports errors for invalid input.
+
+    Usage: ./bin/test.elf [options]
+    Options:
+        -s, --silent          Suppress printing of input files in the output
+        -h, --help            Show this help message
+*/
+
 using namespace std;
 #include "gtest/gtest.h"
 #include <stdio.h>
@@ -202,7 +221,7 @@ int main(int argc, char **argv)
     ::testing::InitGoogleTest(&argc, argv);
 
     for (int i = 1; i < argc; ++i) {
-        if(strncmp("--help", argv[i], 6) == 0) {
+        if((strncmp("-h", argv[i], 3) & strncmp("--help", argv[i], 6)) == 0) {
             printf("Usage: %s [options]\n", argv[0]);
             printf("Options:\n");
             printf("  -s, --silent          Suppress printing of input files in the output\n");

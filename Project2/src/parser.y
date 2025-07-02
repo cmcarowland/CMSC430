@@ -1,9 +1,14 @@
-/* CMSC 430 Compiler Theory and Design
-   Project 2 Skeleton
-   UMGC CITE
-   Summer 2023 
+/*
+   Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 2 Skeleton
+	July 1, 2025 
 
-   Project 2 Parser */
+	parser.y
+	This file contains the parser for the compiler.
+	It uses bison to generate the parser code.
+	The parser reads the tokens produced by the scanner.
+*/
 
 %{
 

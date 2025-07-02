@@ -1,7 +1,19 @@
-// CMSC 430 Compiler Theory and Design
-// Project 1 Skeleton
-// UMGC CITE
-// Summer 2023
+/*
+    Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 2 Skeleton
+	July 1, 2025
+
+	listing.cc
+	Functions to produce the compilation listing
+	including error messages.
+
+	Contains the definition of the Error class and
+	the ErrorCategories enum.
+
+	Maintains a queue of errors that are displayed
+	when the next line is called.
+*/ 
 
 // This file contains the bodies of the functions that produces the 
 // compilation listing

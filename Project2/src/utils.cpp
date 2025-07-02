@@ -1,3 +1,13 @@
+/*
+    Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 2 Skeleton
+	July 1, 2025
+
+	utils.cpp
+	Defines functions for printing messages and echoing output.
+*/
+
 #include <cstdarg>
 #include <cstdio>
 #include <string>

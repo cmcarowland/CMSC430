@@ -1,10 +1,13 @@
-// CMSC 430 Compiler Theory and Design
-// Project 1 Skeleton
-// UMGC CITE
-// Summer 2023
+/*
+    Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 2 Skeleton
+	July 1, 2025
 
-// This file contains the function prototypes for the functions that produce
-// the compilation listing
+	listing.h
+	Header file for the listing functions
+	including error messages.
+*/
 
 enum ErrorCategories {LEXICAL, SYNTAX, GENERAL_SEMANTIC, DUPLICATE_IDENTIFIER,
 	UNDECLARED};
