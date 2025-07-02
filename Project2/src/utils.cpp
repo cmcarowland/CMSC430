@@ -3,7 +3,7 @@
 #include <string>
 
 using namespace std;
-bool PRINT_RESULTS = false;
+bool PRINT_RESULTS = true;
 
 void Echo(char* message) {
 	if(PRINT_RESULTS)
