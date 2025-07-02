@@ -11,6 +11,7 @@ const string RESET = "\033[0m";
 
 extern double parse();
 extern void yyset_in  ( FILE * _in_str  );
+extern bool PRINT_RESULTS;
 
 namespace {
     class SuppliedTest : public testing::Test {
@@ -193,4 +194,18 @@ namespace {
         EXPECT_EQ(5, result) << "Failed!! " << s;
         cout << result_header(s, result);
     }
+
+}
+
+int main(int argc, char **argv)
+{
+    ::testing::InitGoogleTest(&argc, argv);
+
+    for (int i = 1; i < argc; ++i) {
+        if(strncmp("-p", argv[i], 2) == 0) {
+            PRINT_RESULTS = true;
+        }
+    }
+
+    return RUN_ALL_TESTS();
 }
