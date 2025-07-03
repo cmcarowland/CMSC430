@@ -26,10 +26,43 @@
 
 ## Test Cases
 
-1. Includes test cases that test all grammar productions
-2. Includes test cases that test errors in all productions
-3. Includes test case with multiple errors
+1. [x] Includes test cases that test all grammar productions
+2. [x] Includes test cases that test errors in all productions
+3. [x] Includes test case with multiple errors
 
+<details style="font-size: 1.5rem;">
+<summary>Test cases Images</summary>
+Test cases 1-5
+
+<img src="images/Tests1-5.png" width="512">
+
+Test cases 6-9
+
+<img src="images/Tests6-9.png" width="512">
+
+Test cases 10-13
+
+<img src="images/Tests10-13.png" width="512">
+
+Test cases 14 and Syntax cases 1 and 2
+
+<img src="images/Test14_S1-2.png" width="512">
+
+Syntax cases 3 and 4
+
+<img src="images/Syntax3-4.png" width="512">
+
+Syntax case 5
+
+<img src="images/Syntax5.png" width="512">
+</details>
+
+<details style="font-size: 1.5rem;">
+<summary>Google Test Output</summary>
+
+<img src="images/GTest.png" width="512">
+
+</details>
 ---
 
 ### Documentation
