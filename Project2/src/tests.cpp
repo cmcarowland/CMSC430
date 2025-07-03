@@ -221,13 +221,13 @@ int main(int argc, char **argv)
     ::testing::InitGoogleTest(&argc, argv);
 
     for (int i = 1; i < argc; ++i) {
-        if((strncmp("-h", argv[i], 3) & strncmp("--help", argv[i], 6)) == 0) {
+        if(strncmp("-h", argv[i], 3) == 0 || strncmp("--help", argv[i], 6) == 0) {
             printf("Usage: %s [options]\n", argv[0]);
             printf("Options:\n");
             printf("  -s, --silent          Suppress printing of input files in the output\n");
             printf("  -h, --help            Show this help message\n");
             return EXIT_SUCCESS;
-        }else if((strncmp("-s", argv[i], 3) & strncmp("--silent", argv[i], 9)) == 0) {
+        }else if(strncmp("-s", argv[i], 3) == 0 || strncmp("--silent", argv[i], 9) == 0) {
             PRINT_RESULTS = false;
         } else {
             printf("Unknown option: %s\n", argv[i]);
