@@ -39,6 +39,7 @@ Using Make to build the compiler and text elf files
 
 <details style="font-size: 1.5rem;">
 <summary>Test cases Images</summary>
+
 Test cases 1-5
 
 <img src="images/Tests1-5.png" width="512">
@@ -62,6 +63,7 @@ Syntax cases 3 and 4
 Syntax case 5
 
 <img src="images/Syntax5.png" width="512">
+
 </details>
 
 <details style="font-size: 1.5rem;">
