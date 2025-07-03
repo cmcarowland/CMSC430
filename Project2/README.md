@@ -2,7 +2,7 @@
 
 ## Build
 
-Using Make to build the compiler and text elf files
+Using Make to build the compiler and test elf files. Green lines indicate object files and yellow lines indicate elf compilation.
 
 <img src="images/Build.png" height="256">
 
