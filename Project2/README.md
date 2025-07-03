@@ -1,5 +1,12 @@
 # PROJECT 2
 
+## Build
+
+Using Make to build the compiler and text elf files
+
+<img src="images/Build.png" height="256">
+
+
 ## Functionality
 1. Parses all syntactically correct programs
    - [x] Include literals for real data type
