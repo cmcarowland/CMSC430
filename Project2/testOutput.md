@@ -1,8 +1,7 @@
-$\color{#00a000}{\scriptsize{\textsf{[==========] }}}$ Running 19 tests from 1 test suite.<br/>
-<span style="color:#00a000">[==========] </span>Running 19 tests from 1 test suite.<br/>
-<span style="color:#00a000">[----------] </span>Global test environment set-up.<br/>
-<span style="color:#00a000">[----------] </span>19 tests from SuppliedTest<br/>
-<span style="color:#00a000">[ RUN      ] </span>SuppliedTest.Test1<br/>
+$\color{#00a000}{\scriptsize{\text[==========] }}\text{Running 19 tests from 1 test suite.}$<br/>
+$\color{#00a000}{\scriptsize{\text[----------] }}\text{Global test environment set-up.}$<br/>
+$\color{#00a000}{\scriptsize{\text[----------] }}\text{19 tests from SuppliedTest}$<br/>
+$\color{#00a000}{\scriptsize{\text[ RUN      ] }}\text{SuppliedTest.Test1}$<br/>
 ```
 
    1  // Function with Arithmetic Expression
@@ -15,9 +14,9 @@ $\color{#00a000}{\scriptsize{\textsf{[==========] }}}$ Running 19 tests from 1 t
 
 Compiled Successfully!!!
 ```
-<span style="color:#8080ff">[  RESULT  ]	data/test1.txt = 0</span><br/>
-<span style="color:#00a000">[       OK ] </span>SuppliedTest.Test1 (0 ms)<br/>
-<span style="color:#00a000">[ RUN      ] </span>SuppliedTest.Test2<br/>
+$\color{#8080ff}{\scriptsize{\text[  RESULT  ]	data/test1.txt = 0}}\text{}$<br/>
+$\color{#00a000}{\scriptsize{\text[       OK ] }}\text{SuppliedTest.Test1 (0 ms)}$<br/>
+$\color{#00a000}{\scriptsize{\text[ RUN      ] }}\text{SuppliedTest.Test2}$<br/>
 ```
 
    1  // Function with When Statement
@@ -30,9 +29,9 @@ Compiled Successfully!!!
 
 Compiled Successfully!!!
 ```
-<span style="color:#8080ff">[  RESULT  ]	data/test2.txt = 0</span><br/>
-<span style="color:#00a000">[       OK ] </span>SuppliedTest.Test2 (0 ms)<br/>
-<span style="color:#00a000">[ RUN      ] </span>SuppliedTest.Test3<br/>
+$\color{#8080ff}{\scriptsize{\text[  RESULT  ]	data/test2.txt = 0}}\text{}$<br/>
+$\color{#00a000}{\scriptsize{\text[       OK ] }}\text{SuppliedTest.Test2 (1 ms)}$<br/>
+$\color{#00a000}{\scriptsize{\text[ RUN      ] }}\text{SuppliedTest.Test3}$<br/>
 ```
 
    1  // Function with a Switch Statement
@@ -50,9 +49,9 @@ Compiled Successfully!!!
 
 Compiled Successfully!!!
 ```
-<span style="color:#8080ff">[  RESULT  ]	data/test3.txt = 0</span><br/>
-<span style="color:#00a000">[       OK ] </span>SuppliedTest.Test3 (0 ms)<br/>
-<span style="color:#00a000">[ RUN      ] </span>SuppliedTest.Test4<br/>
+$\color{#8080ff}{\scriptsize{\text[  RESULT  ]	data/test3.txt = 0}}\text{}$<br/>
+$\color{#00a000}{\scriptsize{\text[       OK ] }}\text{SuppliedTest.Test3 (1 ms)}$<br/>
+$\color{#00a000}{\scriptsize{\text[ RUN      ] }}\text{SuppliedTest.Test4}$<br/>
 ```
 
    1  // Function with a List Variable
@@ -66,9 +65,9 @@ Compiled Successfully!!!
 
 Compiled Successfully!!!
 ```
-<span style="color:#8080ff">[  RESULT  ]	data/test4.txt = 0</span><br/>
-<span style="color:#00a000">[       OK ] </span>SuppliedTest.Test4 (0 ms)<br/>
-<span style="color:#00a000">[ RUN      ] </span>SuppliedTest.Test5<br/>
+$\color{#8080ff}{\scriptsize{\text[  RESULT  ]	data/test4.txt = 0}}\text{}$<br/>
+$\color{#00a000}{\scriptsize{\text[       OK ] }}\text{SuppliedTest.Test4 (0 ms)}$<br/>
+$\color{#00a000}{\scriptsize{\text[ RUN      ] }}\text{SuppliedTest.Test5}$<br/>
 ```
 
    1  // Function with a Real and Character Variables and Literals
@@ -82,9 +81,9 @@ Compiled Successfully!!!
 
 Compiled Successfully!!!
 ```
-<span style="color:#8080ff">[  RESULT  ]	data/test5.txt = 0</span><br/>
-<span style="color:#00a000">[       OK ] </span>SuppliedTest.Test5 (0 ms)<br/>
-<span style="color:#00a000">[ RUN      ] </span>SuppliedTest.Test6<br/>
+$\color{#8080ff}{\scriptsize{\text[  RESULT  ]	data/test5.txt = 0}}\text{}$<br/>
+$\color{#00a000}{\scriptsize{\text[       OK ] }}\text{SuppliedTest.Test5 (0 ms)}$<br/>
+$\color{#00a000}{\scriptsize{\text[ RUN      ] }}\text{SuppliedTest.Test6}$<br/>
 ```
 
    1  // Function with an If Statemnt
@@ -105,9 +104,9 @@ Compiled Successfully!!!
 
 Compiled Successfully!!!
 ```
-<span style="color:#8080ff">[  RESULT  ]	data/test6.txt = 0</span><br/>
-<span style="color:#00a000">[       OK ] </span>SuppliedTest.Test6 (0 ms)<br/>
-<span style="color:#00a000">[ RUN      ] </span>SuppliedTest.Test7<br/>
+$\color{#8080ff}{\scriptsize{\text[  RESULT  ]	data/test6.txt = 0}}\text{}$<br/>
+$\color{#00a000}{\scriptsize{\text[       OK ] }}\text{SuppliedTest.Test6 (0 ms)}$<br/>
+$\color{#00a000}{\scriptsize{\text[ RUN      ] }}\text{SuppliedTest.Test7}$<br/>
 ```
 
    1  // Left and Right Fold Statement
@@ -129,9 +128,9 @@ Compiled Successfully!!!
 
 Compiled Successfully!!!
 ```
-<span style="color:#8080ff">[  RESULT  ]	data/test7.txt = 0</span><br/>
-<span style="color:#00a000">[       OK ] </span>SuppliedTest.Test7 (0 ms)<br/>
-<span style="color:#00a000">[ RUN      ] </span>SuppliedTest.Test8<br/>
+$\color{#8080ff}{\scriptsize{\text[  RESULT  ]	data/test7.txt = 0}}\text{}$<br/>
+$\color{#00a000}{\scriptsize{\text[       OK ] }}\text{SuppliedTest.Test7 (0 ms)}$<br/>
+$\color{#00a000}{\scriptsize{\text[ RUN      ] }}\text{SuppliedTest.Test8}$<br/>
 ```
 
    1  // Multiple Integer Variable Initializations
@@ -146,9 +145,9 @@ Compiled Successfully!!!
 
 Compiled Successfully!!!
 ```
-<span style="color:#8080ff">[  RESULT  ]	data/test8.txt = 0</span><br/>
-<span style="color:#00a000">[       OK ] </span>SuppliedTest.Test8 (0 ms)<br/>
-<span style="color:#00a000">[ RUN      ] </span>SuppliedTest.Test9<br/>
+$\color{#8080ff}{\scriptsize{\text[  RESULT  ]	data/test8.txt = 0}}\text{}$<br/>
+$\color{#00a000}{\scriptsize{\text[       OK ] }}\text{SuppliedTest.Test8 (0 ms)}$<br/>
+$\color{#00a000}{\scriptsize{\text[ RUN      ] }}\text{SuppliedTest.Test9}$<br/>
 ```
 
    1  // Single Parameter Declaration
@@ -161,9 +160,9 @@ Compiled Successfully!!!
 
 Compiled Successfully!!!
 ```
-<span style="color:#8080ff">[  RESULT  ]	data/test9.txt = 0</span><br/>
-<span style="color:#00a000">[       OK ] </span>SuppliedTest.Test9 (0 ms)<br/>
-<span style="color:#00a000">[ RUN      ] </span>SuppliedTest.Test10<br/>
+$\color{#8080ff}{\scriptsize{\text[  RESULT  ]	data/test9.txt = 0}}\text{}$<br/>
+$\color{#00a000}{\scriptsize{\text[       OK ] }}\text{SuppliedTest.Test9 (1 ms)}$<br/>
+$\color{#00a000}{\scriptsize{\text[ RUN      ] }}\text{SuppliedTest.Test10}$<br/>
 ```
 
    1  // Two Parameter Declarations
@@ -177,9 +176,9 @@ Compiled Successfully!!!
 
 Compiled Successfully!!!
 ```
-<span style="color:#8080ff">[  RESULT  ]	data/test10.txt = 0</span><br/>
-<span style="color:#00a000">[       OK ] </span>SuppliedTest.Test10 (0 ms)<br/>
-<span style="color:#00a000">[ RUN      ] </span>SuppliedTest.Test11<br/>
+$\color{#8080ff}{\scriptsize{\text[  RESULT  ]	data/test10.txt = 0}}\text{}$<br/>
+$\color{#00a000}{\scriptsize{\text[       OK ] }}\text{SuppliedTest.Test10 (0 ms)}$<br/>
+$\color{#00a000}{\scriptsize{\text[ RUN      ] }}\text{SuppliedTest.Test11}$<br/>
 ```
 
    1  // Arithmetic Operators
@@ -192,9 +191,9 @@ Compiled Successfully!!!
 
 Compiled Successfully!!!
 ```
-<span style="color:#8080ff">[  RESULT  ]	data/test11.txt = 0</span><br/>
-<span style="color:#00a000">[       OK ] </span>SuppliedTest.Test11 (0 ms)<br/>
-<span style="color:#00a000">[ RUN      ] </span>SuppliedTest.Test12<br/>
+$\color{#8080ff}{\scriptsize{\text[  RESULT  ]	data/test11.txt = 0}}\text{}$<br/>
+$\color{#00a000}{\scriptsize{\text[       OK ] }}\text{SuppliedTest.Test11 (0 ms)}$<br/>
+$\color{#00a000}{\scriptsize{\text[ RUN      ] }}\text{SuppliedTest.Test12}$<br/>
 ```
 
    1  // Relational and Logical Operators
@@ -207,9 +206,9 @@ Compiled Successfully!!!
 
 Compiled Successfully!!!
 ```
-<span style="color:#8080ff">[  RESULT  ]	data/test12.txt = 0</span><br/>
-<span style="color:#00a000">[       OK ] </span>SuppliedTest.Test12 (0 ms)<br/>
-<span style="color:#00a000">[ RUN      ] </span>SuppliedTest.Test13<br/>
+$\color{#8080ff}{\scriptsize{\text[  RESULT  ]	data/test12.txt = 0}}\text{}$<br/>
+$\color{#00a000}{\scriptsize{\text[       OK ] }}\text{SuppliedTest.Test12 (1 ms)}$<br/>
+$\color{#00a000}{\scriptsize{\text[ RUN      ] }}\text{SuppliedTest.Test13}$<br/>
 ```
 
    1  // Comprehensive Test with Nested If
@@ -237,9 +236,9 @@ Compiled Successfully!!!
 
 Compiled Successfully!!!
 ```
-<span style="color:#8080ff">[  RESULT  ]	data/test13.txt = 0</span><br/>
-<span style="color:#00a000">[       OK ] </span>SuppliedTest.Test13 (1 ms)<br/>
-<span style="color:#00a000">[ RUN      ] </span>SuppliedTest.Test14<br/>
+$\color{#8080ff}{\scriptsize{\text[  RESULT  ]	data/test13.txt = 0}}\text{}$<br/>
+$\color{#00a000}{\scriptsize{\text[       OK ] }}\text{SuppliedTest.Test13 (0 ms)}$<br/>
+$\color{#00a000}{\scriptsize{\text[ RUN      ] }}\text{SuppliedTest.Test14}$<br/>
 ```
 
    1  // Comprehensive Test with Nested Switch
@@ -264,9 +263,9 @@ Compiled Successfully!!!
 
 Compiled Successfully!!!
 ```
-<span style="color:#8080ff">[  RESULT  ]	data/test14.txt = 0</span><br/>
-<span style="color:#00a000">[       OK ] </span>SuppliedTest.Test14 (0 ms)<br/>
-<span style="color:#00a000">[ RUN      ] </span>SuppliedTest.Syntax1<br/>
+$\color{#8080ff}{\scriptsize{\text[  RESULT  ]	data/test14.txt = 0}}\text{}$<br/>
+$\color{#00a000}{\scriptsize{\text[       OK ] }}\text{SuppliedTest.Test14 (0 ms)}$<br/>
+$\color{#00a000}{\scriptsize{\text[ RUN      ] }}\text{SuppliedTest.Syntax1}$<br/>
 ```
 
    1  // Missing Operator in Expression
@@ -287,9 +286,9 @@ Duplicate Identifier Errors : 0
 Undeclared Identifier Errors: 0
 
 ```
-<span style="color:#8080ff">[  RESULT  ]	data/syntax1.txt = 1</span><br/>
-<span style="color:#00a000">[       OK ] </span>SuppliedTest.Syntax1 (0 ms)<br/>
-<span style="color:#00a000">[ RUN      ] </span>SuppliedTest.Syntax2<br/>
+$\color{#8080ff}{\scriptsize{\text[  RESULT  ]	data/syntax1.txt = 1}}\text{}$<br/>
+$\color{#00a000}{\scriptsize{\text[       OK ] }}\text{SuppliedTest.Syntax1 (0 ms)}$<br/>
+$\color{#00a000}{\scriptsize{\text[ RUN      ] }}\text{SuppliedTest.Syntax2}$<br/>
 ```
 
    1  // Error in Function Header, Missing Colon
@@ -315,9 +314,9 @@ Duplicate Identifier Errors : 0
 Undeclared Identifier Errors: 0
 
 ```
-<span style="color:#8080ff">[  RESULT  ]	data/syntax2.txt = 1</span><br/>
-<span style="color:#00a000">[       OK ] </span>SuppliedTest.Syntax2 (0 ms)<br/>
-<span style="color:#00a000">[ RUN      ] </span>SuppliedTest.Syntax3<br/>
+$\color{#8080ff}{\scriptsize{\text[  RESULT  ]	data/syntax2.txt = 1}}\text{}$<br/>
+$\color{#00a000}{\scriptsize{\text[       OK ] }}\text{SuppliedTest.Syntax2 (1 ms)}$<br/>
+$\color{#00a000}{\scriptsize{\text[ RUN      ] }}\text{SuppliedTest.Syntax3}$<br/>
 ```
 
    1  // Error in Variable Declaration
@@ -349,9 +348,9 @@ Duplicate Identifier Errors : 0
 Undeclared Identifier Errors: 0
 
 ```
-<span style="color:#8080ff">[  RESULT  ]	data/syntax3.txt = 1</span><br/>
-<span style="color:#00a000">[       OK ] </span>SuppliedTest.Syntax3 (0 ms)<br/>
-<span style="color:#00a000">[ RUN      ] </span>SuppliedTest.Syntax4<br/>
+$\color{#8080ff}{\scriptsize{\text[  RESULT  ]	data/syntax3.txt = 1}}\text{}$<br/>
+$\color{#00a000}{\scriptsize{\text[       OK ] }}\text{SuppliedTest.Syntax3 (0 ms)}$<br/>
+$\color{#00a000}{\scriptsize{\text[ RUN      ] }}\text{SuppliedTest.Syntax4}$<br/>
 ```
 
    1  // Multiple Errors, Error in Case Clause and Missing Others Clause
@@ -376,9 +375,9 @@ Duplicate Identifier Errors : 0
 Undeclared Identifier Errors: 0
 
 ```
-<span style="color:#8080ff">[  RESULT  ]	data/syntax4.txt = 2</span><br/>
-<span style="color:#00a000">[       OK ] </span>SuppliedTest.Syntax4 (0 ms)<br/>
-<span style="color:#00a000">[ RUN      ] </span>SuppliedTest.Syntax5<br/>
+$\color{#8080ff}{\scriptsize{\text[  RESULT  ]	data/syntax4.txt = 2}}\text{}$<br/>
+$\color{#00a000}{\scriptsize{\text[       OK ] }}\text{SuppliedTest.Syntax4 (0 ms)}$<br/>
+$\color{#00a000}{\scriptsize{\text[ RUN      ] }}\text{SuppliedTest.Syntax5}$<br/>
 ```
 
    1  -- Multiple Errors
@@ -412,10 +411,10 @@ Duplicate Identifier Errors : 0
 Undeclared Identifier Errors: 0
 
 ```
-<span style="color:#8080ff">[  RESULT  ]	data/syntax5.txt = 5</span><br/>
-<span style="color:#00a000">[       OK ] </span>SuppliedTest.Syntax5 (0 ms)<br/>
-<span style="color:#00a000">[----------] </span>19 tests from SuppliedTest (1 ms total)<br/>
+$\color{#8080ff}{\scriptsize{\text[  RESULT  ]	data/syntax5.txt = 5}}\text{}$<br/>
+$\color{#00a000}{\scriptsize{\text[       OK ] }}\text{SuppliedTest.Syntax5 (1 ms)}$<br/>
+$\color{#00a000}{\scriptsize{\text[----------] }}\text{19 tests from SuppliedTest (6 ms total)}$<br/>
 <br/>
-<span style="color:#00a000">[----------] </span>Global test environment tear-down<br/>
-<span style="color:#00a000">[==========] </span>19 tests from 1 test suite ran. (1 ms total)<br/>
-<span style="color:#00a000">[  PASSED  ] </span>19 tests.<br/>
+$\color{#00a000}{\scriptsize{\text[----------] }}\text{Global test environment tear-down}$<br/>
+$\color{#00a000}{\scriptsize{\text[==========] }}\text{19 tests from 1 test suite ran. (6 ms total)}$<br/>
+$\color{#00a000}{\scriptsize{\text[  PASSED  ] }}\text{19 tests.}$<br/>
