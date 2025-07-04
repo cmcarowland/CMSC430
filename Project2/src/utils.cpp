@@ -1,24 +1,31 @@
+/*
+    Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 2 Skeleton
+	July 1, 2025
+
+	utils.cpp
+	Defines functions for printing messages and echoing output.
+*/
+
 #include <cstdarg>
 #include <cstdio>
 #include <string>
 
 using namespace std;
+bool PRINT_RESULTS = true;
 
 void Echo(char* message) {
-	#ifndef TESTING
-	
-	printf("%s", message);
-	
-	#endif
+	if(PRINT_RESULTS)
+		printf("%s", message);
 }
+	
 
 void Print(string format, ...) {
-	#ifndef TESTING
-	
-	va_list args;
-	va_start(args, format);
-	vfprintf(stdout, format.c_str(), args);
-	va_end(args);
-
-	#endif
+	if(PRINT_RESULTS) {	
+		va_list args;
+		va_start(args, format);
+		vfprintf(stdout, format.c_str(), args);
+		va_end(args);
+	}
 }
