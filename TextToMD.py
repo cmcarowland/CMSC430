@@ -22,7 +22,8 @@ def wrap_color(text, color):
     text = text.replace("\n", "")
     text = text.replace(color.code, "")
     text = text.replace(colors['RESET'].code, "")
-    return f'<span style="color:{color.hex}">{text[startColor:endColor+3]}</span>' + text[endColor+3:]
+    return rf'$\color{{{color.hex}}}{{\scriptsize{{\text{text[startColor:endColor+3]}}}}}\text{{{text[endColor+3:]}}}$'
+    # return f'<span style="color:{color.hex}">{text[startColor:endColor+3]}</span>' + text[endColor+3:]
 
 def check_start_code(line):
     global inCodeSection
