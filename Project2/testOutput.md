@@ -1,4 +1,3 @@
-$${\color{red}Red}$$
 <span style="color:#00a000">[==========] </span>Running 19 tests from 1 test suite.<br/>
 <span style="color:#00a000">[----------] </span>Global test environment set-up.<br/>
 <span style="color:#00a000">[----------] </span>19 tests from SuppliedTest<br/>
