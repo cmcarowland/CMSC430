@@ -4,7 +4,10 @@ CXXFLAGS += -I/usr/src/googletest/googletest/include
 LDFLAGS += -L/usr/src/googletest/lib
 LINKFLAGS = -lgtest -lgtest_main -lpthread
 
-all: $(bin_dir)/project2.elf $(bin_dir)/test.elf
+all: mkdirs $(bin_dir)/project2.elf $(bin_dir)/test.elf
+
+mkdirs:
+	mkdir -p $(bin_dir)
 
 $(bin_dir)/project2.elf: $(bin_dir)/scanner.o $(bin_dir)/parser.o $(bin_dir)/listing.o $(source_dir)/utils.cpp
 	g++ -o $@ $(source_dir)/utils.cpp $(bin_dir)/scanner.o $(bin_dir)/parser.o $(bin_dir)/listing.o
