@@ -1,3 +1,22 @@
+/*
+    Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 2 Skeleton
+	July 1, 2025
+
+    tests.cpp
+    Unit tests for the parser and scanner using Google Test framework.
+    This file contains tests for the supplied input files and syntax error cases.
+    Exercises the parse function and checks the results against expected values.
+    The tests are designed to ensure that the parser correctly handles valid input
+    and reports errors for invalid input.
+
+    Usage: ./bin/test.elf [options]
+    Options:
+        -s, --silent          Suppress printing of input files in the output
+        -h, --help            Show this help message
+*/
+
 using namespace std;
 #include "gtest/gtest.h"
 #include <stdio.h>
@@ -7,10 +26,11 @@ const string RED = "\033[31m";
 const string GREEN = "\033[32m";
 const string YELLOW = "\033[33m";
 const string LIGHT_BLUE = "\033[94m";
-const string RESET = "\033[0m";
+const string RESET = "\033[m";
 
 extern double parse();
 extern void yyset_in  ( FILE * _in_str  );
+extern bool PRINT_RESULTS;
 
 namespace {
     class SuppliedTest : public testing::Test {
@@ -193,4 +213,28 @@ namespace {
         EXPECT_EQ(5, result) << "Failed!! " << s;
         cout << result_header(s, result);
     }
+
+}
+
+int main(int argc, char **argv)
+{
+    ::testing::InitGoogleTest(&argc, argv);
+
+    for (int i = 1; i < argc; ++i) {
+        if(strncmp("-h", argv[i], 3) == 0 || strncmp("--help", argv[i], 6) == 0) {
+            printf("Usage: %s [options]\n", argv[0]);
+            printf("Options:\n");
+            printf("  -s, --silent          Suppress printing of input files in the output\n");
+            printf("  -h, --help            Show this help message\n");
+            return EXIT_SUCCESS;
+        }else if(strncmp("-s", argv[i], 3) == 0 || strncmp("--silent", argv[i], 9) == 0) {
+            PRINT_RESULTS = false;
+        } else {
+            printf("Unknown option: %s\n", argv[i]);
+            printf("Use -h or --help for usage information.\n");
+            return EXIT_FAILURE;
+        }
+    }
+
+    return RUN_ALL_TESTS();
 }
