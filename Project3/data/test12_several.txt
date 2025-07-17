@@ -1,4 +1,4 @@
-// Two parameter declarations
+// Multiple parameter declarations
 
 function main a: integer, b: real, c: real, d: integer returns real;
 begin
