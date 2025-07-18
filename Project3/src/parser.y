@@ -67,25 +67,31 @@ deque<double> args;
 %%
 
 function:	
-	function_header optional_variables body ';' {result = $3;} 
+	function_header optional_variables body ';' { result = $3;} 
+	| error optional_variables body ';' { result = $3; }
 ;
 	
 function_header:	
-	FUNCTION IDENTIFIER parameters RETURNS type ';' 
+	FUNCTION IDENTIFIER parameters RETURNS type ';' { if(args.size() > 0) { yyerror("Too many arguments provided."); } }
 ;
 
 parameters:
 	parameter ',' parameters
-	| parameter
-	| %empty
+	| error ',' parameters { yyerrok; }
+	| parameter 
+	| error { yyerrok; }
+	| %empty 
 ;
 
 parameter:
 	IDENTIFIER ':' type {
-		if(args.empty()) return -1;  
-		double val = args.front(); 
-		args.pop_front(); 
-		scalars.insert($1, val);
+		if(args.empty()) {
+			yyerror("Not enough arguments provided.");
+		} else {
+			double val = args.front(); 
+			args.pop_front(); 
+			scalars.insert($1, val);
+		}
 	}
 	| IDENTIFIER error type { scalars.insert($1, 0); }
 ;
