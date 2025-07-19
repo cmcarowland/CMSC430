@@ -4,10 +4,10 @@ using namespace std;
 #include <stdlib.h>
 #include <deque>
 
-const string RED = "\033[31m";
-const string GREEN = "\033[32m";
-const string YELLOW = "\033[33m";
-const string LIGHT_BLUE = "\033[94m";
+const string RED = "\033[0;31m";
+const string GREEN = "\033[0;32m";
+const string YELLOW = "\033[0;33m";
+const string LIGHT_BLUE = "\033[0;94m";
 const string RESET = "\033[m";
 
 extern double parse();
@@ -16,6 +16,8 @@ extern void yyset_in  ( FILE * _in_str  );
 extern bool PRINT_RESULTS;
 
 namespace {
+    string problem_header(const deque<double>& arguments);
+
     class SuppliedTest : public testing::Test {
     protected:
         FILE *input;
@@ -30,6 +32,7 @@ namespace {
 
         void SetUp(string fileName, deque<double> arguments = deque<double>{}) {
             args = arguments;
+            cout << problem_header(arguments);
             input = fopen(fileName.c_str(), "r");
             if(!input)
             {
@@ -43,9 +46,20 @@ namespace {
         }
     };
 
-     string problem_header(string equation) {
+    string problem_header(const deque<double>& arguments) {
         stringstream ss;
-        ss << GREEN      << "[  PARAMS  ]" << RESET << "\t" << equation << endl;
+        ss << GREEN      << "[  PARAMS  ]" << RESET << "\t"; 
+        if(arguments.empty()) {
+            ss << "None";
+        } else {
+            for(size_t i = 0; i < arguments.size(); ++i) {
+                if(i > 0) 
+                    ss << ", ";
+
+                ss << arguments[i];
+            }
+        }
+        ss << endl;
         return ss.str();
     }
 
@@ -59,128 +73,107 @@ namespace {
         string s = "data/discussion.txt";
         double answer = 0;
         SetUp(s, deque<double>{0, 0, 0});
-        cout << problem_header("0, 0, 0");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, answer);
 
         SetUp(s, deque<double>{1, 0, 0});
         answer = 53;
-        cout << problem_header("1, 0, 0");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, answer);
 
         SetUp(s, deque<double>{2, 0, 0});
         answer = 14;
-        cout << problem_header("2, 0, 0");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, answer);
         
         SetUp(s, deque<double>{3, 0, 0});
         answer = 0;
-        cout << problem_header("3, 0, 0");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, answer);
 
         SetUp(s, deque<double>{0, 1, 0});
         answer = 1;
-        cout << problem_header("0, 1, 0");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, answer);
 
         SetUp(s, deque<double>{0, 2, 0});
         answer = 2;
-        cout << problem_header("0, 2, 0");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, 2);
 
         SetUp(s, deque<double>{1, 1, '+'});
         answer = 54;
-        cout << problem_header("1, 1, '+'");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, answer);
     
         SetUp(s, deque<double>{2, 2, '+'});
         answer = 1;
-        cout << problem_header("2, 2, '+'");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, answer);
 
         SetUp(s, deque<double>{3, 2, '+'});
         answer = 2;
-        cout << problem_header("3, 2, '+'");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, answer);
 
         SetUp(s, deque<double>{3, 3, '+'});
         answer = 3;
-        cout << problem_header("3, 3, '+'");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, answer);
 
         SetUp(s, deque<double>{1, 1, '-'});
         answer = 52;
-        cout << problem_header("1, 1, '-'");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, answer);
 
         SetUp(s, deque<double>{1, 2, '-'});
         answer = 53;
-        cout << problem_header("1, 2, '-'");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, answer);
 
         SetUp(s, deque<double>{2, 2, '-'});
         answer = 12;
-        cout << problem_header("2, 2, '-'");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, answer);
 
         SetUp(s, deque<double>{3, 20, '+'});
         answer = 5;
-        cout << problem_header("3, 20, '+'");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, answer);
 
         SetUp(s, deque<double>{3, 108, '+'});
         answer = 9;
-        cout << problem_header("3, 108, '+'");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, answer);
 
         SetUp(s, deque<double>{3, 108, '-'});
         answer = 3;
-        cout << problem_header("3, 108, '-'");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, answer);
 
         SetUp(s, deque<double>{108, 108, '+'});
         answer = 9;
-        cout << problem_header("108, 108, '+'");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, answer);
 
         SetUp(s, deque<double>{108, 108, '-'});
         answer = 3;
-        cout << problem_header("108, 108, '-'");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, answer);
 
         SetUp(s, deque<double>{2196, 1024, '+'});
         answer = 1;
-        cout << problem_header("2196, 1024, '+'");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, answer);
         
         SetUp(s, deque<double>{2196, 1024, '-'});
         answer = 8;
-        cout << problem_header("2196, 1024, '-'");
         EXPECT_EQ(answer, result) << "Failed!! " << s;
         cout << result_header(s, result, answer);
     }
 
     TEST_F(SuppliedTest, Test1) { 
         string s = "data/test1.txt";
-       
         SetUp(s);
         EXPECT_EQ(25, result) << "Failed!! " << s;
         cout << result_header(s, result, 25);
