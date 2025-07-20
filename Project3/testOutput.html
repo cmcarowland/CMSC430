@@ -1,0 +1,1149 @@
+<html>
+    <head>
+        <style>
+            :root {
+                --orange: #ff8000;
+                --green: #00a000;
+                --light-blue: #8080ff;
+                --red: #ff4040;
+                --background-blue: hsl(240, 100%, 9%);
+                font-family: monospace;
+            }
+
+            body {background-color: var(--background-blue); color: white;display: flex;flex-direction: column;align-items: center;} 
+            div {width: 100%; max-width: 900px;}
+            span {margin-left: -50;}
+            pre {
+                background-color: color-mix(in lab, var(--background-blue), black 50%);
+                border-radius: 8px;
+                box-shadow: 0 4px 4px rgba(0,0,0,1);
+                padding: 10px;
+            }
+        </style>
+    </head>
+
+<body>
+<div>
+<span style="color:var(--orange)">Note:&nbsp;Google&nbsp;Test&nbsp;filter&nbsp;=&nbsp;-SuppliedTest.D*</span><br/>
+<span style="color:var(--green)">[==========]&nbsp;</span>Running&nbsp;47&nbsp;tests&nbsp;from&nbsp;1&nbsp;test&nbsp;suite.<br/>
+<span style="color:var(--green)">[----------]&nbsp;</span>Global&nbsp;test&nbsp;environment&nbsp;set-up.<br/>
+<span style="color:var(--green)">[----------]&nbsp;</span>47&nbsp;tests&nbsp;from&nbsp;SuppliedTest<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test1<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Function with Arithmetic Expression
+   2  
+   3  function main returns integer;
+   4  begin
+   5      7 + 2 * (5  + 4);
+   6  end;
+   7  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test1.txt&nbsp;=&nbsp;25&nbsp;(expected:&nbsp;25)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test1&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test2<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Function with When Statement
+   2  
+   3  function main returns integer;
+   4  begin
+   5      when 3 < 2 & 6 < 7, 7 * 2 : 7 + 2;
+   6  end;
+   7  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test2.txt&nbsp;=&nbsp;9&nbsp;(expected:&nbsp;9)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test2&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test3<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Function with a Switch Statement
+   2  
+   3  function main returns character;
+   4      a: integer is 2 * 2 + 1;
+   5  begin
+   6      switch a is
+   7          case 1 => 'a';
+   8          case 2 => 'b';
+   9          others => 'c';  
+  10      endswitch;    
+  11  end;
+  12  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test3.txt&nbsp;=&nbsp;99&nbsp;(expected:&nbsp;99)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test3&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test4<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Function with a List Variable
+   2  
+   3  function main returns integer;
+   4      primes: list of integer is (2, 3, 5, 7);
+   5  begin
+   6      primes(1) + primes(2);
+   7  end;
+   8  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test4.txt&nbsp;=&nbsp;8&nbsp;(expected:&nbsp;8)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test4&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test5<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Function with Arithmetic Expression using Real Literals
+   2  //     and Hexadecimal Integer Literals
+   3  
+   4  function main returns real;
+   5  begin
+   6      .83e+2 + 2.5E-1 + (4.3E2 + #aF2) * .01;
+   7  end;
+   8  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test5.txt&nbsp;=&nbsp;115.57&nbsp;(expected:&nbsp;115.57)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test5&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test6<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Function with Character Literal Escape Characters
+   2  
+   3  function main returns character;
+   4      lines: integer is 60;
+   5  begin
+   6      when lines < 60, '\n' : '\f';
+   7  end;
+   8  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test6.txt&nbsp;=&nbsp;12&nbsp;(expected:&nbsp;12)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test6&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.TestAdd<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Tests Add Arithmetic Operators
+   2  
+   3  function main returns integer;
+   4  begin
+   5      2 + 5 + 4;
+   6  end;
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test_add.txt&nbsp;=&nbsp;11&nbsp;(expected:&nbsp;11)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.TestAdd&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.TestSubtract<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Tests Add and sub Arithmetic Operators
+   2  
+   3  function main returns integer;
+   4  begin
+   5      2 + 5 - 4;
+   6  end;
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test_subtract.txt&nbsp;=&nbsp;3&nbsp;(expected:&nbsp;3)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.TestSubtract&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.TestMultiply<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Tests Mul Arithmetic Operators
+   2  
+   3  function main returns integer;
+   4  begin
+   5      10 * 4;
+   6  end;
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test_multiply.txt&nbsp;=&nbsp;40&nbsp;(expected:&nbsp;40)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.TestMultiply&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.TestDivide<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Tests division Arithmetic Operators
+   2  
+   3  function main returns integer;
+   4  begin
+   5      10 / 2;
+   6  end;
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test_divide.txt&nbsp;=&nbsp;5&nbsp;(expected:&nbsp;5)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.TestDivide&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.TestMod<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Tests Mod Arithmetic Operators
+   2  
+   3  function main returns integer;
+   4  begin
+   5      15 % 4;
+   6  end;
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test_mod.txt&nbsp;=&nbsp;3&nbsp;(expected:&nbsp;3)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.TestMod&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.TestExp<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Tests Exp Arithmetic Operators
+   2  
+   3  function main returns integer;
+   4  begin
+   5      16 ^ 4;
+   6  end;
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test_exp.txt&nbsp;=&nbsp;65536&nbsp;(expected:&nbsp;65536)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.TestExp&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test7<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Tests All Arithmetic Operators
+   2  
+   3  function main returns integer;
+   4  begin
+   5      9 + 2 - (5 + ~1) / 2 % 3 * 3 ^ 1 ^ 2;
+   6  end;
+   7  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test7.txt&nbsp;=&nbsp;5&nbsp;(expected:&nbsp;5)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test7&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.TestAnd<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Test Logical and Relational Operators
+   2  
+   3  function main returns integer;
+   4  begin
+   5      when 1 = 1 & 1 <= 1, 1 : 0;
+   6  end;
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test_and.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.TestAnd&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.TestAndFalse<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Test Logical and Relational Operators
+   2  
+   3  function main returns integer;
+   4  begin
+   5      when 1 = 1 & 0 >= 1, 1 : 0;
+   6  end;
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test_and_false.txt&nbsp;=&nbsp;0&nbsp;(expected:&nbsp;0)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.TestAndFalse&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.TestNot<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Test Logical and Relational Operators
+   2  
+   3  function main returns integer;
+   4  begin
+   5      when !(1 = 1), 1 : 0;
+   6  end;
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test_not.txt&nbsp;=&nbsp;0&nbsp;(expected:&nbsp;0)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.TestNot&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.TestNeq<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Test Logical and Relational Operators
+   2  
+   3  function main returns integer;
+   4  begin
+   5      when 6 <> 7, 1 : 0;
+   6  end;
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test_neq.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.TestNeq&nbsp;(1&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.TestOr<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Test Logical and Relational Operators
+   2  
+   3  function main returns integer;
+   4  begin
+   5      when 1 = 0 | 1 = 1, 1 : 0;
+   6  end;
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test_or.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.TestOr&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.TestOrFalse<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Test Logical and Relational Operators
+   2  
+   3  function main returns integer;
+   4  begin
+   5      when 1 = 0 | 1 < 0, 1 : 0;
+   6  end;
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test_or_false.txt&nbsp;=&nbsp;0&nbsp;(expected:&nbsp;0)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.TestOrFalse&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test8<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Test Logical and Relational Operators
+   2  
+   3  function main returns integer;
+   4  begin
+   5      when !(6 <> 7) & 5 + 4 >= 9 | 6 = 5,  6 + 9 * 3 : 8 - 2 ^ 3;
+   6  end;
+   7  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test8.txt&nbsp;=&nbsp;0&nbsp;(expected:&nbsp;0)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test8&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test9_lt10<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Function with an If Statement
+   2  
+   3  function main returns integer;
+   4      a: integer is 8;
+   5  begin
+   6      if a < 10 then
+   7          1;
+   8      elsif a < 20 then
+   9          2;
+  10      elsif a < 30 then
+  11          3;
+  12      else
+  13          4;
+  14      endif; 
+  15  end;
+  16  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test9_lt10.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test9_lt10&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test9_lt20<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Function with an If Statement
+   2  
+   3  function main returns integer;
+   4      a: integer is 18;
+   5  begin
+   6      if a < 10 then
+   7          1;
+   8      elsif a < 20 then
+   9          2;
+  10      elsif a < 30 then
+  11          3;
+  12      else
+  13          4;
+  14      endif; 
+  15  end;
+  16  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test9_lt20.txt&nbsp;=&nbsp;2&nbsp;(expected:&nbsp;2)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test9_lt20&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test9_gt30<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Function with an If Statement
+   2  
+   3  function main returns integer;
+   4      a: integer is 38;
+   5  begin
+   6      if a < 10 then
+   7          1;
+   8      elsif a < 20 then
+   9          2;
+  10      elsif a < 30 then
+  11          3;
+  12      else
+  13          4;
+  14      endif; 
+  15  end;
+  16  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test9_gt30.txt&nbsp;=&nbsp;4&nbsp;(expected:&nbsp;4)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test9_gt30&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test9_noelsifs<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Function with an If Statement
+   2  
+   3  function main returns integer;
+   4      a: integer is 58;
+   5  begin
+   6      if a < 10 then
+   7          1;
+   8      else
+   9          4;
+  10      endif; 
+  11  end;
+  12  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test9_noelsif.txt&nbsp;=&nbsp;4&nbsp;(expected:&nbsp;4)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test9_noelsifs&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test9<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Function with an If Statement
+   2  
+   3  function main returns integer;
+   4      a: integer is 28;
+   5  begin
+   6      if a < 10 then
+   7          1;
+   8      elsif a < 20 then
+   9          2;
+  10      elsif a < 30 then
+  11          3;
+  12      else
+  13          4;
+  14      endif; 
+  15  end;
+  16  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test9.txt&nbsp;=&nbsp;3&nbsp;(expected:&nbsp;3)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test9&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test10<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  -- Multiple Variable Initializations
+   2  
+   3  function main returns character;
+   4      b: integer is 5 + 1 - 4;
+   5      c: real is 2 + 3.7;
+   6      d: character is 'A';
+   7  begin
+   8      if b + 1 - c > 0 then
+   9          d;
+  10      else
+  11          '\n';
+  12      endif;
+  13  end;
+  14  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test10.txt&nbsp;=&nbsp;10&nbsp;(expected:&nbsp;10)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test10&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test11<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	6.8<br/>
+<pre>
+
+   1  // Single Parameter Declaration
+   2  
+   3  function main a: real returns real;
+   4  begin
+   5      a + 1.5;
+   6  end;
+   7  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test11.txt&nbsp;=&nbsp;8.3&nbsp;(expected:&nbsp;8.3)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test11&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test12<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	16,&nbsp;15.9<br/>
+<pre>
+
+   1  // Two parameter declarations
+   2  
+   3  function main a: integer, b: real returns real;
+   4  begin
+   5      if a < #A then
+   6          b + 1;
+   7      else 
+   8          b - 1;
+   9      endif;  
+  10  end;
+  11  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test12.txt&nbsp;=&nbsp;14.9&nbsp;(expected:&nbsp;14.9)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test12&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test12_several<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	1,&nbsp;2.2,&nbsp;3.3,&nbsp;4<br/>
+<pre>
+
+   1  // Multiple parameter declarations
+   2  
+   3  function main a: integer, b: real, c: real, d: integer returns real;
+   4  begin
+   5      a + b + c + d;
+   6  end;
+   7  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test12_several.txt&nbsp;=&nbsp;10.5&nbsp;(expected:&nbsp;10.5)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test12_several&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test13<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Test Right Fold
+   2  
+   3  function main returns integer;
+   4      values: list of integer is (3, 2, 1);
+   5  begin
+   6      fold right - values endfold;
+   7  end;
+   8  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test13.txt&nbsp;=&nbsp;2&nbsp;(expected:&nbsp;2)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test13&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test14<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Test Left Fold
+   2  
+   3  function main returns integer;
+   4  begin
+   5      fold left - (3, 2, 1) endfold;
+   6  end;
+   7  
+   8  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test14.txt&nbsp;=&nbsp;0&nbsp;(expected:&nbsp;0)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test14&nbsp;(1&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test15<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	1,&nbsp;2.5,&nbsp;65<br/>
+<pre>
+
+   1  // Test that Includes All Statements
+   2  
+   3  function main a: integer, b: real, c: character returns real;
+   4      d: integer is when a > 0, #A: #A0;
+   5      e: list of integer is (3, 2, 1);
+   6      f: integer is 
+   7             switch a is
+   8                 case 1 => fold left - e endfold;
+   9                 case 2 => fold right - e endfold;
+  10                 others => 0;
+  11             endswitch;
+  12      g: integer is 
+  13             if c = 'A' & b > 0 then
+  14                 a * 2;
+  15             elsif c = 'B' | b < 0 then
+  16                 (a ^ 2) * 10;
+  17             else
+  18                 0;
+  19             endif;
+  20  begin
+  21      f + (d - 1) % g;
+  22  end;
+  23  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test15.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test15&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test16<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	10,&nbsp;-10<br/>
+<pre>
+
+   1  // Nested if statements
+   2  
+   3  function main x: integer, y: integer returns character;
+   4  begin
+   5      if x > 0 then
+   6          if y > 0 then
+   7              '1';
+   8          elsif y < 0 then
+   9              '4';
+  10          else
+  11              'Y';
+  12          endif;
+  13      elsif x < 0 then
+  14         if y > 0 then
+  15              '3';
+  16          elsif y < 0 then
+  17              '2';
+  18          else
+  19              'Y';
+  20          endif;
+  21      else
+  22          if y <> 0 then
+  23              'X';
+  24          else
+  25              'O';
+  26          endif;
+  27      endif;
+  28  end;
+  29  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test16.txt&nbsp;=&nbsp;52&nbsp;(expected:&nbsp;52)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test16&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test16_1<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	10,&nbsp;5<br/>
+<pre>
+
+   1  // Nested if statements
+   2  
+   3  function main x: integer, y: integer returns character;
+   4  begin
+   5      if x > 0 then
+   6          if y > 0 then
+   7              '1';
+   8          elsif y < 0 then
+   9              '4';
+  10          else
+  11              'Y';
+  12          endif;
+  13      elsif x < 0 then
+  14         if y > 0 then
+  15              '3';
+  16          elsif y < 0 then
+  17              '2';
+  18          else
+  19              'Y';
+  20          endif;
+  21      else
+  22          if y <> 0 then
+  23              'X';
+  24          else
+  25              'O';
+  26          endif;
+  27      endif;
+  28  end;
+  29  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test16.txt&nbsp;=&nbsp;49&nbsp;(expected:&nbsp;49)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test16_1&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test16_4<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	10,&nbsp;-34<br/>
+<pre>
+
+   1  // Nested if statements
+   2  
+   3  function main x: integer, y: integer returns character;
+   4  begin
+   5      if x > 0 then
+   6          if y > 0 then
+   7              '1';
+   8          elsif y < 0 then
+   9              '4';
+  10          else
+  11              'Y';
+  12          endif;
+  13      elsif x < 0 then
+  14         if y > 0 then
+  15              '3';
+  16          elsif y < 0 then
+  17              '2';
+  18          else
+  19              'Y';
+  20          endif;
+  21      else
+  22          if y <> 0 then
+  23              'X';
+  24          else
+  25              'O';
+  26          endif;
+  27      endif;
+  28  end;
+  29  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test16.txt&nbsp;=&nbsp;52&nbsp;(expected:&nbsp;52)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test16_4&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test16_Y<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	10,&nbsp;0<br/>
+<pre>
+
+   1  // Nested if statements
+   2  
+   3  function main x: integer, y: integer returns character;
+   4  begin
+   5      if x > 0 then
+   6          if y > 0 then
+   7              '1';
+   8          elsif y < 0 then
+   9              '4';
+  10          else
+  11              'Y';
+  12          endif;
+  13      elsif x < 0 then
+  14         if y > 0 then
+  15              '3';
+  16          elsif y < 0 then
+  17              '2';
+  18          else
+  19              'Y';
+  20          endif;
+  21      else
+  22          if y <> 0 then
+  23              'X';
+  24          else
+  25              'O';
+  26          endif;
+  27      endif;
+  28  end;
+  29  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test16.txt&nbsp;=&nbsp;89&nbsp;(expected:&nbsp;89)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test16_Y&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test16_3<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	-55,&nbsp;99<br/>
+<pre>
+
+   1  // Nested if statements
+   2  
+   3  function main x: integer, y: integer returns character;
+   4  begin
+   5      if x > 0 then
+   6          if y > 0 then
+   7              '1';
+   8          elsif y < 0 then
+   9              '4';
+  10          else
+  11              'Y';
+  12          endif;
+  13      elsif x < 0 then
+  14         if y > 0 then
+  15              '3';
+  16          elsif y < 0 then
+  17              '2';
+  18          else
+  19              'Y';
+  20          endif;
+  21      else
+  22          if y <> 0 then
+  23              'X';
+  24          else
+  25              'O';
+  26          endif;
+  27      endif;
+  28  end;
+  29  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test16.txt&nbsp;=&nbsp;51&nbsp;(expected:&nbsp;51)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test16_3&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test16_2<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	-55,&nbsp;-99<br/>
+<pre>
+
+   1  // Nested if statements
+   2  
+   3  function main x: integer, y: integer returns character;
+   4  begin
+   5      if x > 0 then
+   6          if y > 0 then
+   7              '1';
+   8          elsif y < 0 then
+   9              '4';
+  10          else
+  11              'Y';
+  12          endif;
+  13      elsif x < 0 then
+  14         if y > 0 then
+  15              '3';
+  16          elsif y < 0 then
+  17              '2';
+  18          else
+  19              'Y';
+  20          endif;
+  21      else
+  22          if y <> 0 then
+  23              'X';
+  24          else
+  25              'O';
+  26          endif;
+  27      endif;
+  28  end;
+  29  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test16.txt&nbsp;=&nbsp;50&nbsp;(expected:&nbsp;50)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test16_2&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test16_Y_Xlt0<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	-34,&nbsp;0<br/>
+<pre>
+
+   1  // Nested if statements
+   2  
+   3  function main x: integer, y: integer returns character;
+   4  begin
+   5      if x > 0 then
+   6          if y > 0 then
+   7              '1';
+   8          elsif y < 0 then
+   9              '4';
+  10          else
+  11              'Y';
+  12          endif;
+  13      elsif x < 0 then
+  14         if y > 0 then
+  15              '3';
+  16          elsif y < 0 then
+  17              '2';
+  18          else
+  19              'Y';
+  20          endif;
+  21      else
+  22          if y <> 0 then
+  23              'X';
+  24          else
+  25              'O';
+  26          endif;
+  27      endif;
+  28  end;
+  29  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test16.txt&nbsp;=&nbsp;89&nbsp;(expected:&nbsp;89)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test16_Y_Xlt0&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test16_X0_Y0<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	0,&nbsp;0<br/>
+<pre>
+
+   1  // Nested if statements
+   2  
+   3  function main x: integer, y: integer returns character;
+   4  begin
+   5      if x > 0 then
+   6          if y > 0 then
+   7              '1';
+   8          elsif y < 0 then
+   9              '4';
+  10          else
+  11              'Y';
+  12          endif;
+  13      elsif x < 0 then
+  14         if y > 0 then
+  15              '3';
+  16          elsif y < 0 then
+  17              '2';
+  18          else
+  19              'Y';
+  20          endif;
+  21      else
+  22          if y <> 0 then
+  23              'X';
+  24          else
+  25              'O';
+  26          endif;
+  27      endif;
+  28  end;
+  29  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test16.txt&nbsp;=&nbsp;79&nbsp;(expected:&nbsp;79)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test16_X0_Y0&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test16_X0_Ylt0<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	0,&nbsp;-1<br/>
+<pre>
+
+   1  // Nested if statements
+   2  
+   3  function main x: integer, y: integer returns character;
+   4  begin
+   5      if x > 0 then
+   6          if y > 0 then
+   7              '1';
+   8          elsif y < 0 then
+   9              '4';
+  10          else
+  11              'Y';
+  12          endif;
+  13      elsif x < 0 then
+  14         if y > 0 then
+  15              '3';
+  16          elsif y < 0 then
+  17              '2';
+  18          else
+  19              'Y';
+  20          endif;
+  21      else
+  22          if y <> 0 then
+  23              'X';
+  24          else
+  25              'O';
+  26          endif;
+  27      endif;
+  28  end;
+  29  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test16.txt&nbsp;=&nbsp;88&nbsp;(expected:&nbsp;88)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test16_X0_Ylt0&nbsp;(1&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Test16_X0_Ygt0<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	0,&nbsp;1123<br/>
+<pre>
+
+   1  // Nested if statements
+   2  
+   3  function main x: integer, y: integer returns character;
+   4  begin
+   5      if x > 0 then
+   6          if y > 0 then
+   7              '1';
+   8          elsif y < 0 then
+   9              '4';
+  10          else
+  11              'Y';
+  12          endif;
+  13      elsif x < 0 then
+  14         if y > 0 then
+  15              '3';
+  16          elsif y < 0 then
+  17              '2';
+  18          else
+  19              'Y';
+  20          endif;
+  21      else
+  22          if y <> 0 then
+  23              'X';
+  24          else
+  25              'O';
+  26          endif;
+  27      endif;
+  28  end;
+  29  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/test16.txt&nbsp;=&nbsp;88&nbsp;(expected:&nbsp;88)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Test16_X0_Ygt0&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Syntax1<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Missing Operator in Expression
+   2  
+   3  function main returns integer;
+   4  begin
+   5      8 + 2 9 * 3;    
+	 -Syntax Error : syntax error, unexpected INT_LITERAL, expecting ';'
+   6  end;
+   7  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors.             : 0
+Syntactic Errors            : 1
+Semantic Errors.            : 0
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/syntax1.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Syntax1&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Syntax2<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Error in Function Header, Missing Colon
+   2  
+   3  function main a integer returns integer;
+	 -Syntax Error : syntax error, unexpected INTEGER, expecting ':'
+   4      b: integer is 3 * 2;
+   5  begin
+   6      if a <= 0 then
+   7          b + 3;
+   8      else
+   9          b * 4;
+  10      endif;
+  11  end;
+  12  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors.             : 0
+Syntactic Errors            : 1
+Semantic Errors.            : 0
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/syntax2.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Syntax2&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Syntax3<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	14<br/>
+<pre>
+
+   1  // Error in Variable Declaration
+   2  
+   3  function main a: integer returns integer;
+   4      b integer is
+	 -Syntax Error : syntax error, unexpected INTEGER, expecting ':'
+   5          if a > 5 then
+   6              a * 3;
+   7          else
+   8              2 + a;
+   9          endif;
+  10      c: real is -3.5;
+  11  begin
+  12      if a <= 0 then
+  13          b + 3;
+  14      else
+  15          b * 4;
+  16      endif;
+  17  end;
+  18  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors.             : 0
+Syntactic Errors            : 1
+Semantic Errors.            : 0
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/syntax3.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Syntax3&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Syntax4<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	28<br/>
+<pre>
+
+   1  // Multiple Errors, Error in Case Clause and Missing Others Clause
+   2  
+   3  function main a: integer returns integer;
+   4  begin
+   5      switch a is
+   6           case 1 => a 2;
+	 -Syntax Error : syntax error, unexpected INT_LITERAL, expecting ';'
+   7           case 2 => 5;
+   8      endswitch;
+	 -Syntax Error : syntax error, unexpected ENDSWITCH, expecting CASE or OTHERS
+   9  end;
+  10  
+
+2 errors found. Compilation Failed!
+=========================================================
+Lexical Errors.             : 0
+Syntactic Errors            : 2
+Semantic Errors.            : 0
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/syntax4.txt&nbsp;=&nbsp;2&nbsp;(expected:&nbsp;2)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Syntax4&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Syntax5<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  -- Multiple Errors
+   2  
+   3  function main a integer returns real;
+	 -Syntax Error : syntax error, unexpected INTEGER, expecting ':'
+   4      b: integer is * 2;
+	 -Syntax Error : syntax error, unexpected MULOP
+   5      c: real is 6.0;
+   6  begin
+   7      if a > c then
+   8          b + / .4;
+	 -Syntax Error : syntax error, unexpected MULOP
+   9      else
+  10          switch b is
+  11              case => 2;
+	 -Syntax Error : syntax error, unexpected ARROW, expecting INT_LITERAL
+  12              case 2 => c;
+  13          endswitch;
+	 -Syntax Error : syntax error, unexpected ENDSWITCH, expecting CASE or OTHERS
+  14      endif;
+  15  end;
+  16  
+
+5 errors found. Compilation Failed!
+=========================================================
+Lexical Errors.             : 0
+Syntactic Errors            : 5
+Semantic Errors.            : 0
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/syntax5.txt&nbsp;=&nbsp;5&nbsp;(expected:&nbsp;5)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Syntax5&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[----------]&nbsp;</span>47&nbsp;tests&nbsp;from&nbsp;SuppliedTest&nbsp;(3&nbsp;ms&nbsp;total)<br/>
+<br/>
+<span style="color:var(--green)">[----------]&nbsp;</span>Global&nbsp;test&nbsp;environment&nbsp;tear-down<br/>
+<span style="color:var(--green)">[==========]&nbsp;</span>47&nbsp;tests&nbsp;from&nbsp;1&nbsp;test&nbsp;suite&nbsp;ran.&nbsp;(4&nbsp;ms&nbsp;total)<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PASSED&nbsp;&nbsp;]&nbsp;</span>47&nbsp;tests.<br/>
+</div>
+</body>
+</html>

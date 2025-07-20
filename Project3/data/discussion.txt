@@ -1,0 +1,63 @@
+-- Multiple parameter declarations
+function main 
+    param1: integer, 
+    param2: real, 
+-- Character Literal
+    operation: character 
+returns real;
+
+-- Integer (Decimal and Hexadecimal), Real
+-- Multiple variable declarations
+    list_of_ints: list of integer is (18, 3, 2);
+-- A when statement with ^ / + and relational =
+    hexVar: integer is when param1 = 1, #F ^ 2 + #F * 2 : #F0 / 16;
+    realVar: real is when param2 <= 100, 4.3 : 1.4;
+    floorVar: integer is when realVar > 2, 4 : 1;
+
+    switch_result: integer is 
+-- A switch statement
+           switch param1 is
+-- A fold statement
+               // 13
+               case 1 => fold left - list_of_ints endfold;
+               // 108
+               case 2 => fold right * list_of_ints endfold;
+               others => param1;
+           endswitch;
+           
+    operation_result: integer is 
+-- An if statement
+        if operation = '-' then
+            if param2 > param1 then
+                // Absolute value of the difference
+                ~(param1 - param2);
+            else
+                param1 - param2; -- Subtraction
+            endif;
+        elsif operation = '+' then
+            param1 + param2; -- Addition
+        else
+            // Default case, return the maximum of the two
+-- Logical operator: &
+            if param1 > param2 & param1 <> param2 then
+                param1;
+-- Logical operator: |
+            elsif param1 < param2 | param1 = param2 then
+                param2;
+            else
+                0;
+            endif;
+        endif;
+
+-- Arithmetic operator % and *
+    result: integer is (switch_result * floorVar + operation_result) % hexVar;
+begin
+    // Ensure the result is within the specified range
+    if result >= ~1000000 & result <= 1000000 then
+        result; -- Return the result as is
+    elsif result >= 1000000 then
+        1000000;
+    else
+        ~1000000;
+    endif;
+end;

@@ -1,9 +1,16 @@
-/* CMSC 430 Compiler Theory and Design
-   Project 3 
-   UMGC CITE
-   Summer 2023
-   
-   Project 3 Parser with semantic actions for the interpreter */
+/*
+	Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 3
+	July 20, 2025
+
+	parser.y
+
+	Parser for our simple functional programming language.
+	Handles function definitions, variable declarations, and control flow constructs.
+	Supports arithmetic and logical expressions, as well as list operations.
+	Uses Bison for parsing and Flex for lexical analysis.
+*/
 
 %{
 
@@ -67,25 +74,31 @@ deque<double> args;
 %%
 
 function:	
-	function_header optional_variables body ';' {result = $3;} 
+	function_header optional_variables body ';' { result = $3;} 
+	| error optional_variables body ';' { result = $3; }
 ;
 	
 function_header:	
-	FUNCTION IDENTIFIER parameters RETURNS type ';' 
+	FUNCTION IDENTIFIER parameters RETURNS type ';' { if(args.size() > 0) { yyerror("Too many arguments provided."); } }
 ;
 
 parameters:
 	parameter ',' parameters
-	| parameter
-	| %empty
+	| error ',' parameters { yyerrok; }
+	| parameter 
+	| error { yyerrok; }
+	| %empty 
 ;
 
 parameter:
 	IDENTIFIER ':' type {
-		if(args.empty()) return -1;  
-		double val = args.front(); 
-		args.pop_front(); 
-		scalars.insert($1, val);
+		if(args.empty()) {
+			yyerror("Not enough arguments provided.");
+		} else {
+			double val = args.front(); 
+			args.pop_front(); 
+			scalars.insert($1, val);
+		}
 	}
 	| IDENTIFIER error type { scalars.insert($1, 0); }
 ;

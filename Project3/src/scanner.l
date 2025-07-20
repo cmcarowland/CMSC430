@@ -1,7 +1,17 @@
-/* CMSC 430 Compiler Theory and Design
-   Project 3 Skeleton
-   UMGC CITE
-   Summer 2023 */
+/*
+	Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 3
+	July 20, 2025
+
+   scanner.l
+
+   Lexical analyzer for our simple functional programming language.
+   Recognizes keywords, identifiers, literals, operators, and punctuation.
+   Handles comments and whitespace appropriately.
+   Uses Flex for lexical analysis.
+   
+*/
 
 /* This file contains flex input file */
 

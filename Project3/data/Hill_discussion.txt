@@ -1,0 +1,38 @@
+function main a: integer, b: character, c: real returns character;
+x: integer is #A + 5 * 2 ^ 2 % 3 - ~3;         // Tests integer (decimal + hex), arithmetic precedence
+y: real is (1.5 + 3.5) * 2.0 ^ 2 / 4.0;         // Real arithmetic and associativity
+z: character is '\n';                           // Character literal
+nums: list of integer is (1, 2, 3);             // List for fold
+
+begin
+  // Nested IF with logical + relational operators
+  if a > 0 & b = 'A' then
+    if c >= .5E1 & !(c < 7.0 | a = 2) then
+      x;                                        // Line executed if a > 0, b = 'A', c >= 5 and NOT(c < 7 or a == 2)
+    else
+      y;                                        // Line executed if inner condition fails
+    endif;
+  else
+    z;                                          // Line executed if outer condition fails
+  endif;
+
+  // SWITCH with multiple CASE and OTHERS
+  switch a is
+    case 1 => b;                                // CASE 1
+    case 2 => y;                                // CASE 2
+    case 3 => 
+      switch x is                               // Nested SWITCH
+        case 1 => a;                            
+        case 2 => b;
+        others => 'N';                          // Nested OTHERS
+      endswitch;
+    others => 'X';                              // Default case
+  endswitch;
+
+  // WHEN conditional
+  when a = 10 & b = 'A', 'T' : 'F';             // Logical AND test in WHEN
+
+  // FOLD operations
+  fold left + (1, 2, 3) endfold;                // Left fold addition: ((1+2)+3)
+  fold right - nums endfold;                   // Right fold subtraction: (1 - (2 - 3))
+end;
