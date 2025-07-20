@@ -1,9 +1,16 @@
-/* CMSC 430 Compiler Theory and Design
-   Project 3 
-   UMGC CITE
-   Summer 2023
-   
-   Project 3 Parser with semantic actions for the interpreter */
+/*
+	Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 3
+	July 20, 2025
+
+	parser.y
+
+	Parser for our simple functional programming language.
+	Handles function definitions, variable declarations, and control flow constructs.
+	Supports arithmetic and logical expressions, as well as list operations.
+	Uses Bison for parsing and Flex for lexical analysis.
+*/
 
 %{
 

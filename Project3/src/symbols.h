@@ -1,9 +1,13 @@
-// CMSC 430 Compiler Theory and Design
-// Project 3 Complete
-// UMGC CITE
-// Summer 2023
+/*
+	Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 3
+	July 20, 2025
 
-// This file contains the template symbol table
+	symbols.h
+
+	Defines a generic symbol table class using C++ STL map to store and retrieve symbols by their lexemes.
+*/
 
 template <typename T>
 class Symbols

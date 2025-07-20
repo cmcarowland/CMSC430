@@ -1,3 +1,14 @@
+/*
+	Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 3
+	July 20, 2025
+
+	utils.cpp
+
+	Utility functions for the compiler project, including printing and echoing messages.
+*/
+
 #include <cstdarg>
 #include <cstdio>
 #include <string>

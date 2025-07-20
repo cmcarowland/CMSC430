@@ -1,9 +1,14 @@
-// CMSC 430 Compiler Theory and Design
-// Project 3 Skeleton
-// UMGC CITE
-// Summer 2023
+/*
+	Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 3
+	July 20, 2025
 
-// This file contains the bodies of the evaluation functions
+	values.cc
+
+	Implements evaluation functions for arithmetic, relational, and fold operations.
+	Handles various operators and edge cases like division by zero.
+*/
 
 #include <string>
 #include <cmath>

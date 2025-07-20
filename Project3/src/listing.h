@@ -1,10 +1,16 @@
-// CMSC 430 Compiler Theory and Design
-// Project 3 Skeleton
-// UMGC CITE
-// Summer 2023
+/*
+	Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 3
+	July 20, 2025
 
-// This file contains the function prototypes for the functions that produce
-// the compilation listing
+	listing.h
+
+	This header defines error handling utilities for the compiler project.
+	It introduces error categories, error tracking functions, and an Error class
+	to encapsulate error details such as line number, content, and category.
+	The utilities help record, categorize, and display errors during compilation.
+*/
 
 enum ErrorCategories {LEXICAL, SYNTAX, GENERAL_SEMANTIC, DUPLICATE_IDENTIFIER,
 	UNDECLARED};

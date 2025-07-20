@@ -1,10 +1,16 @@
-// CMSC 430 Compiler Theory and Design
-// Project 3 Skeleton
-// UMGC CITE
-// Summer 2023
+/*
+	Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 3
+	July 20, 2025
 
-// This file contains the bodies of the functions that produces the 
-// compilation listing
+	listing.cc
+
+	Implements error tracking and reporting for the compiler project. 
+	Manages line numbers, collects and categorizes errors (lexical, syntax, semantic, duplicate identifier, undeclared identifier), 
+	and provides functions to display error summaries and details. 
+	The Error class encapsulates error information and formatting for output.
+*/
 
 #include <cstdio>
 #include <string>
