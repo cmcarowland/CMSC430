@@ -1,83 +1,88 @@
-// CMSC 430 Compiler Theory and Design
-// Project 4 Skeleton
-// UMGC CITE
-// Summer 2023
+/*
+	Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 3
+	July 20, 2025
 
-// This file contains the bodies of the functions that produces the 
-// compilation listing
+	listing.cc
+
+	Implements error tracking and reporting for the compiler project. 
+	Manages line numbers, collects and categorizes errors (lexical, syntax, semantic, duplicate identifier, undeclared identifier), 
+	and provides functions to display error summaries and details. 
+	The Error class encapsulates error information and formatting for output.
+*/
 
 #include <cstdio>
-#include <string>
-#include <vector>
+#include <queue>
 
 using namespace std;
 
 #include "listing.h"
 
 static int lineNumber;
-static int lexicalErrors;
-static int syntaxErrors;
-static int semanticErrors;
-static vector<string> errors;
+static queue<Error*> errors;
+static int errorCounts[] = {0, 0, 0, 0, 0}; // LEXICAL, SYNTAX, GENERAL_SEMANTIC, DUPLICATE_IDENTIFIER, UNDECLARED
+static int totalErrors = 0;
 
 static void displayErrors();
+extern void Print(string format, ...);
 
-void firstLine() {
-	lexicalErrors = 0;
-	syntaxErrors = 0;
-	semanticErrors = 0;
-	lineNumber = 1;
-	printf("\n%4d  ",lineNumber);
+void resetErrorCounts()
+{
+	for(int i = 0; i < 5; i++)
+		errorCounts[i] = 0;
+	totalErrors = 0;
 }
 
-void nextLine() {
+void firstLine()
+{
+	resetErrorCounts();
+	lineNumber = 1;
+	Print("\n%4d  ",lineNumber);
+}
+
+void nextLine()
+{
 	displayErrors();
 	lineNumber++;
-	printf("%4d  ",lineNumber);
+	Print("%4d  ",lineNumber);
 }
 
-int lastLine() {
-	printf("\r");
-	displayErrors();
-	printf("     \n");
-	int totalErrors = lexicalErrors + syntaxErrors + semanticErrors;
-	if (totalErrors > 0)
+int lastLine()
+{
+	Print("\n\n");
+	if(totalErrors > 0)
 	{
-		printf("Lexical Errors %d\n", lexicalErrors);
-		printf("Syntax Errors %d\n", syntaxErrors);
-		printf("Semantic Errors %d\n", semanticErrors);
-
-	}
-	else
-		printf("Compiled Successfully\n\n");
+		Print("%d errors found. Compilation Failed!\n", totalErrors);
+		Print("=========================================================\n");
+		Print("Lexical Errors.             : %d\n", errorCounts[LEXICAL]);
+		Print("Syntactic Errors            : %d\n", errorCounts[SYNTAX]);
+		Print("Semantic Errors.            : %d\n", errorCounts[GENERAL_SEMANTIC]);
+		Print("Duplicate Identifier Errors : %d\n", errorCounts[DUPLICATE_IDENTIFIER]);
+		Print("Undeclared Identifier Errors: %d\n\n", errorCounts[UNDECLARED]);
+		displayErrors();
+	} else
+		Print("Compiled Successfully!!!\n");
+	
 	return totalErrors;
 }
-    
-void appendError(ErrorCategories errorCategory, string message) {
-	string messages[] = { "Lexical Error, Invalid Character ", 
-	"Syntax Error, U", "Semantic Error, ",
-	"Semantic Error, Duplicate ", 
-	"Semantic Error, Undeclared " };
 
-	switch (errorCategory) {
-		case LEXICAL:
-			lexicalErrors++;
-			break;
-		case SYNTAX:
-			message = message.substr(15);
-			syntaxErrors++;
-			break;
-		case GENERAL_SEMANTIC:
-		case DUPLICATE_IDENTIFIER:
-		case UNDECLARED:
-			semanticErrors++;
-			break;
-    }
-	errors.push_back(messages[errorCategory] + message);
+
+void appendError(ErrorCategories errorCategory, string message)
+{
+	Error *error = new Error(lineNumber, errorCategory, message);
+	errors.push(error);
+
+	errorCounts[errorCategory]++;
+	totalErrors++;
 }
 
-void displayErrors() {
-	for (int i = 0; i < errors.size(); i++)
-		printf("%s\n", errors[i].c_str());
-	errors.clear();
+void displayErrors()
+{
+	while(errors.size() != 0)
+	{
+		Error *e = errors.front();
+		e->Display();
+		errors.pop();
+	}
 }
