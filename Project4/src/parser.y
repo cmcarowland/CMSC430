@@ -8,6 +8,7 @@
 %{
 #include <string>
 #include <vector>
+#include <deque>
 #include <map>
 
 using namespace std;
@@ -22,6 +23,10 @@ void yyerror(const char* message);
 
 Symbols<Types> scalars;
 Symbols<Types> lists;
+
+double result;
+deque<double> args;
+#define YYDEBUG 1
 
 %}
 
@@ -131,9 +136,22 @@ void yyerror(const char* message) {
 	appendError(SYNTAX, message);
 }
 
+extern double parse() {
+	yydebug = 0;
+	firstLine();
+	yyparse();
+	int errors = lastLine();
+	if(errors != 0)
+		return errors;
+	else
+		return result;
+}
+
+#ifndef TESTING
 int main(int argc, char *argv[]) {
 	firstLine();
 	yyparse();
 	lastLine();
 	return 0;
 } 
+#endif
