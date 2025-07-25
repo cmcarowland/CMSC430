@@ -39,15 +39,18 @@ deque<double> args;
 
 %token <iden> IDENTIFIER
 
-%token <type> INT_LITERAL CHAR_LITERAL
+%token <type> INT_LITERAL CHAR_LITERAL REAL_LITERAL
 
-%token ADDOP MULOP RELOP ANDOP ARROW
+%token <oper> ADDOP MULOP ANDOP RELOP MODOP EXPOP NEGOP NOTOP OROP
 
-%token BEGIN_ CASE CHARACTER ELSE END ENDSWITCH FUNCTION INTEGER IS LIST OF OTHERS
-	RETURNS SWITCH WHEN
+%token <dir> LEFT RIGHT
 
 %type <type> list expressions body type statement_ statement cases case expression
 	term primary
+
+%token BEGIN_ CHARACTER FUNCTION END INTEGER IS LIST OF 
+	RETURNS SWITCH CASE OTHERS ENDSWITCH WHEN FOLD ENDFOLD 
+	IF ELSIF ELSE ENDIF THEN REAL ARROW
 
 %%
 
@@ -59,9 +62,10 @@ function_header:
 	FUNCTION IDENTIFIER RETURNS type ';' ;
 
 type:
-	INTEGER {$$ = INT_TYPE;} |
-	CHARACTER {$$ = CHAR_TYPE; };
-	
+	INTEGER {$$ = INT_TYPE;} 
+	| CHARACTER {$$ = CHAR_TYPE; };
+	| REAL {$$ = REAL_TYPE; }
+;
 optional_variable:
 	variable |
 	%empty ;
@@ -115,11 +119,13 @@ term:
 	primary ;
 
 primary:
-	'(' expression ')' {$$ = $2;} |
-	INT_LITERAL | 
-	CHAR_LITERAL |
-	IDENTIFIER '(' expression ')' {$$ = find(lists, $1, "List");} |
-	IDENTIFIER  {$$ = find(scalars, $1, "Scalar");} ;
+	'(' expression ')' {$$ = $2;}
+	| INT_LITERAL
+	| CHAR_LITERAL
+	| REAL_LITERAL
+	| IDENTIFIER '(' expression ')' {$$ = find(lists, $1, "List");}
+	| IDENTIFIER  {$$ = find(scalars, $1, "Scalar");} 
+;
 
 %%
 
