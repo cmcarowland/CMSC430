@@ -1,5 +1,19 @@
 # Project 4
 
+## Steps 
+
+- [x] Add Real data type
+    - [x] Pass valid1.txt
+- [ ] Add hexidecimal integer literals
+    - [ ] Pass valid2.txt
+- [ ] Implement Int to real coercion works
+    - [ ] Pass valid3.txt
+    - [x] Pass semantic(1-7).txt
+- [ ] Lists contain elements of only one type
+    - [ ] Pass semantic8.txt 1 semantic error should result
+    - [ ] Add action to expression, maybe create function in types
+- [ ] Ensure the type of the list varable matches its elements
+
 ## Scope Rules
 
 - [ ] Both expressions in the when statement must be the same type.
