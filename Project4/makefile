@@ -8,7 +8,7 @@ all: mkdirs $(bin_dir)/project4.elf $(bin_dir)/test.elf
 mkdirs:
 	mkdir -p $(bin_dir)
 
-$(bin_dir)/project4.elf: $(bin_dir)/scanner.o $(bin_dir)/parser.o $(bin_dir)/listing.o $(bin_dir)/types.o $(source_dir)/utils.cpp
+$(bin_dir)/project4.elf: $(bin_dir)/scanner.o $(bin_dir)/parser.o $(bin_dir)/listing.o $(bin_dir)/types.o $(source_dir)/utils.cpp $(bin_dir)/error.o
 	g++ -o $@ $^
 
 $(bin_dir)/scanner.o: $(source_dir)/scanner.c $(source_dir)/types.h $(source_dir)/listing.h $(source_dir)/tokens.h
@@ -32,10 +32,13 @@ $(bin_dir)/listing.o: $(source_dir)/listing.cc $(source_dir)/listing.h
 $(bin_dir)/types.o: $(source_dir)/types.cc $(source_dir)/types.h
 	g++ -c $(source_dir)/types.cc -o $@
 
+$(bin_dir)/error.o: $(source_dir)/error.cpp $(source_dir)/error.h
+	g++ -c $(source_dir)/error.cpp -o $@
+
 clean:
 	rm -f $(bin_dir)/*
 	cd $(source_dir) && \
 	rm -f scanner.c parser.tab.* parser.output tokens.h parser.c
 
-$(bin_dir)/test.elf: $(source_dir)/tests.cpp $(source_dir)/parser.c $(bin_dir)/scanner.o $(bin_dir)/listing.o $(bin_dir)/types.o $(source_dir)/utils.cpp
-	g++ $(CXXFLAGS) -DTESTING=1 $(LDFLAGS) $(source_dir)/tests.cpp $(source_dir)/parser.c $(bin_dir)/scanner.o $(bin_dir)/listing.o $(bin_dir)/types.o $(source_dir)/utils.cpp -lgtest -lgtest_main -lpthread -o $@
+$(bin_dir)/test.elf: $(source_dir)/tests.cpp $(source_dir)/parser.c $(bin_dir)/scanner.o $(bin_dir)/listing.o $(bin_dir)/types.o $(source_dir)/utils.cpp $(bin_dir)/error.o
+	g++ $(CXXFLAGS) -DTESTING=1 $(LDFLAGS) $(source_dir)/tests.cpp $(source_dir)/parser.c $(bin_dir)/scanner.o $(bin_dir)/listing.o $(bin_dir)/types.o $(source_dir)/utils.cpp $(bin_dir)/error.o -lgtest -lgtest_main -lpthread -o $@
