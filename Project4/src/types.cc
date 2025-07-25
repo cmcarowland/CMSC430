@@ -12,6 +12,7 @@ using namespace std;
 
 #include "types.h"
 #include "listing.h"
+#include "error.h"
 
 void checkAssignment(Types lValue, Types rValue, string message) {
 	if (lValue != MISMATCH && rValue != MISMATCH && lValue != rValue)
