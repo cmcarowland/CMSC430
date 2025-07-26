@@ -63,60 +63,72 @@ function_header:
 
 type:
 	INTEGER {$$ = INT_TYPE;} 
-	| CHARACTER {$$ = CHAR_TYPE; };
+	| CHARACTER {$$ = CHAR_TYPE; }
 	| REAL {$$ = REAL_TYPE; }
 ;
+
 optional_variable:
 	variable |
 	%empty ;
     
 variable:	
-	IDENTIFIER ':' type IS statement ';' {checkAssignment($3, $5, "Variable Initialization"); scalars.insert($1, $3);} |
-	IDENTIFIER ':' LIST OF type IS list ';' {lists.insert($1, $5);} ;
+	IDENTIFIER ':' type IS statement ';' {checkAssignment($3, $5, "Variable Initialization"); scalars.insert($1, $3);}
+	| IDENTIFIER ':' LIST OF type IS list ';' {lists.insert($1, $5);} 
+;
 
 list:
 	'(' expressions ')' {$$ = $2;} ;
 
 expressions:
-	expressions ',' expression | 
-	expression ;
+	expressions ',' expression
+	| expression 
+;
 
 body:
-	BEGIN_ statement_ END ';' {$$ = $2;} ;
+	BEGIN_ statement_ END ';' {$$ = $2;} 
+;
     
 statement_:
-	statement ';' |
-	error ';' {$$ = MISMATCH;} ;
+	statement ';'
+	| error ';' {$$ = MISMATCH;} 
+;
 	
 statement:
-	expression |
-	WHEN condition ',' expression ':' expression 
-		{$$ = checkWhen($4, $6);} |
-	SWITCH expression IS cases OTHERS ARROW statement ';' ENDSWITCH 
-		{$$ = checkSwitch($2, $4, $7);} ;
+	expression
+	| WHEN condition ',' expression ':' expression 
+		{$$ = checkWhen($4, $6);}
+	| SWITCH expression IS cases OTHERS ARROW statement ';' ENDSWITCH 
+		{$$ = checkSwitch($2, $4, $7);} 
+;
 
 cases:
-	cases case {$$ = checkCases($1, $2);} |
-	%empty {$$ = NONE;} ;
+	cases case {$$ = checkCases($1, $2);}
+	| %empty {$$ = NONE;} 
+;
 	
 case:
-	CASE INT_LITERAL ARROW statement ';' {$$ = $4;} ; 
+	CASE INT_LITERAL ARROW statement ';' {$$ = $4;} 
+; 
 
 condition:
-	condition ANDOP relation |
-	relation ;
+	condition ANDOP relation
+	| relation 
+;
 
 relation:
-	'(' condition')' |
-	expression RELOP expression ;
+	'(' condition')'
+	| expression RELOP expression 
+;
 	
 expression:
-	expression ADDOP term {$$ = checkArithmetic($1, $3);} |
-	term ;
+	expression ADDOP term {$$ = checkArithmetic($1, $3);}
+	| term 
+;
       
 term:
-	term MULOP primary {$$ = checkArithmetic($1, $3);} |
-	primary ;
+	term MULOP primary {$$ = checkArithmetic($1, $3);}
+	| primary 
+;
 
 primary:
 	'(' expression ')' {$$ = $2;}
