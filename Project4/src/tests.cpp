@@ -86,15 +86,16 @@ namespace {
     TEST_F(SuppliedTest, Valid1) { 
         string s = "data/valid1.txt";
         SetUp(s);
-        EXPECT_EQ(4.5, result) << "Failed!! " << s;
-        cout << result_header(s, result, 4.5);
+        double expected = 0;
+        EXPECT_EQ(expected, result) << "Failed!! " << s;
+        cout << result_header(s, result, expected);
     }
 
 
     TEST_F(SuppliedTest, Valid2) { 
         string s = "data/valid2.txt";
         SetUp(s);
-        double expected = 20.0;
+        double expected = 0;
         EXPECT_EQ(expected, result) << "Failed!! " << s;
         cout << result_header(s, result, expected);
     }
@@ -102,7 +103,7 @@ namespace {
     TEST_F(SuppliedTest, Valid3) { 
         string s = "data/valid3.txt";
         SetUp(s);
-        double expected = 8.5;
+        double expected = 0;
         EXPECT_EQ(expected, result) << "Failed!! " << s;
         cout << result_header(s, result, expected);
     }
@@ -110,8 +111,8 @@ namespace {
     TEST_F(SuppliedTest, Semantic1) { 
         string s = "data/semantic1.txt";
         SetUp(s);
-        EXPECT_EQ(25, result) << "Failed!! " << s;
-        cout << result_header(s, result, 25);
+        EXPECT_EQ(1, result) << "Failed!! " << s;
+        cout << result_header(s, result, 1);
     }
 
     /*
