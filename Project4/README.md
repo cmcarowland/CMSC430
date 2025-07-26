@@ -4,10 +4,10 @@
 
 - [x] Add Real data type
     - [x] Pass valid1.txt
-- [ ] Add hexidecimal integer literals
-    - [ ] Pass valid2.txt
-- [ ] Implement Int to real coercion works
-    - [ ] Pass valid3.txt
+- [x] Add hexidecimal integer literals
+    - [x] Pass valid2.txt
+- [x] Implement Int to real coercion works
+    - [x] Pass valid3.txt
     - [x] Pass semantic(1-7).txt
 - [ ] Lists contain elements of only one type
     - [ ] Pass semantic8.txt 1 semantic error should result
