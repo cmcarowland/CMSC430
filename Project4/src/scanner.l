@@ -84,9 +84,9 @@ then           { Echo(yytext); return(THEN); }
 
 {id}           { Echo(yytext); yylval.iden = (CharPtr)malloc(yyleng + 1); 
                   strcpy(yylval.iden, yytext); return(IDENTIFIER);}
-{dec}          { Echo(yytext); yylval.type = INT_TYPE;  return(INT_LITERAL); }
+{dec}          { Echo(yytext); yylval.type = INT_TYPE; return(INT_LITERAL); }
 {double}       { Echo(yytext); yylval.type = REAL_TYPE; return(REAL_LITERAL); }
-{hexValue}     { Echo(yytext); return(INT_LITERAL); }
+{hexValue}     { Echo(yytext); yylval.type = INT_TYPE; return(INT_LITERAL); }
 {char}         { Echo(yytext); yylval.type = CHAR_TYPE; return(CHAR_LITERAL); }
 {punc}         { Echo(yytext); return(yytext[0]); }
 .              { Echo(yytext); appendError(LEXICAL, yytext); }
