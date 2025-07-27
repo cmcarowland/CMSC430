@@ -80,7 +80,7 @@ list:
 	'(' expressions ')' {$$ = $2;} ;
 
 expressions:
-	expressions ',' expression
+	expressions ',' expression { $$ = checkList($1, $3); }
 	| expression 
 ;
 
