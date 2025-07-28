@@ -9,10 +9,10 @@
 - [x] Implement Int to real coercion works
     - [x] Pass valid3.txt
     - [x] Pass semantic(1-7).txt
-- [ ] Lists contain elements of only one type
-    - [ ] Pass semantic8.txt 1 semantic error should result
-    - [ ] Add action to expression, maybe create function in types
-- [ ] Ensure the type of the list varable matches its elements
+- [x] Lists contain elements of only one type
+    - [x] Pass semantic8.txt 1 semantic error should result
+    - [x] Add action to expression, maybe create function in types
+- [x] Ensure the type of the list varable matches its elements
 
 ## Scope Rules
 
