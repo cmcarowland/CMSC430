@@ -16,14 +16,14 @@
 
 ## Scope Rules
 
-- [ ] Both expressions in the when statement must be the same type.
-- [ ] The type of the switch expression must be Integer.
-- [ ] All the case statements in a switch statement must match in type. No coercion is performed.
-- [ ] Arithmetic operators can only be used with numeric types.
-- [ ] All list elements must be of the same type.
-- [ ] In a list variable declaration, the type of the list must match the type of the elements.
-- [ ] List subscripts must be integer expressions.
-- [ ] Character literals can be compared to one another but they cannot be compared to numeric expressions.
+- [x] Both expressions in the when statement must be the same type.
+- [x] The type of the switch expression must be Integer.
+- [x] All the case statements in a switch statement must match in type. No coercion is performed.
+- [x] Arithmetic operators can only be used with numeric types.
+- [x] All list elements must be of the same type.
+- [x] In a list variable declaration, the type of the list must match the type of the elements.
+- [x] List subscripts must be integer expressions.
+- [x] Character literals can be compared to one another but they cannot be compared to numeric expressions.
 - [ ] Only integer operands can be used with the remainder operator.
 - [ ] All the statements in an if statement must match in type. No coercion is performed.
 - [ ] In a fold statement, the list must be a numeric type.
@@ -31,7 +31,7 @@
 
 ## Type Coercion
 
-- [ ] Int To Real data type conversions
+- [x] Int To Real data type conversions
 
 ## Semantic Checks
 
