@@ -72,16 +72,17 @@ optional_variable:
 	%empty ;
     
 variable:	
-	IDENTIFIER ':' type IS statement ';' {checkAssignment($3, $5, "Variable Initialization"); scalars.insert($1, $3);}
-	| IDENTIFIER ':' LIST OF type IS list ';' {lists.insert($1, $5);} 
+	IDENTIFIER ':' type IS statement ';' { checkAssignment($3, $5, "Variable Initialization"); scalars.insert($1, $3); }
+	| IDENTIFIER ':' LIST OF type IS list ';' { checkList($5, $7); lists.insert($1, $5); } 
 ;
 
 list:
-	'(' expressions ')' {$$ = $2;} ;
+	'(' expressions ')' { $$ = $2; } 
+;
 
 expressions:
-	expressions ',' expression { $$ = checkList($1, $3); }
-	| expression 
+	expressions ',' expression { $$ = checkListItem($1, $3); } 
+	| expression
 ;
 
 body:
