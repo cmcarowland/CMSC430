@@ -47,19 +47,22 @@ Types checkCases(Types left, Types right) {
 
 Types checkArithmetic(Types left, Types right) {
 	if (left == MISMATCH || right == MISMATCH)
-	return MISMATCH;
+		return MISMATCH;
 	
-	if (left == INT_TYPE && right == INT_TYPE)
-	return INT_TYPE;
-	
-	if (left != right)
+	if (checkNumericType(left) == MISMATCH || checkNumericType(right) == MISMATCH)
+		return MISMATCH;
+
+	if (left == right)
+		return right;
+	else
 	{
 		if (left == REAL_TYPE && right == INT_TYPE)
-		return REAL_TYPE;
+			return REAL_TYPE;
 		
 		if (right == REAL_TYPE && left == INT_TYPE)
-		return REAL_TYPE;
+			return REAL_TYPE;
 	}
+
 	
 	appendError(GENERAL_SEMANTIC, "Integer Type Required");
 	return MISMATCH;
@@ -117,4 +120,15 @@ bool checkRelopTypes(Types left, Types right) {
 	}
 
 	return true;
+}
+
+Types checkNumericType(Types type) {
+	if (type == MISMATCH)
+		return MISMATCH;
+
+	if (type == INT_TYPE || type == REAL_TYPE)
+		return type;
+
+	appendError(GENERAL_SEMANTIC, "Arithmetic Operations Require Numeric Types");
+	return MISMATCH;
 }

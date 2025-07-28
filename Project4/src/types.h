@@ -22,3 +22,5 @@ Types checkListItem(Types left, Types right);
 Types checkSubscript(Types type);
 
 bool checkRelopTypes(Types left, Types right);
+
+Types checkNumericType(Types type);
