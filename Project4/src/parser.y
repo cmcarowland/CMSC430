@@ -46,7 +46,7 @@ deque<double> args;
 %token <dir> LEFT RIGHT
 
 %type <type> list expressions body type statement_ statement cases case expression
-	term primary
+	primary neg mul exp add
 
 %token BEGIN_ CHARACTER FUNCTION END INTEGER IS LIST OF 
 	RETURNS SWITCH CASE OTHERS ENDSWITCH WHEN FOLD ENDFOLD 
@@ -130,15 +130,29 @@ relation:
 	'(' condition ')'
 	| expression RELOP expression { checkRelopTypes($1, $3); }
 ;
-	
-expression:
-	expression ADDOP term {$$ = checkArithmetic($1, $3);}
-	| term 
+
+neg:
+	NEGOP neg {$$ = checkNumericType($2); }
+	| primary { $$ = $1; }
 ;
-      
-term:
-	term MULOP primary {$$ = checkArithmetic($1, $3);}
-	| primary 
+
+exp:
+	neg { $$ = $1; }
+	| neg EXPOP exp { $$ = checkArithmetic($1, $3); }
+;
+
+mul:
+	exp { $$ = $1; }
+	| mul MULOP exp { $$ = checkArithmetic($1, $3); }
+;
+
+add:
+	mul { $$ = $1; }
+	| add ADDOP mul { $$ = checkArithmetic($1, $3); }
+;
+
+expression:
+	add { $$ = $1; } 
 ;
 
 primary:
