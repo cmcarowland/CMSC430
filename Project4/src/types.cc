@@ -44,6 +44,28 @@ Types checkCases(Types left, Types right) {
 	return MISMATCH;
 }
 
+
+Types checkArithmetic(Types left, Types right) {
+	if (left == MISMATCH || right == MISMATCH)
+	return MISMATCH;
+	
+	if (left == INT_TYPE && right == INT_TYPE)
+	return INT_TYPE;
+	
+	if (left != right)
+	{
+		if (left == REAL_TYPE && right == INT_TYPE)
+		return REAL_TYPE;
+		
+		if (right == REAL_TYPE && left == INT_TYPE)
+		return REAL_TYPE;
+	}
+	
+	appendError(GENERAL_SEMANTIC, "Integer Type Required");
+	return MISMATCH;
+}
+
+
 Types checkList(Types defined, Types expression) {
 	if (expression == MISMATCH)
 		return MISMATCH;
@@ -67,22 +89,14 @@ Types checkListItem(Types left, Types right) {
 	return MISMATCH;
 }
 
-Types checkArithmetic(Types left, Types right) {
-	if (left == MISMATCH || right == MISMATCH)
+Types checkSubscript(Types type)
+{
+	if (type == MISMATCH)
 		return MISMATCH;
 
-	if (left == INT_TYPE && right == INT_TYPE)
+	if (type == INT_TYPE)
 		return INT_TYPE;
 
-	if (left != right)
-	{
-		if (left == REAL_TYPE && right == INT_TYPE)
-			return REAL_TYPE;
-		
-		if (right == REAL_TYPE && left == INT_TYPE)
-			return REAL_TYPE;
-	}
-	
-	appendError(GENERAL_SEMANTIC, "Integer Type Required");
+	appendError(GENERAL_SEMANTIC, "Subscripted Type Must Be Integer");
 	return MISMATCH;
 }
