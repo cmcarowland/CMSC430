@@ -24,6 +24,7 @@ Types checkWhen(Types true_, Types false_) {
 		return MISMATCH;
 	if (true_ != false_)
 		appendError(GENERAL_SEMANTIC, "When Types Mismatch ");
+
 	return true_;
 }
 
@@ -38,15 +39,31 @@ Types checkCases(Types left, Types right) {
 		return MISMATCH;
 	if (left == NONE || left == right)
 		return right;
+
 	appendError(GENERAL_SEMANTIC, "Case Types Mismatch");
 	return MISMATCH;
 }
 
-Types checkList(Types left, Types right) {
-	if(left == right)
-		return left;
+Types checkList(Types defined, Types expression) {
+	if (expression == MISMATCH)
+		return MISMATCH;
 
-	appendError(GENERAL_SEMANTIC, "List Types Mismatch");
+	if (defined == expression)
+		return defined;
+
+	appendError(GENERAL_SEMANTIC, "List Elements Do Not Match Defined Type");
+	return MISMATCH;
+}
+
+Types checkListItem(Types left, Types right) {
+	if (left == MISMATCH || right == MISMATCH)
+		return MISMATCH;
+
+	if (left == NONE || left == right)
+		return right;
+
+
+	appendError(GENERAL_SEMANTIC, "List element type mismatch");
 	return MISMATCH;
 }
 
