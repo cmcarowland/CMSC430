@@ -100,3 +100,21 @@ Types checkSubscript(Types type)
 	appendError(GENERAL_SEMANTIC, "Subscripted Type Must Be Integer");
 	return MISMATCH;
 }
+
+bool checkRelopTypes(Types left, Types right) {
+	if (left == MISMATCH || right == MISMATCH)
+		return false;
+
+	if(left == INT_TYPE && right == CHAR_TYPE) {
+		appendError(GENERAL_SEMANTIC, "Character Literals Cannot be Compared to Numeric Expressions");
+		return false;
+	}
+
+	
+	if(left == CHAR_TYPE && right == INT_TYPE) {
+		appendError(GENERAL_SEMANTIC, "Character Literals Cannot be Compared to Numeric Expressions");
+		return false;
+	}
+
+	return true;
+}
