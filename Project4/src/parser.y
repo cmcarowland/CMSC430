@@ -100,6 +100,16 @@ statement:
 		{$$ = checkWhen($4, $6);}
 	| SWITCH expression IS cases OTHERS ARROW statement ';' ENDSWITCH 
 		{$$ = checkSwitch($2, $4, $7);} 
+	| IF condition THEN statement_ elseifs ELSE statement_ ENDIF
+;
+
+elseifs:
+	elseifs elseif
+	| %empty
+;
+
+elseif:
+	ELSIF condition THEN statement_
 ;
 
 cases:
@@ -117,8 +127,8 @@ condition:
 ;
 
 relation:
-	'(' condition')'
-	| expression RELOP expression 
+	'(' condition ')'
+	| expression RELOP expression { checkRelopTypes($1, $3); }
 ;
 	
 expression:
