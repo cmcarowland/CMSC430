@@ -136,7 +136,7 @@ primary:
 	| INT_LITERAL
 	| CHAR_LITERAL
 	| REAL_LITERAL
-	| IDENTIFIER '(' expression ')' {$$ = find(lists, $1, "List");}
+	| IDENTIFIER '(' expression ')' { if(checkSubscript($3) == INT_TYPE){ $$ = find(lists, $1, "List"); } else { $$ = MISMATCH; }}
 	| IDENTIFIER  {$$ = find(scalars, $1, "Scalar");} 
 ;
 
