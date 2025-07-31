@@ -5,6 +5,8 @@
 
 // This file contains type definitions and the function
 // prototypes for the type checking functions
+#ifndef TYPES_H
+#define TYPES_H
 
 typedef char* CharPtr;
 
@@ -24,3 +26,11 @@ Types checkSubscript(Types type);
 bool checkRelopTypes(Types left, Types right);
 
 Types checkNumericType(Types type);
+
+Types checkMod(Types left, Types right);
+
+void cacheIf(Types type);
+Types areSameTypes(Types other);
+void clearCache();
+
+#endif // TYPES_H

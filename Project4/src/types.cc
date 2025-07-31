@@ -14,6 +14,8 @@ using namespace std;
 #include "listing.h"
 #include "error.h"
 
+Types currentType;
+
 void checkAssignment(Types lValue, Types rValue, string message) {
 	if (lValue != MISMATCH && rValue != MISMATCH && lValue != rValue)
 		appendError(GENERAL_SEMANTIC, "Type Mismatch on " + message);
@@ -43,7 +45,6 @@ Types checkCases(Types left, Types right) {
 	appendError(GENERAL_SEMANTIC, "Case Types Mismatch");
 	return MISMATCH;
 }
-
 
 Types checkArithmetic(Types left, Types right) {
 	if (left == MISMATCH || right == MISMATCH)
@@ -131,4 +132,38 @@ Types checkNumericType(Types type) {
 
 	appendError(GENERAL_SEMANTIC, "Arithmetic Operations Require Numeric Types");
 	return MISMATCH;
+}
+
+Types checkMod(Types left, Types right) {
+	if (left == MISMATCH || right == MISMATCH)
+		return MISMATCH;
+
+	if (left != INT_TYPE || right != INT_TYPE) {
+		appendError(GENERAL_SEMANTIC, "Remainder Operator Requires Integer Operands");
+		return MISMATCH;
+	}
+
+	return INT_TYPE;
+}
+
+Types areSameTypes(Types right) {
+	// printf("Checking Same Types: currentType: %d, right: %d\n", currentType, right);
+	if (currentType == MISMATCH || right == MISMATCH)
+		return MISMATCH;
+
+	if (currentType == right)
+		return right;
+
+	currentType = MISMATCH; // Reset currentType if types do not match
+	appendError(GENERAL_SEMANTIC, "If-Elsif-Else Type Mismatch");
+	return MISMATCH;
+}
+
+void cacheIf(Types type) {
+	currentType = type; 
+	// printf("Caching If: currentType: %d\n", currentType);
+}
+
+void clearCache() {
+	currentType = NONE; 
 }
