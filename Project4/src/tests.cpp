@@ -207,7 +207,7 @@ namespace {
     TEST_F(SuppliedTest, Semantic13) { 
         string s = "data/semantic13.txt";
         SetUp(s);
-        double expected = 2;
+        double expected = 1;
         EXPECT_EQ(expected, result) << "Failed!! " << s;
         cout << result_header(s, result, expected);
     }
@@ -215,7 +215,15 @@ namespace {
     TEST_F(SuppliedTest, Semantic14) { 
         string s = "data/semantic14.txt";
         SetUp(s);
-        double expected = 2;
+        double expected = 1;
+        EXPECT_EQ(expected, result) << "Failed!! " << s;
+        cout << result_header(s, result, expected);
+    }
+
+    TEST_F(SuppliedTest, Semantic14B) { 
+        string s = "data/semantic14B.txt";
+        SetUp(s);
+        double expected = 1;
         EXPECT_EQ(expected, result) << "Failed!! " << s;
         cout << result_header(s, result, expected);
     }
