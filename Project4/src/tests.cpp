@@ -227,6 +227,30 @@ namespace {
         EXPECT_EQ(expected, result) << "Failed!! " << s;
         cout << result_header(s, result, expected);
     }
+
+    TEST_F(SuppliedTest, Semantic14C) { 
+        string s = "data/semantic14C.txt";
+        SetUp(s);
+        double expected = 1;
+        EXPECT_EQ(expected, result) << "Failed!! " << s;
+        cout << result_header(s, result, expected);
+    }
+
+    TEST_F(SuppliedTest, Semantic15) { 
+        string s = "data/semantic15.txt";
+        SetUp(s);
+        double expected = 1;
+        EXPECT_EQ(expected, result) << "Failed!! " << s;
+        cout << result_header(s, result, expected);
+    }
+
+    TEST_F(SuppliedTest, Semantic16) { 
+        string s = "data/semantic16.txt";
+        SetUp(s);
+        double expected = 1;
+        EXPECT_EQ(expected, result) << "Failed!! " << s;
+        cout << result_header(s, result, expected);
+    }
 }
 
 int main(int argc, char **argv)
