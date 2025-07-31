@@ -46,7 +46,7 @@ deque<double> args;
 %token <dir> LEFT RIGHT
 
 %type <type> list expressions body type statement_ statement cases case expression
-	primary neg mul exp add
+	primary neg mul exp add elseif elseifs 
 
 %token BEGIN_ CHARACTER FUNCTION END INTEGER IS LIST OF 
 	RETURNS SWITCH CASE OTHERS ENDSWITCH WHEN FOLD ENDFOLD 
@@ -90,26 +90,27 @@ body:
 ;
     
 statement_:
-	statement ';'
-	| error ';' {$$ = MISMATCH;} 
+	statement ';' { $$ = $1; }
+	| error ';' { $$ = MISMATCH; } 
 ;
 	
 statement:
 	expression
 	| WHEN condition ',' expression ':' expression 
 		{$$ = checkWhen($4, $6);}
-	| SWITCH expression IS cases OTHERS ARROW statement ';' ENDSWITCH 
+	| SWITCH expression IS cases OTHERS ARROW statement_ ENDSWITCH 
 		{$$ = checkSwitch($2, $4, $7);} 
-	| IF condition THEN statement_ elseifs ELSE statement_ ENDIF
+	| IF condition THEN statement_ { cacheIf($4); } elseifs ELSE statement_ { $<type>$ = areSameTypes($8); } ENDIF 
+		{ clearCache(); $$ = $<type>9 == $4 ? $4 : MISMATCH; }
 ;
 
 elseifs:
-	elseifs elseif
-	| %empty
+	elseifs elseif { $$ = $2; }
+	| %empty { $$ = NONE; }
 ;
 
 elseif:
-	ELSIF condition THEN statement_
+	ELSIF condition THEN statement_ { $$ = areSameTypes($4); }
 ;
 
 cases:
@@ -138,7 +139,7 @@ neg:
 
 exp:
 	neg { $$ = $1; }
-	| neg EXPOP exp { $$ = checkArithmetic($1, $3); }
+	| exp EXPOP neg { $$ = checkArithmetic($1, $3); }
 ;
 
 mul:
@@ -149,10 +150,9 @@ mul:
 add:
 	mul { $$ = $1; }
 	| add ADDOP mul { $$ = checkArithmetic($1, $3); }
-;
 
 expression:
-	add { $$ = $1; } 
+	add { $$ = $1; }
 ;
 
 primary:
@@ -192,9 +192,6 @@ extern double parse() {
 
 #ifndef TESTING
 int main(int argc, char *argv[]) {
-	firstLine();
-	yyparse();
-	lastLine();
-	return 0;
+	return parse();
 } 
 #endif
