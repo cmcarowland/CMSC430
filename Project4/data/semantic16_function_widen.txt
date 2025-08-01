@@ -1,4 +1,4 @@
--- Narrowing Return
+-- Widening function Return type
 
 function main returns real;
     b: integer is 5 * 2;
