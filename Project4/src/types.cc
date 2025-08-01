@@ -127,7 +127,7 @@ Types checkNumericType(Types type) {
 	if (type == MISMATCH)
 		return MISMATCH;
 
-	if (type == INT_TYPE || type == REAL_TYPE)
+	if (isNumericType(type))
 		return type;
 
 	appendError(GENERAL_SEMANTIC, "Arithmetic Operations Require Numeric Types");
@@ -147,23 +147,39 @@ Types checkMod(Types left, Types right) {
 }
 
 Types areSameTypes(Types right) {
-	// printf("Checking Same Types: currentType: %d, right: %d\n", currentType, right);
 	if (currentType == MISMATCH || right == MISMATCH)
 		return MISMATCH;
 
 	if (currentType == right)
 		return right;
 
-	currentType = MISMATCH; // Reset currentType if types do not match
+	currentType = MISMATCH; 
 	appendError(GENERAL_SEMANTIC, "If-Elsif-Else Type Mismatch");
 	return MISMATCH;
 }
 
 void cacheIf(Types type) {
 	currentType = type; 
-	// printf("Caching If: currentType: %d\n", currentType);
 }
 
 void clearCache() {
 	currentType = NONE; 
+}
+
+bool isNumericType(Types type) {
+	if (type == INT_TYPE || type == REAL_TYPE)
+		return true;
+
+	return false;
+}
+
+Types checkFold(Types type) {
+	if (type == MISMATCH)
+		return MISMATCH;
+
+	if (isNumericType(type))
+		return type;
+
+	appendError(GENERAL_SEMANTIC, "Fold Requires Numeric Type");
+	return MISMATCH;
 }

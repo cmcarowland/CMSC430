@@ -33,4 +33,7 @@ void cacheIf(Types type);
 Types areSameTypes(Types other);
 void clearCache();
 
+bool isNumericType(Types type);
+Types checkFold(Types type);
+
 #endif // TYPES_H
