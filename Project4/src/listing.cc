@@ -48,23 +48,23 @@ void nextLine()
 	Print("%4d  ",lineNumber);
 }
 
-int lastLine()
+int* lastLine()
 {
 	Print("\n\n");
 	if(totalErrors > 0)
 	{
 		Print("%d errors found. Compilation Failed!\n", totalErrors);
 		Print("=========================================================\n");
-		Print("Lexical Errors.             : %d\n", errorCounts[LEXICAL]);
+		Print("Lexical Errors              : %d\n", errorCounts[LEXICAL]);
 		Print("Syntactic Errors            : %d\n", errorCounts[SYNTAX]);
-		Print("Semantic Errors.            : %d\n", errorCounts[GENERAL_SEMANTIC]);
+		Print("Semantic Errors             : %d\n", errorCounts[GENERAL_SEMANTIC]);
 		Print("Duplicate Identifier Errors : %d\n", errorCounts[DUPLICATE_IDENTIFIER]);
 		Print("Undeclared Identifier Errors: %d\n\n", errorCounts[UNDECLARED]);
 		displayErrors();
 	} else
 		Print("Compiled Successfully!!!\n");
 	
-	return totalErrors;
+	return errorCounts;
 }
 
 
