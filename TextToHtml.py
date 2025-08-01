@@ -1,4 +1,15 @@
 import re
+import sys
+
+'''
+Run the following command to generate the testOutput.txt file:
+./bin/test.elf --gtest_color=yes > testOutput.txt
+The color yes option is important to ensure that the output contains ANSI color codes, which are used to format the HTML output.
+
+Once you have the testOutput.txt file, you can convert it to HTML using:
+python TextToHtml.py <path>/testOutput.txt <path>/testOutput.html
+
+'''
 
 pattern = re.compile(r'\[\s+[A-Z]+\s+\]')
 
@@ -72,10 +83,14 @@ def wrap_code(text):
     inCodeSection = False
     return s    
 
-with open("Project3/testOutput.txt", 'r') as iFile:
+if len(sys.argv) != 3:
+    print("Usage: python TextToHtml.py <input_file> <output_file>")
+    sys.exit(1)
+
+with open(sys.argv[1], 'r') as iFile:
     lines = iFile.readlines()
 
-with open("Project3/testOutput.html", 'w') as oFile:
+with open(sys.argv[2], 'w') as oFile:
     oFile.write(f'<html>{header}\n<body>\n<div>\n')
     i = 0
     while i < len(lines):
