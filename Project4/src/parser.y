@@ -46,7 +46,7 @@ deque<double> args;
 %token <dir> LEFT RIGHT
 
 %type <type> list expressions body type statement_ statement cases case expression
-	primary neg mul exp elseif elseifs list_choice function function_header
+	primary neg mul mod exp elseif elseifs list_choice function function_header
 
 %token BEGIN_ CHARACTER FUNCTION END INTEGER IS LIST OF 
 	RETURNS SWITCH CASE OTHERS ENDSWITCH WHEN FOLD ENDFOLD 
@@ -56,6 +56,7 @@ deque<double> args;
 
 function:	
 	function_header optional_variable body  { checkAssignment($1, $3, "Return Type"); }
+	| error { $$ = MISMATCH; }
 ;	
 		
 function_header:	
@@ -71,7 +72,6 @@ type:
 optional_variable:
 	optional_variable variable
 	| %empty 
-	| error { yyerrok; }
 ;
     
 variable:	
@@ -80,20 +80,20 @@ variable:
 		if(scalars.find($1, scalar)){
 			string s = "Scalar already defined: " + string($1);
 			appendError(GENERAL_SEMANTIC, s.c_str());
-			YYERROR;
+		} else {
+			checkAssignment($3, $5, "Variable Initialization"); 
+			scalars.insert($1, $3); 
 		}
-		checkAssignment($3, $5, "Variable Initialization"); 
-		scalars.insert($1, $3); 
 	}
 	| IDENTIFIER ':' LIST OF type IS list ';' { 
 		Types list;
 		if(lists.find($1, list)){
 			string s = "List already defined: " + string($1);
 			appendError(GENERAL_SEMANTIC, s.c_str());
-			YYERROR;
+		} else {
+			checkList($5, $7); 
+			lists.insert($1, $5); 
 		}
-		checkList($5, $7); 
-		lists.insert($1, $5); 
 	}
 ;
 
@@ -107,7 +107,8 @@ expressions:
 ;
 
 body:
-	BEGIN_ statement_ END ';' {$$ = $2;} 
+	BEGIN_ statement_ END ';' { $$ = $2;} 
+	| error { $$ = NONE; }
 ;
     
 statement_:
@@ -124,18 +125,20 @@ statement:
 	| IF condition THEN statement_ { cacheIf($4); } elseifs ELSE statement_ { $<type>$ = areSameTypes($8); } ENDIF 
 		{ clearCache(); $$ = $<type>9; }
 	| FOLD direction operator list_choice { $<type>$ = $4; } ENDFOLD { $$ = $<type>5; }
+	| FOLD error ENDFOLD { $$ = NONE; }
 ;
 
 list_choice:
 	list { $$ = checkFold($1); }
 	| IDENTIFIER {
-		Types list;
-		if (lists.find($1, list)) {
-			$$ = checkFold(list);
-		} else {
-			appendError(UNDECLARED, $1);
-			$$ = NONE;
+		Types list = NONE;
+		if (!lists.find($1, list)) {
+			string s = "Undeclared List: " + string($1);
+			appendError(GENERAL_SEMANTIC, s.c_str());
+			YYERROR;
 		}
+		
+		$$ = checkFold(list);
 	}
 ;
 
@@ -187,9 +190,14 @@ exp:
 	| exp EXPOP neg { $$ = checkArithmetic($1, $3); }
 ;
 
-mul:
+mod:
 	exp { $$ = $1; }
-	| mul MULOP exp { $$ = checkArithmetic($1, $3); }
+	| mod MODOP exp { $$ = checkMod($1, $3); }
+;
+
+mul:
+	mod { $$ = $1; }
+	| mul MULOP mod { $$ = checkArithmetic($1, $3); }
 ;
 
 expression:
@@ -202,8 +210,27 @@ primary:
 	| INT_LITERAL
 	| CHAR_LITERAL
 	| REAL_LITERAL
-	| IDENTIFIER '(' expression ')' { if(checkSubscript($3) == INT_TYPE){ $$ = find(lists, $1, "List"); } else { $$ = MISMATCH; }}
-	| IDENTIFIER  {$$ = find(scalars, $1, "Scalar");} 
+	| IDENTIFIER '(' expression ')' { 
+		if(checkSubscript($3) == INT_TYPE){ 
+			Types t = find(lists, $1, "List"); 
+			if(t == MISMATCH)
+			{
+				string s = "Undeclared List: " + string($1);
+				appendError(GENERAL_SEMANTIC, s.c_str());
+			}
+			$$ = t;
+		} else { 
+			$$ = MISMATCH;
+		}
+	}
+	| IDENTIFIER  {
+		Types t = find(scalars, $1, "Scalar");
+		if(t == MISMATCH){
+			string s = "Undeclared Scalar: " + string($1);
+			appendError(GENERAL_SEMANTIC, s.c_str());
+		}
+		$$ = t;
+	} 
 ;
 
 %%
@@ -211,7 +238,7 @@ primary:
 Types find(Symbols<Types>& table, CharPtr identifier, string tableName) {
 	Types type;
 	if (!table.find(identifier, type)) {
-		appendError(UNDECLARED, tableName + " " + identifier);
+		//appendError(UNDECLARED, tableName + " " + identifier);
 		return MISMATCH;
 	}
 	return type;
@@ -221,21 +248,23 @@ void yyerror(const char* message) {
 	appendError(SYNTAX, message);
 }
 
-extern double parse() {
+extern int* parse() {
 	scalars = Symbols<Types>();
 	lists = Symbols<Types>();
 	yydebug = 0;
 	firstLine();
 	yyparse();
-	int errors = lastLine();
-	if(errors != 0)
-		return errors;
-	else
-		return result;
+	return lastLine();
+	
 }
 
 #ifndef TESTING
 int main(int argc, char *argv[]) {
-	return parse();
+	int* errors = parse();
+	int totalErrors = 0;
+	for(int i = 0; i < 5; i++)
+		totalErrors += errors[i];
+
+	return totalErrors;
 } 
 #endif
