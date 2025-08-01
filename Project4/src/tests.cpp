@@ -244,6 +244,30 @@ namespace {
         cout << result_header(s, result, expected);
     }
 
+    TEST_F(SuppliedTest, Semantic15ListVariable) { 
+        string s = "data/semantic15_list_variable.txt";
+        SetUp(s);
+        double expected = 1;
+        EXPECT_EQ(expected, result) << "Failed!! " << s;
+        cout << result_header(s, result, expected);
+    }
+
+    TEST_F(SuppliedTest, Semantic15ListNumericVariable) { 
+        string s = "data/semantic15_list_numeric.txt";
+        SetUp(s);
+        double expected = 0;
+        EXPECT_EQ(expected, result) << "Failed!! " << s;
+        cout << result_header(s, result, expected);
+    }
+
+    TEST_F(SuppliedTest, Semantic15ListNumericInline) { 
+        string s = "data/semantic15_list_numeric_inline.txt";
+        SetUp(s);
+        double expected = 0;
+        EXPECT_EQ(expected, result) << "Failed!! " << s;
+        cout << result_header(s, result, expected);
+    }
+
     TEST_F(SuppliedTest, Semantic16) { 
         string s = "data/semantic16.txt";
         SetUp(s);
