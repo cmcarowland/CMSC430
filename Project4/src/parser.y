@@ -46,11 +46,11 @@ deque<double> args;
 %token <dir> LEFT RIGHT
 
 %type <type> list expressions body type statement_ statement cases case expression
-	primary neg mul exp add elseif elseifs 
+	primary neg mul exp add elseif elseifs list_choice 
 
 %token BEGIN_ CHARACTER FUNCTION END INTEGER IS LIST OF 
 	RETURNS SWITCH CASE OTHERS ENDSWITCH WHEN FOLD ENDFOLD 
-	IF ELSIF ELSE ENDIF THEN REAL ARROW
+	IF ELSIF ELSE ENDIF THEN REAL ARROW 
 
 %%
 
@@ -101,7 +101,31 @@ statement:
 	| SWITCH expression IS cases OTHERS ARROW statement_ ENDSWITCH 
 		{$$ = checkSwitch($2, $4, $7);} 
 	| IF condition THEN statement_ { cacheIf($4); } elseifs ELSE statement_ { $<type>$ = areSameTypes($8); } ENDIF 
-		{ clearCache(); $$ = $<type>9 == $4 ? $4 : MISMATCH; }
+		{ clearCache(); $$ = $<type>9; }
+	| FOLD direction operator list_choice { $<type>$ = $4; } ENDFOLD { $$ = $<type>5; }
+;
+
+list_choice:
+	list { $$ = checkFold($1); }
+	| IDENTIFIER {
+		Types list;
+		if (lists.find($1, list)) {
+			$$ = checkFold(list);
+		} else {
+			appendError(UNDECLARED, $1);
+			$$ = NONE;
+		}
+	}
+;
+
+direction:
+	LEFT
+	| RIGHT
+;
+
+operator:
+	ADDOP 
+	| MULOP 
 ;
 
 elseifs:
