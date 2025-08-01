@@ -204,6 +204,8 @@ void yyerror(const char* message) {
 }
 
 extern double parse() {
+	scalars = Symbols<Types>();
+	lists = Symbols<Types>();
 	yydebug = 0;
 	firstLine();
 	yyparse();
