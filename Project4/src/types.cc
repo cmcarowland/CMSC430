@@ -18,17 +18,17 @@ Types currentType;
 
 Types checkAssignment(Types expectedType, Types returnedType, string message) {
 	// printf("checkAssignment(%d, %d)\n", expectedType, returnedType);
-	if (returnedType == MISMATCH)
+	if (returnedType == MISMATCH || returnedType == NONE)
 		return MISMATCH;
 	
 	if(expectedType == returnedType)
 		return returnedType;
 
-	// Allows widening conversions
-	if(expectedType > returnedType)
-		return expectedType;
+	if(expectedType == INT_TYPE && returnedType == REAL_TYPE)
+		appendError(GENERAL_SEMANTIC, "Illegal Narrowing " + message);
+	else if(isNumericType(expectedType) && !isNumericType(returnedType))
+		appendError(GENERAL_SEMANTIC, " Type Mismatch on " + message);
 
-	appendError(GENERAL_SEMANTIC, "Illegal Narrowing " + message);
 	return MISMATCH;
 }
 
@@ -79,7 +79,6 @@ Types checkArithmetic(Types left, Types right) {
 	appendError(GENERAL_SEMANTIC, "Integer Type Required");
 	return MISMATCH;
 }
-
 
 Types checkList(Types defined, Types expression) {
 	if (expression == MISMATCH)
@@ -191,6 +190,6 @@ Types checkFold(Types type) {
 	if (isNumericType(type))
 		return type;
 
-	appendError(GENERAL_SEMANTIC, "Fold Requires Numeric Type");
+	appendError(GENERAL_SEMANTIC, "Fold Requires Numeric List");
 	return MISMATCH;
 }
