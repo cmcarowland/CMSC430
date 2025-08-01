@@ -46,7 +46,7 @@ deque<double> args;
 %token <dir> LEFT RIGHT
 
 %type <type> list expressions body type statement_ statement cases case expression
-	primary neg mul exp add elseif elseifs list_choice 
+	primary neg mul exp elseif elseifs list_choice function function_header
 
 %token BEGIN_ CHARACTER FUNCTION END INTEGER IS LIST OF 
 	RETURNS SWITCH CASE OTHERS ENDSWITCH WHEN FOLD ENDFOLD 
@@ -55,11 +55,12 @@ deque<double> args;
 %%
 
 function:	
-	function_header optional_variable body ;
-	
+	function_header optional_variable body  { checkAssignment($1, $3, "Return Type"); }
+;	
 		
 function_header:	
-	FUNCTION IDENTIFIER RETURNS type ';' ;
+	FUNCTION IDENTIFIER RETURNS type ';' { $$ = $4; }
+;
 
 type:
 	INTEGER {$$ = INT_TYPE;} 
@@ -68,12 +69,32 @@ type:
 ;
 
 optional_variable:
-	variable |
-	%empty ;
+	optional_variable variable
+	| %empty 
+	| error { yyerrok; }
+;
     
 variable:	
-	IDENTIFIER ':' type IS statement ';' { checkAssignment($3, $5, "Variable Initialization"); scalars.insert($1, $3); }
-	| IDENTIFIER ':' LIST OF type IS list ';' { checkList($5, $7); lists.insert($1, $5); } 
+	IDENTIFIER ':' type IS statement ';' { 
+		Types scalar;
+		if(scalars.find($1, scalar)){
+			string s = "Scalar already defined: " + string($1);
+			appendError(GENERAL_SEMANTIC, s.c_str());
+			YYERROR;
+		}
+		checkAssignment($3, $5, "Variable Initialization"); 
+		scalars.insert($1, $3); 
+	}
+	| IDENTIFIER ':' LIST OF type IS list ';' { 
+		Types list;
+		if(lists.find($1, list)){
+			string s = "List already defined: " + string($1);
+			appendError(GENERAL_SEMANTIC, s.c_str());
+			YYERROR;
+		}
+		checkList($5, $7); 
+		lists.insert($1, $5); 
+	}
 ;
 
 list:
@@ -171,12 +192,9 @@ mul:
 	| mul MULOP exp { $$ = checkArithmetic($1, $3); }
 ;
 
-add:
-	mul { $$ = $1; }
-	| add ADDOP mul { $$ = checkArithmetic($1, $3); }
-
 expression:
-	add { $$ = $1; }
+	mul { $$ = $1; }
+	| expression ADDOP mul { $$ = checkArithmetic($1, $3); }
 ;
 
 primary:
