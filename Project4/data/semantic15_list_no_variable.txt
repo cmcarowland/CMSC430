@@ -1,4 +1,4 @@
-// Folding a nonnumeric List
+// Folding a undeclared List
 
 function main returns integer;
 begin

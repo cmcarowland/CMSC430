@@ -283,6 +283,46 @@ namespace {
         EXPECT_EQ(expected, result) << "Failed!! " << s;
         cout << result_header(s, result, expected);
     }
+
+    TEST_F(SuppliedTest, Semantic16_Widen) { 
+        string s = "data/semantic16_widen.txt";
+        SetUp(s);
+        double expected = 0;
+        EXPECT_EQ(expected, result) << "Failed!! " << s;
+        cout << result_header(s, result, expected);
+    }
+
+    TEST_F(SuppliedTest, Semantic16_Function) { 
+        string s = "data/semantic16_function.txt";
+        SetUp(s);
+        double expected = 1;
+        EXPECT_EQ(expected, result) << "Failed!! " << s;
+        cout << result_header(s, result, expected);
+    }
+
+    TEST_F(SuppliedTest, Semantic16_Function_Widen) { 
+        string s = "data/semantic16_function_widen.txt";
+        SetUp(s);
+        double expected = 0;
+        EXPECT_EQ(expected, result) << "Failed!! " << s;
+        cout << result_header(s, result, expected);
+    }
+
+    TEST_F(SuppliedTest, Semantic17) { 
+        string s = "data/semantic17.txt";
+        SetUp(s);
+        double expected = 1;
+        EXPECT_EQ(expected, result) << "Failed!! " << s;
+        cout << result_header(s, result, expected);
+    }
+
+    TEST_F(SuppliedTest, Semantic18) { 
+        string s = "data/semantic18.txt";
+        SetUp(s);
+        double expected = 2;
+        EXPECT_EQ(expected, result) << "Failed!! " << s;
+        cout << result_header(s, result, expected);
+    }
 }
 
 int main(int argc, char **argv)
