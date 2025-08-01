@@ -12,7 +12,7 @@ typedef char* CharPtr;
 
 enum Types {MISMATCH, INT_TYPE, CHAR_TYPE, REAL_TYPE, NONE};
 
-void checkAssignment(Types lValue, Types rValue, string message);
+Types checkAssignment(Types lValue, Types rValue, string message);
 Types checkWhen(Types true_, Types false_);
 Types checkSwitch(Types case_, Types when, Types other);
 Types checkCases(Types left, Types right);

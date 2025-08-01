@@ -16,9 +16,20 @@ using namespace std;
 
 Types currentType;
 
-void checkAssignment(Types lValue, Types rValue, string message) {
-	if (lValue != MISMATCH && rValue != MISMATCH && lValue != rValue)
-		appendError(GENERAL_SEMANTIC, "Type Mismatch on " + message);
+Types checkAssignment(Types expectedType, Types returnedType, string message) {
+	// printf("checkAssignment(%d, %d)\n", expectedType, returnedType);
+	if (returnedType == MISMATCH)
+		return MISMATCH;
+	
+	if(expectedType == returnedType)
+		return returnedType;
+
+	// Allows widening conversions
+	if(expectedType > returnedType)
+		return expectedType;
+
+	appendError(GENERAL_SEMANTIC, "Illegal Narrowing " + message);
+	return MISMATCH;
 }
 
 Types checkWhen(Types true_, Types false_) {
