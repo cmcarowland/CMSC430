@@ -62,3 +62,41 @@
 
 - [x] Verify checks for undefined symbols
 - [x] Add checks for duplicate identifiers
+
+## Test Images
+
+### Image showing compilation
+<img src="images/Compilation.png" >
+
+### Image valid tests and semantic test 1 
+<img src="images/Tests V1-S1.png" >
+
+### Image semantic tests 2-4 
+<img src="images/Tests S2-S4.png" >
+
+### Image semantic tests 5-7
+<img src="images/Tests s5-s7.png" >
+
+### Image semantic tests 8-10
+<img src="images/Tests s8-s10.png" >
+
+### Image semantic tests 11-13
+<img src="images/Tests s11-s13.png" >
+
+### Image semantic tests 14-14B
+<img src="images/Tests s14-s14b.png" >
+
+### Image semantic tests 14C - 15B
+<img src="images/Tests s14C - s15B.png" >
+
+### Image semantic tests 15C - 15E
+<img src="images/Tests s15C- s15E.png" >
+
+### Image semantic tests all 16 tests
+<img src="images/Tests 16 All.png" >
+
+### Image semantic tests 17 and 18 tests
+<img src="images/Tests s17-s18.png" >
+
+### Image semantic 19 test
+<img src="images/Tests s17-s18.png" >
