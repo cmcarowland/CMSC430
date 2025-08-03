@@ -1,7 +1,7 @@
 # Project 4
 
 ## Test Results
-[View](https://html-preview.github.io/?url=https://github.com/cmcarowland/CMSC430/blob/dev/Project4/testOutput.html)
+[View](https://html-preview.github.io/?url=https://github.com/cmcarowland/CMSC430/blob/main/Project4/testOutput.html)
 
 ## Steps 
 
