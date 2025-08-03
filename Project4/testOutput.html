@@ -1,0 +1,802 @@
+<html>
+    <head>
+        <style>
+            :root {
+                --orange: #ff8000;
+                --green: #00a000;
+                --light-blue: #8080ff;
+                --red: #ff4040;
+                --background-blue: hsl(240, 100%, 9%);
+                font-family: monospace;
+            }
+
+            body {background-color: var(--background-blue); color: white;display: flex;flex-direction: column;align-items: center;} 
+            div {width: 100%; max-width: 900px;}
+            span {margin-left: -50;}
+            pre {
+                background-color: color-mix(in lab, var(--background-blue), black 50%);
+                border-radius: 8px;
+                box-shadow: 0 4px 4px rgba(0,0,0,1);
+                padding: 10px;
+            }
+        </style>
+    </head>
+
+<body>
+<div>
+<span style="color:var(--green)">[==========]&nbsp;</span>Running&nbsp;31&nbsp;tests&nbsp;from&nbsp;1&nbsp;test&nbsp;suite.<br/>
+<span style="color:var(--green)">[----------]&nbsp;</span>Global&nbsp;test&nbsp;environment&nbsp;set-up.<br/>
+<span style="color:var(--green)">[----------]&nbsp;</span>31&nbsp;tests&nbsp;from&nbsp;SuppliedTest<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Valid1<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  -- Program with a Real Variable
+   2  
+   3  function main returns real;
+   4      a: real is 4.5;
+   5  begin
+   6      a;
+   7  end;
+   8  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/valid1.txt&nbsp;=&nbsp;0&nbsp;(expected:&nbsp;0)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Valid1&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Valid2<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  -- Program with a Hexadecimal Literals
+   2  
+   3  function main returns integer;
+   4      a: integer is #A;
+   5  begin
+   6      a + #a;
+   7  end;
+   8  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/valid2.txt&nbsp;=&nbsp;0&nbsp;(expected:&nbsp;0)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Valid2&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Valid3<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  -- Program with a Real Variable
+   2  
+   3  function main returns real;
+   4      a: real is 4 + 4.5;
+   5  begin
+   6      a;
+   7  end;
+   8  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/valid3.txt&nbsp;=&nbsp;0&nbsp;(expected:&nbsp;0)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Valid3&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic1<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Variable Initialization Mismatch
+   2  
+   3  function main returns integer;
+   4      value: integer is 'A';
+	 -Semantic Error :  Type Mismatch on Variable Initialization
+   5  begin
+   6      1;
+   7  end;
+   8  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic1.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic1&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic2<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // When Types Mismatch
+   2  
+   3  function main returns integer;
+   4  begin
+   5      when 2 < 1, 1 : 'a';
+	 -Semantic Error : When Types Mismatch 
+   6  end;
+   7  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic2.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic2&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic3<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Non Integer Switch Expression
+   2  
+   3  function main returns integer;
+   4      b: character is 'A';
+   5  begin
+   6      switch b is
+   7          case 1 => 2;
+   8          case 2 => 4;
+   9          others => 6;
+  10      endswitch;
+	 -Semantic Error : Switch Expression Not Integer
+  11  end;
+  12  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic3.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic3&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic4<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Case Types Mismatch
+   2  
+   3  function main returns integer;
+   4      b: character is 'b';
+   5  begin
+   6      switch 1 is
+   7          case 1 => 2;
+   8          case 2 => b;
+	 -Semantic Error : Case Types Mismatch
+   9          others => 6;
+  10      endswitch;
+  11  end;
+  12  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic4.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic4&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic5<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Using Character Variable with Arithmetic Operator
+   2  
+   3  function main returns integer;
+   4      b: character is 'b';
+   5  begin
+   6      b + 10;
+	 -Semantic Error : Arithmetic Operations Require Numeric Types
+   7  end;
+   8  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic5.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic5&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic6<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Undeclared Scalar Variable
+   2  
+   3  function main returns integer;
+   4  begin
+   5      2 * b + 3;
+	 -Semantic Error : Undeclared Scalar: b
+   6  end;
+   7  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic6.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic6&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic7<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Undeclared List Variable
+   2  
+   3  function main returns integer;
+   4  begin
+   5      primes(1) + 1;
+	 -Semantic Error : Undeclared List: primes
+   6  end;
+   7  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic7.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic7&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic8<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // List with Elements of Different Types
+   2  
+   3  function main returns integer;
+   4      aList: list of integer is (1, 2, 3.5);
+	 -Semantic Error : List element type mismatch
+   5  begin
+   6      aList(1);
+   7  end;
+   8  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic8.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic8&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic9<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // List Type Does Not Match Element Types
+   2  
+   3  function main returns character;
+   4      aList: list of character is (1, 2, 3);
+	 -Semantic Error : List Elements Do Not Match Defined Type
+   5  begin
+   6      aList(1);
+   7  end;
+   8  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic9.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic9&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic10<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // List Subscript is not Integer
+   2  
+   3  function main returns integer;
+   4      aList: list of integer is (1, 2, 3);
+   5  begin
+   6      aList(1.5);
+	 -Semantic Error : Subscripted Type Must Be Integer
+   7  end;
+   8  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic10.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic10&nbsp;(1&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic11<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  -- Mixing Numeric and Character Types with Relational Operator
+   2  
+   3  function main returns integer;
+   4  begin
+   5      if 'b' < 'c' then
+   6          1;
+   7      elsif 'b' < 1 then
+	 -Semantic Error : Character Literals Cannot be Compared to Numeric Expressions
+   8          2;
+   9      else
+  10          3;
+  11      endif;
+  12  end;
+  13  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic11.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic11&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic12<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Using Character Literal with Exponentiation Operator
+   2  //     and Negation Operator
+   3  
+   4  function main returns integer;
+   5      c: character is ~'c';
+	 -Semantic Error : Arithmetic Operations Require Numeric Types
+   6  begin
+   7      5 ^ 'P';
+	 -Semantic Error : Arithmetic Operations Require Numeric Types
+   8  end;
+   9  
+  10  
+
+2 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 2
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic12.txt&nbsp;=&nbsp;2&nbsp;(expected:&nbsp;2)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic12&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic13<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Mixing Real Literals with the Remainder Operator
+   2  
+   3  function main returns integer;
+   4  begin
+   5      4 % 4.8;
+	 -Semantic Error : Remainder Operator Requires Integer Operands
+   6  end;
+   7  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic13.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic13&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic14<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  -- If Elsif Else Mismatch
+   2  
+   3  function main returns integer;
+   4  begin
+   5      if 9 < 10 then
+   6          1;
+   7      elsif 8 = 1 then
+   8          2;
+   9      else 
+  10          3.7;
+	 -Semantic Error : If-Elsif-Else Type Mismatch
+  11      endif;
+  12  end;
+  13  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic14.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic14&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic14B<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  -- If Elsif Else Mismatch
+   2  
+   3  function main returns integer;
+   4  begin
+   5      if 9 < 10 then
+   6          1.2;
+   7      elsif 8 = 1 then
+   8          2;
+	 -Semantic Error : If-Elsif-Else Type Mismatch
+   9      elsif 8 = 2 then
+  10          34;
+  11      else 
+  12          3;
+  13      endif;
+  14  end;
+  15  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic14B.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic14B&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic14C<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  -- If Elsif Else Mismatch
+   2  
+   3  function main returns integer;
+   4  begin
+   5      if 9 < 10 then
+   6          1.2;
+   7      else 
+   8          3;
+	 -Semantic Error : If-Elsif-Else Type Mismatch
+   9      endif;
+  10  end;
+  11  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic14C.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic14C&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic15<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Folding a nonnumeric List
+   2  
+   3  function main returns integer;
+   4  begin
+   5      fold left + ('a', 'b', 'c') endfold;    
+	 -Semantic Error : Fold Requires Numeric List
+   6  end;
+   7  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic15.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic15&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic15ListVariable<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Folding a nonnumeric List
+   2  
+   3  function main returns integer;
+   4      charList : list of character is ('a', 'b', 'c');
+   5  begin
+   6      fold left + charList endfold;    
+	 -Semantic Error : Fold Requires Numeric List
+   7  end;
+   8  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic15_list_variable.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic15ListVariable&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic15ListNumericVariable<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Folding a nonnumeric List
+   2  
+   3  function main returns integer;
+   4      intList : list of integer is (1, 5, 7);
+   5  begin
+   6      fold left + intList endfold;    
+   7  end;
+   8  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic15_list_numeric.txt&nbsp;=&nbsp;0&nbsp;(expected:&nbsp;0)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic15ListNumericVariable&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic15ListNumericInline<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Folding a nonnumeric List
+   2  
+   3  function main returns real;
+   4  begin
+   5      fold left + (1.5, 3.4, 62.12) endfold;    
+   6  end;
+   7  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic15_list_numeric_inline.txt&nbsp;=&nbsp;0&nbsp;(expected:&nbsp;0)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic15ListNumericInline&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic15ListMissingVariable<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Folding a undeclared List
+   2  
+   3  function main returns integer;
+   4  begin
+   5      fold left + charList endfold;    
+	 -Semantic Error : Undeclared List: charList
+   6  end;
+   7  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic15_list_no_variable.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic15ListMissingVariable&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic16<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  -- Narrowing Variable Initialization
+   2  
+   3  function main returns integer;
+   4      b: integer is 5 * 2.5;
+	 -Semantic Error : Illegal Narrowing Variable Initialization
+   5  begin
+   6      b + 1;
+   7  end;
+   8  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic16.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic16&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic16_Widen<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  -- Widening Variable Initialization
+   2  
+   3  function main returns real;
+   4      b: real is 5 * 2;
+   5  begin
+   6      b + 1;
+   7  end;
+   8  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic16_widen.txt&nbsp;=&nbsp;0&nbsp;(expected:&nbsp;0)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic16_Widen&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic16_Function<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  -- Narrowing Return
+   2  
+   3  function main returns integer;
+   4      b: real is 5 * 2.5;
+   5  begin
+   6      b + 1;
+   7  end;
+	 -Semantic Error : Illegal Narrowing Return Type
+   8  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic16_function.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic16_Function&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic16_Function_Widen<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  -- Widening function Return type
+   2  
+   3  function main returns real;
+   4      b: integer is 5 * 2;
+   5  begin
+   6      b + 1;
+   7  end;
+   8  
+
+Compiled Successfully!!!
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic16_function_widen.txt&nbsp;=&nbsp;0&nbsp;(expected:&nbsp;0)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic16_Function_Widen&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic17<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  -- Narrowing Function Return
+   2  
+   3  function main returns integer;
+   4      b: integer is 6 * 2;
+   5  begin
+   6      if 8 < 0 then
+   7          b + 3.0;
+   8      else
+   9          b * 4.6;
+  10      endif;
+  11  end;
+	 -Semantic Error : Illegal Narrowing Return Type
+  12  
+
+1 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 1
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic17.txt&nbsp;=&nbsp;1&nbsp;(expected:&nbsp;1)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic17&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic18<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  -- Duplicate Scalar and List Variables
+   2  
+   3  function main returns integer;
+   4      scalar: integer is 4 * 2;
+   5      scalar: character is 'b';
+	 -Semantic Error : Scalar already defined: scalar
+   6      a_list: list of integer is (4, 2);
+   7      a_list: list of real is (2.3, 4.4);
+	 -Semantic Error : List already defined: a_list
+   8  begin
+   9      1;
+  10  end;
+  11  
+
+2 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 2
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic18.txt&nbsp;=&nbsp;2&nbsp;(expected:&nbsp;2)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic18&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[&nbsp;RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;</span>SuppliedTest.Semantic19<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PARAMS&nbsp;&nbsp;]</span>	None<br/>
+<pre>
+
+   1  // Multiple Semantic Errors
+   2  
+   3  function main returns integer;
+   4      value: integer is 4.5;
+	 -Semantic Error : Illegal Narrowing Variable Initialization
+   5      numbers: list of real is (1, 2, 3);
+	 -Semantic Error : List Elements Do Not Match Defined Type
+   6      one: integer is '1';
+	 -Semantic Error :  Type Mismatch on Variable Initialization
+   7  begin
+   8      if value > 0 then
+   9          fold left + ('a', 'b') endfold;
+	 -Semantic Error : Fold Requires Numeric List
+  10      elsif name = 'N' then
+	 -Semantic Error : Undeclared Scalar: name
+  11          fold right * (1, 2.5) endfold;
+	 -Semantic Error : List element type mismatch
+  12      else
+  13          when value < 10, 1 : 1.5;
+	 -Semantic Error : When Types Mismatch 
+  14      endif;
+  15  end;
+  16  
+
+7 errors found. Compilation Failed!
+=========================================================
+Lexical Errors              : 0
+Syntactic Errors            : 0
+Semantic Errors             : 7
+Duplicate Identifier Errors : 0
+Undeclared Identifier Errors: 0
+
+</pre>
+<span style="color:var(--light-blue)">[&nbsp;&nbsp;RESULT&nbsp;&nbsp;]	data/semantic19.txt&nbsp;=&nbsp;7&nbsp;(expected:&nbsp;7)</span><br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;]&nbsp;</span>SuppliedTest.Semantic19&nbsp;(0&nbsp;ms)<br/>
+<span style="color:var(--green)">[----------]&nbsp;</span>31&nbsp;tests&nbsp;from&nbsp;SuppliedTest&nbsp;(2&nbsp;ms&nbsp;total)<br/>
+<br/>
+<span style="color:var(--green)">[----------]&nbsp;</span>Global&nbsp;test&nbsp;environment&nbsp;tear-down<br/>
+<span style="color:var(--green)">[==========]&nbsp;</span>31&nbsp;tests&nbsp;from&nbsp;1&nbsp;test&nbsp;suite&nbsp;ran.&nbsp;(3&nbsp;ms&nbsp;total)<br/>
+<span style="color:var(--green)">[&nbsp;&nbsp;PASSED&nbsp;&nbsp;]&nbsp;</span>31&nbsp;tests.<br/>
+</div>
+</body>
+</html>

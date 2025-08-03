@@ -1,0 +1,7 @@
+// Folding a nonnumeric List
+
+function main returns integer;
+    charList : list of character is ('a', 'b', 'c');
+begin
+    fold left + charList endfold;    
+end;

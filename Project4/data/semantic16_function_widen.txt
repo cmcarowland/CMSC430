@@ -1,0 +1,7 @@
+-- Widening function Return type
+
+function main returns real;
+    b: integer is 5 * 2;
+begin
+    b + 1;
+end;

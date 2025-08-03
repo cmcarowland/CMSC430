@@ -1,0 +1,7 @@
+// Folding a nonnumeric List
+
+function main returns integer;
+    intList : list of integer is (1, 5, 7);
+begin
+    fold left + intList endfold;    
+end;

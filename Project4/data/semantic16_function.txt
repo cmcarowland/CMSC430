@@ -1,0 +1,7 @@
+-- Narrowing Return
+
+function main returns integer;
+    b: real is 5 * 2.5;
+begin
+    b + 1;
+end;

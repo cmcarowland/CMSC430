@@ -1,0 +1,6 @@
+// Folding a nonnumeric List
+
+function main returns real;
+begin
+    fold left + (1.5, 3.4, 62.12) endfold;    
+end;
