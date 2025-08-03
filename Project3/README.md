@@ -28,4 +28,4 @@
 - [x] Comment blocks with student name, project, date and code description included in each file
 
 ## Test Results
-[View](https://html-preview.github.io/?url=https://github.com/cmcarowland/CMSC430/blob/dev/Project3/testOutput.html)
+[View](https://html-preview.github.io/?url=https://github.com/cmcarowland/CMSC430/blob/main/Project3/testOutput.html)
