@@ -1,10 +1,16 @@
-// CMSC 430 Compiler Theory and Design
-// Project 4 Skeleton
-// UMGC CITE
-// Summer 2023
+/*
+	Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 4
+	August 3, 2025
 
-// This file contains type definitions and the function
-// prototypes for the type checking functions
+	types.h
+
+	Header file defining Types enumeration and type checking function prototypes.
+	Declares interfaces for type compatibility validation, assignment checking,
+	and semantic analysis functions used throughout the compiler's type system.
+*/
+
 #ifndef TYPES_H
 #define TYPES_H
 

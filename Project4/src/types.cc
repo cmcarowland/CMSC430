@@ -1,9 +1,15 @@
-// CMSC 430 Compiler Theory and Design
-// Project 4 Skeleton
-// UMGC CITE
-// Summer 2023
+/*
+	Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 4
+	August 3, 2025
 
-// This file contains the bodies of the type checking functions
+	types.cc
+
+	Implementation of type checking functions for the compiler.
+	Handles type compatibility validation, assignment checking, arithmetic operations,
+	and semantic analysis for various language constructs including when statements and switch cases.
+*/
 
 #include <string>
 #include <vector>

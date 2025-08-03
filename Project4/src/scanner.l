@@ -1,9 +1,17 @@
-/* CMSC 430 Compiler Theory and Design
-   Project 4 Skeleton
-   UMGC CITE
-   Summer 2023 */
+/*
+	Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 4
+	August 3, 2025
 
-/* This file contains flex input file */
+	scanner.l
+
+	Flex lexical analyzer specification for the compiler project.
+	Defines token patterns, keywords, operators, literals, and identifiers.
+	Handles lexical analysis including error reporting for invalid characters.
+*/
+
+
 
 %{
 #include <cstdio>

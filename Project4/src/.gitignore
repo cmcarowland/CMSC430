@@ -1,3 +1,16 @@
+#	Raymond Rowland
+#	CMSC 430 Compiler Theory and Design
+#	Project 4
+#	August 3, 2025
+#
+#	.gitignore
+#
+#	Git ignore file for compiler project source directory.
+#	Excludes generated files from version control including parser output,
+#	scanner files, and token headers created during the build process.
+#   Avoid committing intermediate files that are not part of the source code.
+#
+
 parser.c
 parser.output
 parser.tab.h

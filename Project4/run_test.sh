@@ -1,3 +1,18 @@
+#!/bin/bash
+#
+#	Raymond Rowland
+#	CMSC 430 Compiler Theory and Design
+#	Project 4
+#	August 3, 2025
+#
+#	run_test.sh
+#
+#	Automated test script that runs the compiler against multiple test files.
+#	Executes project4.elf with various input files to validate functionality
+#	and semantic analysis capabilities of the compiler implementation.
+# This was created to automate the tests during filming of the project demo.
+#
+
 files=(
 "data/valid1.txt"
 "data/valid2.txt"

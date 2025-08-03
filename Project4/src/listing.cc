@@ -1,8 +1,8 @@
 /*
 	Raymond Rowland
 	CMSC 430 Compiler Theory and Design
-	Project 3
-	July 20, 2025
+	Project 4
+	August 3, 2025
 
 	listing.cc
 
@@ -10,6 +10,8 @@
 	Manages line numbers, collects and categorizes errors (lexical, syntax, semantic, duplicate identifier, undeclared identifier), 
 	and provides functions to display error summaries and details. 
 	The Error class encapsulates error information and formatting for output.
+
+	Modified from Project 3 to return error type counts to the caller.
 */
 
 #include <cstdio>

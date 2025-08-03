@@ -1,9 +1,15 @@
-/* CMSC 430 Compiler Theory and Design
-   Project 4 Skeleton
-   UMGC CITE
-   Summer 2023
-   
-   Project 4 Parser with semantic actions for static semantic errors */
+/*
+	Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 4
+	August 3, 2025
+
+	parser.y
+
+	Bison grammar file defining the syntax and semantic actions for the compiler.
+	Implements parsing rules, type checking, symbol table management, and error reporting
+	for language constructs including functions, variables, lists, conditionals, and expressions.
+*/
 
 %{
 #include <string>

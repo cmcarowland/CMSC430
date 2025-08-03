@@ -1,3 +1,16 @@
+/*
+	Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 4
+	August 3, 2025
+
+	error.h
+
+	Header file defining Error class and ErrorCategories enumeration.
+	Declares the interface for error handling, categorization, and display
+	functionality used throughout the compiler for reporting various error types.
+*/
+
 #ifndef ERROR_H
 #define ERROR_H
 

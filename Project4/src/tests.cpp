@@ -1,13 +1,13 @@
 /*
 	Raymond Rowland
 	CMSC 430 Compiler Theory and Design
-	Project 3
-	July 20, 2025
+	Project 4
+	August 3, 2025
 
     tests.cpp
 
     Implements unit tests for the compiler project using Google Test framework.
-    Tests cover various input files to validate parsing and evaluation logic.
+    Tests cover various input files to validate parsing, type checking, and semantic analysis.
     Each test reads an input file, sets up parameters, invokes the parser, and checks the
     result against expected values, providing detailed output for each test case.
 */

@@ -1,3 +1,16 @@
+#	Raymond Rowland
+#	CMSC 430 Compiler Theory and Design
+#	Project 4
+#	August 3, 2025
+#
+#	makefile
+#
+#	Build configuration for the compiler project. Manages compilation of scanner,
+#	parser, listing, types, and error modules. Includes targets for the main
+#	project executable, test executable, and Google Test integration.
+#	Handles automatic generation of scanner and parser files from flex/bison sources.
+#
+
 bin_dir=./bin
 source_dir=./src
 CXXFLAGS += -I/usr/src/googletest/googletest/include

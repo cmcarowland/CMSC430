@@ -1,3 +1,16 @@
+/*
+	Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 4
+	August 3, 2025
+
+	error.cpp
+
+	Implementation of Error class methods for compiler error handling.
+	Provides error categorization, string conversion, and display functionality
+	for lexical, syntax, semantic, duplicate identifier, and undeclared errors.
+*/
+
 #include "error.h"
 
 extern void Print(string format, ...);

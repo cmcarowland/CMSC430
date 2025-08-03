@@ -1,10 +1,16 @@
-// CMSC 430 Compiler Theory and Design
-// Project 4 Skeleton
-// UMGC CITE
-// Summer 2023
+/*
+	Raymond Rowland
+	CMSC 430 Compiler Theory and Design
+	Project 4
+	August 3, 2025
 
-// This file contains the function prototypes for the functions that produce the 
-// compilation listing
+	listing.h
+
+	Header file declaring functions for compilation listing and error reporting.
+	Provides interface for line management, error appending, and compilation
+	summary generation used throughout the compiler's error tracking system.
+*/
+
 #include "error.h"
 #include <string>
 
